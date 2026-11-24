@@ -1,0 +1,301 @@
+/* =========================================
+   TEAMAX ASSOCIATE PARTNERS
+   Full Background Image + Auto Slider
+========================================= */
+
+.tmx-trusted-brands {
+  --tmx-tb-cream: #fff8ee;
+  --tmx-tb-yellow: #ffed82;
+
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  /* padding: 75px 0 65px; */
+  overflow: hidden;
+  box-sizing: border-box;
+
+  /* Original wallpaper image */
+  background: url("/images/back.png") center center / cover no-repeat;
+}
+
+.mainspace {
+  /* padding-bottom: 30px !important; */
+  margin-top: 30px;
+}
+
+/* Remove every overlay */
+.tmx-trusted-brands::before,
+.tmx-trusted-brands::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Heading aligned with container-xl */
+.tmx-trusted-heading-container {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 38px;
+}
+
+.tmx-trusted-brands .tmx-trusted-heading {
+  position: relative;
+  top: auto;
+  display: flex;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  background: transparent !important;
+  text-align: left;
+}
+
+.tmx-trusted-heading h2 {
+  margin: 0;
+  /* color: #fff8ee; */
+}
+
+.tmx-trusted-heading .short-line {
+  display: block;
+  background: #ffed82;
+}
+
+.tmx-trusted-brands .tmx-trusted-heading .short-line {
+  display: block;
+  background: var(--tmx-tb-yellow);
+}
+
+/* Slider area stays transparent */
+.tmx-trusted-brands-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 200px;
+  padding: 12px 0;
+  background: transparent !important;
+  box-sizing: border-box;
+}
+
+.tmx-trusted-brands-slider {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: 0 44px;
+  box-sizing: border-box;
+}
+
+.tmx-trusted-brands-swiper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.tmx-trusted-brands-swiper .swiper-wrapper {
+  align-items: center;
+  transition-timing-function: linear !important;
+}
+
+.tmx-trusted-brands-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  box-sizing: border-box;
+}
+
+/* White logo circles */
+.tmx-trusted-brand-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 126px;
+  height: 126px;
+  flex: 0 0 126px;
+  padding: 17px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.16);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.tmx-trusted-brand-circle:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.24);
+}
+
+.tmx-trusted-brand-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+/* Slider arrows */
+.tmx-trusted-swipe-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 48px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #fff8ee;
+  cursor: pointer;
+  touch-action: manipulation;
+  transform: translateY(-50%);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.tmx-trusted-swipe-arrow svg {
+  display: block;
+  width: 16px;
+  height: 26px;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.3));
+}
+
+.tmx-trusted-swipe-arrow:hover {
+  color: var(--tmx-tb-yellow);
+}
+
+.tmx-trusted-swipe-left {
+  left: 5px;
+}
+
+.tmx-trusted-swipe-right {
+  right: 5px;
+}
+
+.tmx-trusted-swipe-left:hover {
+  transform: translate(-2px, -50%);
+}
+
+.tmx-trusted-swipe-right:hover {
+  transform: translate(2px, -50%);
+}
+
+/* Tablet */
+@media (max-width: 1100px) {
+  .tmx-trusted-brands {
+    padding: 65px 0 55px;
+  }
+
+  .tmx-trusted-heading-container {
+    margin-bottom: 30px;
+  }
+
+  .tmx-trusted-brands-inner {
+    min-height: 190px;
+  }
+
+  .tmx-trusted-brands-slider {
+    padding: 0 36px;
+  }
+
+  .tmx-trusted-brand-circle {
+    width: 112px;
+    height: 112px;
+    flex-basis: 112px;
+    padding: 15px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .tmx-trusted-brands {
+    padding: 48px 0 40px;
+    background-position: center center;
+  }
+
+  .tmx-trusted-heading-container {
+    margin-bottom: 24px;
+  }
+
+  .tmx-trusted-brands-inner {
+    min-height: 155px;
+    padding: 8px 0;
+  }
+
+  .tmx-trusted-brands-slider {
+    padding: 0 27px;
+  }
+
+  .tmx-trusted-brand-circle {
+    width: 96px;
+    height: 96px;
+    flex-basis: 96px;
+    padding: 12px;
+  }
+
+  .tmx-trusted-swipe-arrow {
+    width: 22px;
+    height: 38px;
+  }
+
+  .tmx-trusted-swipe-arrow svg {
+    width: 12px;
+    height: 20px;
+  }
+
+  .tmx-trusted-swipe-left {
+    left: 0;
+  }
+
+  .tmx-trusted-swipe-right {
+    right: 0;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .tmx-trusted-brands {
+    padding: 42px 0 34px;
+  }
+
+  .tmx-trusted-brands-inner {
+    min-height: 135px;
+  }
+
+  .tmx-trusted-brands-slider {
+    padding: 0 23px;
+  }
+
+  .tmx-trusted-brand-circle {
+    width: 86px;
+    height: 86px;
+    flex-basis: 86px;
+    padding: 11px;
+  }
+
+  .tmx-trusted-swipe-arrow {
+    width: 18px;
+    height: 32px;
+  }
+
+  .tmx-trusted-swipe-arrow svg {
+    width: 11px;
+    height: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tmx-trusted-brand-circle {
+    transition: none;
+  }
+
+  .tmx-trusted-brand-circle:hover {
+    transform: none;
+  }
+}
