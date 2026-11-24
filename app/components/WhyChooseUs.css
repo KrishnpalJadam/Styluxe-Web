@@ -3,9 +3,9 @@
 ========================================================= */
 
 .tmx-why-choose {
-  --tmx-wcu-teal: #263c3d;
-  --tmx-wcu-yellow: #ffed82;
-  --tmx-wcu-white: #fff8ee;
+  --tmx-wcu-teal: #0d3b26;
+  --tmx-wcu-yellow: #d6c7b2;
+  --tmx-wcu-white: #faf8f4;
 
   width: 100%;
   background: var(--tmx-wcu-teal);

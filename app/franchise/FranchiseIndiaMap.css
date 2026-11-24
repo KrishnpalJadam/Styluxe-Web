@@ -18,7 +18,7 @@
     padding: 7px 13px;
     border: 1px solid rgba(255, 208, 40, 0.3);
     border-radius: 30px;
-    color: #ffd028;
+    color: #d6c7b2;
     background: rgba(255, 208, 40, 0.08);
     font-size: 11px;
     font-weight: 700;
@@ -39,9 +39,9 @@
 }
 
 .tm-fc-marker-pulse {
-    fill: #ffd028;
+    fill: #d6c7b2;
     fill-opacity: 0.17;
-    stroke: #ffd028;
+    stroke: #d6c7b2;
     stroke-width: 1;
     animation: tm-fc-map-pulse 2s ease-out infinite;
     transform-box: fill-box;
@@ -49,13 +49,13 @@
 }
 
 .tm-fc-marker-dot {
-    fill: #ffd028;
-    stroke: #fff8ee;
+    fill: #d6c7b2;
+    stroke: #faf8f4;
     stroke-width: 0.8;
 }
 
 .tm-fc-city-label {
-    fill: #fff8ee;
+    fill: #faf8f4;
     font-family: inherit;
     font-size: 10px;
     font-weight: 700;
@@ -82,14 +82,14 @@
     height: 8px;
     flex: 0 0 8px;
     border-radius: 50%;
-    background: #ffd028;
+    background: #d6c7b2;
     box-shadow: 0 0 9px rgba(255, 208, 40, 0.45);
 }
 
 .tm-fc-map-loading,
 .tm-fc-map-error {
     padding: 30px 12px;
-    color: #fff8ee;
+    color: #faf8f4;
     text-align: center;
     font-size: 13px;
 }
@@ -145,7 +145,7 @@
     left: 14px;
     z-index: 500;
     background: rgba(16, 45, 41, 0.9);
-    color: #ffd028;
+    color: #d6c7b2;
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.08em;
@@ -186,7 +186,7 @@
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: #ffd028;
+    background: #d6c7b2;
     box-shadow: 0 0 0 4px rgba(255, 208, 40, 0.2);
 }
 
@@ -219,8 +219,8 @@
 .tm-map-marker-dot {
     width: 12px;
     height: 12px;
-    background: #ffd028;
-    border: 2px solid #102d29;
+    background: #d6c7b2;
+    border: 2px solid #0d3b26;
     border-radius: 50%;
     box-shadow: 0 0 12px rgba(255, 208, 40, 0.9);
     z-index: 2;
@@ -257,7 +257,7 @@
 
 .tm-map-popup strong {
     font-size: 14px;
-    color: #102d29;
+    color: #0d3b26;
 }
 
 .tm-map-popup span {

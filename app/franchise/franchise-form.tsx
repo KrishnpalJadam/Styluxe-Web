@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState } from "react";
@@ -22,43 +21,43 @@ type FormData = {
 };
 
 const indianStateOptions: StateOption[] = [
-  { value: "Andhra Pradesh", label: "Andhra Pradesh" },
-  { value: "Arunachal Pradesh", label: "Arunachal Pradesh" },
-  { value: "Assam", label: "Assam" },
-  { value: "Bihar", label: "Bihar" },
-  { value: "Chhattisgarh", label: "Chhattisgarh" },
-  { value: "Goa", label: "Goa" },
-  { value: "Gujarat", label: "Gujarat" },
-  { value: "Haryana", label: "Haryana" },
-  { value: "Himachal Pradesh", label: "Himachal Pradesh" },
-  { value: "Jharkhand", label: "Jharkhand" },
-  { value: "Karnataka", label: "Karnataka" },
-  { value: "Kerala", label: "Kerala" },
-  { value: "Madhya Pradesh", label: "Madhya Pradesh" },
-  { value: "Maharashtra", label: "Maharashtra" },
-  { value: "Manipur", label: "Manipur" },
-  { value: "Meghalaya", label: "Meghalaya" },
-  { value: "Mizoram", label: "Mizoram" },
-  { value: "Nagaland", label: "Nagaland" },
-  { value: "Odisha", label: "Odisha" },
-  { value: "Punjab", label: "Punjab" },
-  { value: "Rajasthan", label: "Rajasthan" },
-  { value: "Sikkim", label: "Sikkim" },
-  { value: "Tamil Nadu", label: "Tamil Nadu" },
-  { value: "Telangana", label: "Telangana" },
-  { value: "Tripura", label: "Tripura" },
-  { value: "Uttar Pradesh", label: "Uttar Pradesh" },
-  { value: "Uttarakhand", label: "Uttarakhand" },
-  { value: "West Bengal", label: "West Bengal" },
-  { value: "Andaman and Nicobar Islands", label: "Andaman and Nicobar Islands" },
-  { value: "Chandigarh", label: "Chandigarh" },
-  { value: "Dadra and Nagar Haveli and Daman and Diu", label: "Dadra and Nagar Haveli and Daman and Diu" },
-  { value: "Delhi", label: "Delhi" },
-  { value: "Jammu and Kashmir", label: "Jammu and Kashmir" },
-  { value: "Ladakh", label: "Ladakh" },
-  { value: "Lakshadweep", label: "Lakshadweep" },
-  { value: "Puducherry", label: "Puducherry" },
-];
+  "Andhra Pradesh",
+  "Arunachal Pradesh",
+  "Assam",
+  "Bihar",
+  "Chhattisgarh",
+  "Goa",
+  "Gujarat",
+  "Haryana",
+  "Himachal Pradesh",
+  "Jharkhand",
+  "Karnataka",
+  "Kerala",
+  "Madhya Pradesh",
+  "Maharashtra",
+  "Manipur",
+  "Meghalaya",
+  "Mizoram",
+  "Nagaland",
+  "Odisha",
+  "Punjab",
+  "Rajasthan",
+  "Sikkim",
+  "Tamil Nadu",
+  "Telangana",
+  "Tripura",
+  "Uttar Pradesh",
+  "Uttarakhand",
+  "West Bengal",
+  "Andaman and Nicobar Islands",
+  "Chandigarh",
+  "Dadra and Nagar Haveli and Daman and Diu",
+  "Delhi",
+  "Jammu and Kashmir",
+  "Ladakh",
+  "Lakshadweep",
+  "Puducherry",
+].map((state) => ({ value: state, label: state }));
 
 const initialFormData: FormData = {
   fullName: "",
@@ -73,7 +72,7 @@ const initialFormData: FormData = {
 const shopOptions = [
   { value: "Yes, Owned Commercial Space", label: "Yes, Owned Commercial Space" },
   { value: "Yes, Rented Commercial Space", label: "Yes, Rented Commercial Space" },
-  { value: "Looking for Location", label: "Looking for Location" },
+  { value: "Looking for Location", label: "Looking for Salon Location" },
   { value: "No Space Yet", label: "No Space Yet" },
 ];
 
@@ -87,48 +86,21 @@ export const normalizeToYYYYMMDD = (value: string): string => {
   const now = new Date();
   if (lower === "immediately") return now.toISOString().split("T")[0];
   if (lower.includes("90")) {
-    const d = new Date(now.getTime() + 90 * 24 * 60 * 60 * 1000);
-    return d.toISOString().split("T")[0];
+    return new Date(now.getTime() + 90 * 24 * 60 * 60 * 1000).toISOString().split("T")[0];
   }
   if (lower.includes("180")) {
-    const d = new Date(now.getTime() + 180 * 24 * 60 * 60 * 1000);
-    return d.toISOString().split("T")[0];
+    return new Date(now.getTime() + 180 * 24 * 60 * 60 * 1000).toISOString().split("T")[0];
   }
   if (lower.includes("not decided")) {
-    const d = new Date(now.getTime() + 60 * 24 * 60 * 60 * 1000);
-    return d.toISOString().split("T")[0];
+    return new Date(now.getTime() + 60 * 24 * 60 * 60 * 1000).toISOString().split("T")[0];
   }
   const parsed = new Date(trimmed);
-  if (!isNaN(parsed.getTime())) {
-    return parsed.toISOString().split("T")[0];
-  }
+  if (!isNaN(parsed.getTime())) return parsed.toISOString().split("T")[0];
   return now.toISOString().split("T")[0];
 };
 
-const getFormattedStartMonth = (value: string) => {
-  if (!value) return "";
-  if (value.toLowerCase() === "immediately") return "Immediately";
-  if (value.includes("90")) return "Within 90 Days";
-  if (value.includes("180")) return "Within 180 Days";
-  if (value.toLowerCase().includes("not decided")) return "Not Decided Yet";
-
-  if (/^\d{4}-\d{2}/.test(value)) {
-    const [year, month] = value.split("-").map(Number);
-    if (!isNaN(year) && !isNaN(month)) {
-      return new Date(year, month - 1, 1).toLocaleDateString("en-IN", {
-        month: "long",
-        year: "numeric",
-      });
-    }
-  }
-  return value;
-};
-
 export default function FranchiseFormSection() {
-  const [formData, setFormData] = useState<FormData>({
-    ...initialFormData,
-  });
-
+  const [formData, setFormData] = useState<FormData>({ ...initialFormData });
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -137,22 +109,16 @@ export default function FranchiseFormSection() {
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
-
     if (name === "phone") {
       setFormData((prev) => ({
         ...prev,
         phone: value.replace(/\D/g, "").slice(0, 10),
       }));
     } else {
-      setFormData((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
+      setFormData((prev) => ({ ...prev, [name]: value }));
     }
-
     setErrorMessage("");
   };
-
 
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -162,7 +128,6 @@ export default function FranchiseFormSection() {
       setErrorMessage("Please enter your full name.");
       return;
     }
-
     if (
       !formData.email.trim() ||
       !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())
@@ -170,33 +135,24 @@ export default function FranchiseFormSection() {
       setErrorMessage("Please enter a valid email address.");
       return;
     }
-
     if (!/^[6-9]\d{9}$/.test(formData.phone)) {
       setErrorMessage("Please enter a valid 10-digit Indian mobile number.");
       return;
     }
-
     if (!formData.city.trim()) {
       setErrorMessage("Please enter your city.");
       return;
     }
-
-    if (
-      !indianStateOptions.some(
-        (option) => option.value === formData.state
-      )
-    ) {
+    if (!indianStateOptions.some((option) => option.value === formData.state)) {
       setErrorMessage("Please select a valid Indian state or union territory.");
       return;
     }
-
     if (!formData.whenToStart) {
       setErrorMessage("Please select when you want to start.");
       return;
     }
-
     if (!formData.haveShop) {
-      setErrorMessage("Please select your shop availability.");
+      setErrorMessage("Please select your commercial space availability.");
       return;
     }
 
@@ -211,7 +167,7 @@ export default function FranchiseFormSection() {
         state: formData.state,
         startDate: normalizeToYYYYMMDD(formData.whenToStart),
         hasSpace: formData.haveShop,
-        source: "teamex_franchise_website",
+        source: "styluxe_franchise_website",
       });
 
       setErrorMessage("");
@@ -219,100 +175,50 @@ export default function FranchiseFormSection() {
       setFormData({ ...initialFormData });
     } catch (error: any) {
       console.error("Franchise enquiry submission error:", error);
-      setErrorMessage(error.message || "Unable to submit your enquiry. Please try again.");
+      setErrorMessage(
+        error.message || "Unable to submit your enquiry. Please try again."
+      );
     } finally {
       setIsSubmitting(false);
     }
   };
 
-
   const stateSelectStyles = {
-    container: (base: any) => ({
-      ...base,
-      width: "100%",
-      minWidth: 0,
-    }),
-
+    container: (base: any) => ({ ...base, width: "100%", minWidth: 0 }),
     control: (base: any, state: any) => ({
       ...base,
       minHeight: "58px",
       height: "58px",
       borderRadius: "8px",
-      borderColor: state.isFocused ? "#ffd028" : "#d1d5db",
+      borderColor: state.isFocused ? "#d6c7b2" : "#d1d5db",
       boxShadow: "none",
       cursor: "text",
-      "&:hover": {
-        borderColor: "#ffd028",
-      },
+      "&:hover": { borderColor: "#d6c7b2" },
     }),
-
-    valueContainer: (base: any) => ({
-      ...base,
-      padding: "0 14px",
-    }),
-
-    input: (base: any) => ({
-      ...base,
-      color: "#111827",
-      margin: 0,
-      padding: 0,
-    }),
-
-    placeholder: (base: any) => ({
-      ...base,
-      color: "#6b7280",
-      fontSize: "14px",
-    }),
-
-    singleValue: (base: any) => ({
-      ...base,
-      color: "#111827",
-      fontSize: "14px",
-    }),
-
-    indicatorsContainer: (base: any) => ({
-      ...base,
-      paddingRight: "6px",
-    }),
-
+    valueContainer: (base: any) => ({ ...base, padding: "0 14px" }),
+    input: (base: any) => ({ ...base, color: "#1b2721", margin: 0, padding: 0 }),
+    placeholder: (base: any) => ({ ...base, color: "#56625b", fontSize: "14px" }),
+    singleValue: (base: any) => ({ ...base, color: "#1b2721", fontSize: "14px" }),
+    indicatorsContainer: (base: any) => ({ ...base, paddingRight: "6px" }),
     dropdownIndicator: (base: any) => ({
       ...base,
-      color: "#6b7280",
-      "&:hover": {
-        color: "#111827",
-      },
+      color: "#56625b",
+      "&:hover": { color: "#0d3b26" },
     }),
-
-    clearIndicator: (base: any) => ({
-      ...base,
-      padding: "6px",
-    }),
-
-    menu: (base: any) => ({
-      ...base,
-      zIndex: 20,
-      borderRadius: "8px",
-      overflow: "hidden",
-    }),
-
-    menuList: (base: any) => ({
-      ...base,
-      maxHeight: "220px",
-    }),
-
+    clearIndicator: (base: any) => ({ ...base, padding: "6px" }),
+    menu: (base: any) => ({ ...base, zIndex: 20, borderRadius: "8px", overflow: "hidden" }),
+    menuList: (base: any) => ({ ...base, maxHeight: "220px" }),
     option: (base: any, state: any) => ({
       ...base,
       fontSize: "14px",
       cursor: "pointer",
-      color: "#111827",
+      color: "#1b2721",
       backgroundColor: state.isSelected
-        ? "#fff0a6"
+        ? "#e6ddd0"
         : state.isFocused
-          ? "#fff8df"
+          ? "#f4f1ea"
           : "#ffffff",
-      "&:active": {
-        backgroundColor: "#fff0a6",
-      },
+      "&:active": { backgroundColor: "#e6ddd0" },
     }),
   };
 
@@ -320,30 +226,28 @@ export default function FranchiseFormSection() {
     <section id="franchise-form" className="tm-fc-form-section">
       <div className="tm-fc-container">
         <div className="tm-fc-form-card">
-          {/* Left Photo - Existing UI unchanged */}
           <div className="tm-fc-form-media">
             <img
-              src="/images/TeaMax cafe store design.webp"
-              alt="TeaMax Store Interior and Counter"
+              src="/images/styluxe/salon-interior.jpg"
+              alt="Styluxe Luxury Salon Reception and Styling Floor"
               width="600"
               height="450"
             />
           </div>
 
-          {/* Right Form - Existing UI unchanged */}
           <div className="tm-fc-form-body">
-            <h2>Ready to Start Your Own TeaMax?</h2>
+            <h2>Ready to Start Your Own Styluxe Salon?</h2>
 
             <p className="sub">
-              Get the complete franchise proposal, investment breakup and
-              setup process.
+              Get the complete salon franchise proposal, turnkey investment
+              breakup, and territory availability.
             </p>
 
             {formSubmitted ? (
               <div
                 style={{
-                  background: "rgba(255, 208, 40, 0.15)",
-                  border: "1px solid #ffd028",
+                  background: "rgba(214, 199, 178, 0.14)",
+                  border: "1px solid #d6c7b2",
                   padding: "24px",
                   borderRadius: "12px",
                   textAlign: "center",
@@ -353,7 +257,7 @@ export default function FranchiseFormSection() {
                   style={{
                     display: "inline-flex",
                     marginBottom: "8px",
-                    color: "#ffd028",
+                    color: "#d6c7b2",
                   }}
                 >
                   <BadgeCheck size={36} />
@@ -361,8 +265,8 @@ export default function FranchiseFormSection() {
 
                 <h3
                   style={{
-                    color: "#ffd028",
-                    fontSize: "20px",
+                    color: "#d6c7b2",
+                    fontSize: "22px",
                     marginBottom: "8px",
                   }}
                 >
@@ -376,16 +280,14 @@ export default function FranchiseFormSection() {
                     marginBottom: "20px",
                   }}
                 >
-                  Your franchise enquiry has been submitted successfully. Our
-                  team will contact you soon.
+                  Your Styluxe Salon franchise enquiry has been submitted
+                  successfully. Our expansion team will connect with you shortly.
                 </p>
 
                 <button
                   type="button"
                   className="tm-fc-btn-submit"
-                  style={{
-                    width: "100%",
-                  }}
+                  style={{ width: "100%" }}
                   onClick={() => {
                     setFormData({ ...initialFormData });
                     setFormSubmitted(false);
@@ -415,7 +317,6 @@ export default function FranchiseFormSection() {
                 )}
 
                 <div className="tm-fc-form-fields-grid">
-                  {/* Full Name */}
                   <div className="tm-fc-input-group">
                     <input
                       type="text"
@@ -429,7 +330,6 @@ export default function FranchiseFormSection() {
                     />
                   </div>
 
-                  {/* Email Address */}
                   <div className="tm-fc-input-group">
                     <input
                       type="email"
@@ -443,48 +343,11 @@ export default function FranchiseFormSection() {
                     />
                   </div>
 
-                  {/* WhatsApp Number */}
                   <div className="tm-fc-input-group">
                     <div className="tm-fc-phone-wrap">
                       <div className="tm-fc-phone-flag">
-                        <svg
-                          width="20"
-                          height="14"
-                          viewBox="0 0 30 20"
-                          style={{
-                            borderRadius: "2px",
-                            overflow: "hidden",
-                            flexShrink: 0,
-                          }}
-                          aria-label="Indian flag"
-                        >
-                          <rect
-                            width="30"
-                            height="6.66"
-                            fill="#FF9933"
-                          />
-                          <rect
-                            y="6.66"
-                            width="30"
-                            height="6.66"
-                            fill="#FFFFFF"
-                          />
-                          <rect
-                            y="13.33"
-                            width="30"
-                            height="6.67"
-                            fill="#138808"
-                          />
-                          <circle
-                            cx="15"
-                            cy="10"
-                            r="2.5"
-                            fill="#000080"
-                          />
-                        </svg>
                         <span>+91</span>
                       </div>
-
                       <input
                         type="tel"
                         name="phone"
@@ -500,7 +363,6 @@ export default function FranchiseFormSection() {
                     </div>
                   </div>
 
-                  {/* City */}
                   <div className="tm-fc-input-group">
                     <input
                       type="text"
@@ -514,7 +376,6 @@ export default function FranchiseFormSection() {
                     />
                   </div>
 
-                  {/* Searchable State Dropdown */}
                   <div className="tm-fc-input-group">
                     <Select
                       instanceId="tm-fc-main-franchise-state"
@@ -543,14 +404,11 @@ export default function FranchiseFormSection() {
                       menuPosition="fixed"
                       menuShouldScrollIntoView={false}
                       maxMenuHeight={220}
-                      components={{
-                        IndicatorSeparator: () => null,
-                      }}
+                      components={{ IndicatorSeparator: () => null }}
                       styles={stateSelectStyles}
                     />
                   </div>
 
-                  {/* When to Start */}
                   <div className="tm-fc-input-group">
                     <select
                       name="whenToStart"
@@ -568,7 +426,6 @@ export default function FranchiseFormSection() {
                     </select>
                   </div>
 
-                  {/* Shop Availability */}
                   <div className="tm-fc-input-group">
                     <select
                       name="haveShop"
@@ -577,7 +434,7 @@ export default function FranchiseFormSection() {
                       className="tm-fc-select"
                       required
                     >
-                      <option value="">Do you have a space?</option>
+                      <option value="">Do you have salon space?</option>
                       {shopOptions.map((option) => (
                         <option key={option.value} value={option.value}>
                           {option.label}
@@ -587,7 +444,6 @@ export default function FranchiseFormSection() {
                   </div>
                 </div>
 
-                {/* Submit Button */}
                 <button
                   type="submit"
                   className="tm-fc-btn-submit"
@@ -598,16 +454,13 @@ export default function FranchiseFormSection() {
                     cursor: isSubmitting ? "not-allowed" : "pointer",
                   }}
                 >
-                  <span>
-                    {isSubmitting
-                      ? "Submitting..."
-                      : "Submit Enquiry"}
-                  </span>
+                  <span>{isSubmitting ? "Submitting..." : "Submit Enquiry"}</span>
                 </button>
 
                 <p className="tm-fc-form-disclaimer">
                   Submitting an enquiry does not guarantee franchise or
-                  location approval.                </p>
+                  territory approval.
+                </p>
               </form>
             )}
           </div>

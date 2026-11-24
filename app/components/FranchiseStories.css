@@ -4,10 +4,10 @@
 ========================================================= */
 
 .tmx-franchise-stories {
-  --tmx-fs-cream: #fff8ee;
-  --tmx-fs-yellow: #ffed82;
-  --tmx-fs-yellow-deep: #f4d94e;
-  --tmx-fs-teal: #263c3d;
+  --tmx-fs-cream: #faf8f4;
+  --tmx-fs-yellow: #d6c7b2;
+  --tmx-fs-yellow-deep: #4a5d46;
+  --tmx-fs-teal: #0d3b26;
   --tmx-fs-text: #173536;
   --tmx-fs-border: rgba(244, 217, 78, 0.48);
 
@@ -160,7 +160,7 @@
 }
 
 .tmx-franchise-stories-button:hover {
-  background: #193233;
+  background: #092a1b;
 
   color: #fff;
 
@@ -584,8 +584,8 @@
     height: 38px !important;
     min-width: 38px !important;
     border-radius: 50% !important;
-    background: #ffd028 !important;
-    color: #102d29 !important;
+    background: #d6c7b2 !important;
+    color: #0d3b26 !important;
     border: none !important;
     display: flex !important;
     align-items: center !important;
@@ -726,7 +726,7 @@
   }
 
   .tmx-stories-dot.active {
-    background: #263c3d !important;
+    background: #0d3b26 !important;
     width: 26px !important;
     border-radius: 9999px !important;
   }
@@ -821,7 +821,7 @@
   margin-top: 12px;
   font-size: 14px;
   font-weight: 600;
-  color: #263c3d;
+  color: #0d3b26;
   /* text-decoration: underline; */
   /* text-underline-offset: 4px; */
   transition: opacity 0.2s ease;

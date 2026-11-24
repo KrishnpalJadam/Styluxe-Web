@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { getAllBlogPosts } from "../post/blog-data";
+import { getAllBlogPosts } from "../news/blog-data";
 import { getBlogs } from "../lib/api";
 import "./HomeBlogSection.css";
 
@@ -42,7 +42,6 @@ export default function HomeBlogSection() {
           return;
         }
 
-        // Filter published blogs
         const published = apiBlogs.filter(
           (b: any) => !b.status || b.status === "published" || b.status === "active"
         );
@@ -61,15 +60,14 @@ export default function HomeBlogSection() {
               id: b.id,
               slug: b.slug,
               title: b.title,
-              category: b.category || "Chai Culture",
+              category: b.category || "Hair & Beauty",
               readTime: b.readingTime || "5 min read",
               excerpt: (b.excerpt || "").replace(/<[^>]+>/g, "").trim(),
               date: dateStr,
-              coverImage: b.coverImage || "/images/cafe-interior.jpg",
+              coverImage: b.coverImage || "/images/styluxe/salon-interior.jpg",
             };
           });
 
-          // Fallback to static posts if fewer than 3 published in DB
           const existingSlugs = new Set(mappedApiBlogs.map((b) => b.slug));
           const fallbackStatic = getAllBlogPosts()
             .filter((p) => !existingSlugs.has(p.slug))
@@ -102,30 +100,20 @@ export default function HomeBlogSection() {
   return (
     <section className="tm-home-blog-section">
       <div className="tm-container">
-
-        {/* ================================
-            SECTION HEADER
-        ================================= */}
         <div className="tm-home-blog-header">
           <div className="tm-home-blog-heading-wrap">
-            <span className="tm-home-blog-eyebrow">
-              Insights &amp; Stories
-            </span>
+            <span className="tm-home-blog-eyebrow">Beauty Journal &amp; News</span>
             <h2 className="tm-home-blog-heading">
-              News Blog &amp; Updates
+              Hair Care, Trends &amp; Updates
             </h2>
             <p className="tm-home-blog-description">
-              Discover franchise insights, café business strategies,
-              brewing stories, and beverage trends from TeaMax.
+              Explore expert hair and skin rituals, bridal beauty guides, modern
+              grooming advice, and salon franchise insights from Styluxe.
             </p>
           </div>
 
-          {/* Desktop View All */}
-          <Link
-            href="/post"
-            className="tm-home-blog-view-all"
-          >
-            View all stories
+          <Link href="/news" className="tm-home-blog-view-all">
+            View all articles
             <svg
               width="16"
               height="16"
@@ -143,44 +131,36 @@ export default function HomeBlogSection() {
           </Link>
         </div>
 
-        {/* ================================
-            BLOG CARDS
-        ================================= */}
         <div className="tm-home-blog-grid">
           {posts.map((post) => (
             <Link
               key={post.id}
-              href={`/post/${post.slug}`}
+              href={`/news/${post.slug}`}
               className="tm-home-blog-card"
             >
+              {post.coverImage && (
+                <div className="tm-home-blog-image-wrap">
+                  <img
+                    src={post.coverImage}
+                    alt={post.title}
+                    className="tm-home-blog-image"
+                    loading="lazy"
+                  />
+                </div>
+              )}
               <div className="tm-home-blog-content">
-                {/* Top meta */}
                 <div className="tm-home-blog-meta">
-                  <span className="tm-home-blog-category">
-                    {post.category}
-                  </span>
-                  <span className="tm-home-blog-read-time">
-                    {post.readTime}
-                  </span>
+                  <span className="tm-home-blog-category">{post.category}</span>
+                  <span className="tm-home-blog-read-time">{post.readTime}</span>
                 </div>
 
-                {/* Title */}
-                <h3 className="tm-home-blog-title">
-                  {post.title}
-                </h3>
+                <h3 className="tm-home-blog-title">{post.title}</h3>
+                <p className="tm-home-blog-excerpt">{post.excerpt}</p>
 
-                {/* Description */}
-                <p className="tm-home-blog-excerpt">
-                  {post.excerpt}
-                </p>
-
-                {/* Footer */}
                 <div className="tm-home-blog-card-footer">
-                  <span className="tm-home-blog-date">
-                    {post.date}
-                  </span>
+                  <span className="tm-home-blog-date">{post.date}</span>
                   <span className="tm-home-blog-read">
-                    Read story
+                    Read article
                     <svg
                       width="14"
                       height="14"
@@ -202,15 +182,9 @@ export default function HomeBlogSection() {
           ))}
         </div>
 
-        {/* ================================
-            MOBILE VIEW ALL
-        ================================= */}
         <div className="tm-home-blog-mobile-action">
-          <Link
-            href="/post"
-            className="tm-home-blog-view-all"
-          >
-            View all stories
+          <Link href="/news" className="tm-home-blog-view-all">
+            View all articles
             <svg
               width="16"
               height="16"
@@ -227,7 +201,6 @@ export default function HomeBlogSection() {
             </svg>
           </Link>
         </div>
-
       </div>
     </section>
   );

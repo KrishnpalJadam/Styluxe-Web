@@ -1,9 +1,9 @@
 /* TeaMax offers page — header and footer are provided by the existing app layout. */
 .teamax-offers-page {
-    --offers-cream: #fff9ef;
+    --offers-cream: #faf8f4;
     --offers-ink: #102b35;
-    --offers-teal: #153b3d;
-    --offers-yellow: #ffe86a;
+    --offers-teal: #0d3b26;
+    --offers-yellow: #d6c7b2;
     --offers-muted: #52616a;
     background: var(--offers-cream);
     color: var(--offers-ink);
@@ -44,7 +44,7 @@
     inset: 0 0 0 auto;
     width: 59%;
     z-index: -1;
-    background-image: linear-gradient(90deg, var(--offers-cream) 0%, rgba(255, 249, 239, .25) 27%, transparent 52%), url("https://responsive-pixel-prime.lovable.app/__l5e/assets-v1/ccbeae9a-eeec-4801-b67a-8c16ae2a3ae7/teamax-hero.jpg");
+    background-image: linear-gradient(90deg, var(--offers-cream) 0%, rgba(250, 248, 244, .35) 27%, transparent 52%), url("/images/styluxe/salon-interior.jpg");
     background-size: cover;
     background-position: center;
 }
@@ -101,7 +101,7 @@
     margin-top: 12px !important;
     padding: 4px 8px;
     border-radius: 6px;
-    background: #fff0a5;
+    background: #f4f1ea;
     font-size: 13px;
 }
 
@@ -148,7 +148,7 @@
 }
 
 .offers-filter-button:hover:not(.is-active) {
-    background: #fff0a5;
+    background: #f4f1ea;
 }
 
 .offers-card-grid {
@@ -568,7 +568,7 @@
         height: 225px;
         width: 100%;
         opacity: 1;
-        background-image: linear-gradient(to bottom, var(--offers-cream), transparent 35%), url("/images/teamax-hero.jpg");
+        background-image: linear-gradient(to bottom, var(--offers-cream), transparent 35%), url("/images/styluxe/salon-interior.jpg");
     }
 
     .offers-handwritten {

@@ -1,4 +1,3 @@
-
 "use client";
 
 import "./reviews-cards.css";
@@ -7,13 +6,12 @@ import { useEffect, useMemo, useState } from "react";
 import {
     Search,
     Grid2X2,
-    Coffee,
+    Sparkles,
     UsersRound,
     BriefcaseBusiness,
     Star,
     ChevronDown,
     ChevronRight,
-    Quote,
     ExternalLink,
     ArrowLeft,
     ArrowRight,
@@ -49,14 +47,14 @@ const categoryIcons: Record<string, React.ElementType> = {
     all: Grid2X2,
     franchise: BriefcaseBusiness,
     staff: UsersRound,
-    customer: Coffee,
+    customer: Sparkles,
 };
 
 const categoryDescriptions: Record<string, string> = {
-    all: "Stories and experiences shared by our TeaMax family.",
-    franchise: "Hear from the people growing their business with TeaMax.",
-    staff: "Experiences from the team behind every TeaMax cup.",
-    customer: "What our customers say about their TeaMax experience.",
+    all: "Stories and experiences shared by our Styluxe community.",
+    franchise: "Hear from franchise partners growing luxury salons with Styluxe.",
+    staff: "Experiences from the certified stylists and aestheticians behind every appointment.",
+    customer: "What our guests say about their Styluxe hair, skin, and grooming rituals.",
 };
 
 export function ReviewClient({
@@ -95,10 +93,10 @@ export function ReviewClient({
                             location:
                                 rev.reviewerRole ||
                                 (rev.relatedCentreName
-                                    ? `TeaMax Cafe, ${rev.relatedCentreName}`
-                                    : "TeaMax Café"),
+                                    ? `Styluxe Salon, ${rev.relatedCentreName}`
+                                    : "Styluxe Salons"),
 
-                            image: rev.reviewerAvatar || "/images/cafe-interior.jpg",
+                            image: rev.reviewerAvatar || "/images/styluxe/salon-interior.jpg",
                             review: rev.reviewText,
                             link: rev.viewMoreLink || undefined,
                             linkName: rev.viewMoreLinkName || "Read More",
@@ -135,8 +133,8 @@ export function ReviewClient({
                 : [
                     { id: "all", name: "All Reviews", icon: "all" },
                     { id: "franchise", name: "Franchise Partner Reviews", icon: "franchise" },
-                    { id: "staff", name: "Staff Reviews", icon: "staff" },
-                    { id: "customer", name: "Customer Reviews", icon: "customer" },
+                    { id: "staff", name: "Stylist & Team Reviews", icon: "staff" },
+                    { id: "customer", name: "Client Reviews", icon: "customer" },
                 ],
         [categories]
     );
@@ -216,7 +214,7 @@ export function ReviewClient({
 
     }, [filteredItems, currentPage]);
 
-    // Page numbers (same as Menu page)
+    // Page numbers
     const getPageNumbers = (
         current: number,
         total: number
@@ -303,7 +301,7 @@ export function ReviewClient({
                         type="search"
                         className="tx-menu-search-input"
                         aria-label="Search reviews"
-                        placeholder="Search reviews, names, cafés..."
+                        placeholder="Search reviews, names, salons..."
                         value={searchQuery}
                         onChange={(event) =>
                             setSearchQuery(event.target.value)
@@ -334,7 +332,7 @@ export function ReviewClient({
                         {displayCategories.map((category) => {
 
                             const Icon =
-                                categoryIcons[category.icon] || Coffee;
+                                categoryIcons[category.icon] || Sparkles;
 
                             const isSelected =
                                 selectedCategory === category.id;
@@ -560,12 +558,12 @@ export function ReviewClient({
                                                             .trim()
                                                         }`
                                                         : item.type === "staff"
-                                                            ? `TeaMax Team, ${item.location
+                                                            ? `Styluxe Team, ${item.location
                                                                 .split(",")
                                                                 .slice(-1)[0]
                                                                 .trim()
                                                             }`
-                                                            : `Customer, ${item.location
+                                                            : `Verified Client, ${item.location
                                                                 .split(",")
                                                                 .slice(-1)[0]
                                                                 .trim()
@@ -644,8 +642,8 @@ export function ReviewClient({
                                                     key={`page-${p}`}
                                                     type="button"
                                                     className={`tx-menu-page-btn ${currentPage === p
-                                                            ? "is-active"
-                                                            : ""
+                                                        ? "is-active"
+                                                        : ""
                                                         }`}
                                                     aria-current={
                                                         currentPage === p

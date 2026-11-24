@@ -6,8 +6,6 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { getCommonCategories, getCommonMenu } from "../lib/api";
 
-const A = "https://cafe-blueprint-magic.lovable.app/assets";
-
 interface CategoryCardItem {
   id: string;
   name: string;
@@ -17,12 +15,55 @@ interface CategoryCardItem {
   alt: string;
 }
 
-const defaultMenuItems: CategoryCardItem[] = [
-  { id: "tea", name: "Tea", qnt: "20", image: `${A}/menu-tea-GDCVsE9V.jpg`, alt: "Tea served at TeaMax" },
-  { id: "coffee", name: "Coffee", qnt: "49", image: `${A}/menu-coffee-DRjZy5Da.jpg`, alt: "Coffee served at TeaMax" },
-  { id: "burgers", name: "Burgers", qnt: "149", image: `${A}/hero-cafe-zlWPzgb-.jpg`, alt: "TeaMax burger with fries and coffee" },
-  { id: "snacks", name: "Snacks", qnt: "59", image: `${A}/menu-fries-CAp5uNC2.jpg`, alt: "TeaMax fries and snacks" },
-  { id: "thickshakes", name: "Thickshakes", qnt: "99", image: `${A}/menu-shake-DCrFsPuS.jpg`, alt: "TeaMax thickshake" },
+const defaultServiceCategories: CategoryCardItem[] = [
+  {
+    id: "hair-styling",
+    slug: "hair-styling",
+    name: "Hair Cuts & Styling",
+    qnt: "399",
+    image: "/images/styluxe/service-hair.jpg",
+    alt: "Precision haircuts and luxury blowout styling at Styluxe Salons",
+  },
+  {
+    id: "hair-treatments",
+    slug: "hair-treatments",
+    name: "Color & Hair Spa",
+    qnt: "999",
+    image: "/images/styluxe/salon-equipment.jpg",
+    alt: "Botanical hair spa, keratin, and hair color rituals at Styluxe",
+  },
+  {
+    id: "skin-facials",
+    slug: "skin-facials",
+    name: "Skin & Facials",
+    qnt: "799",
+    image: "/images/styluxe/service-skin.jpg",
+    alt: "Luminous botanical facials and skincare at Styluxe Salons",
+  },
+  {
+    id: "mens-grooming",
+    slug: "mens-grooming",
+    name: "Men's Grooming",
+    qnt: "299",
+    image: "/images/styluxe/service-grooming.jpg",
+    alt: "Precision men's haircut and beard grooming at Styluxe",
+  },
+  {
+    id: "bridal-makeup",
+    slug: "bridal-makeup",
+    name: "Bridal & Makeup",
+    qnt: "2,499",
+    image: "/images/styluxe/service-makeup.jpg",
+    alt: "Bridal and occasion makeup artistry at Styluxe Salons",
+  },
+  {
+    id: "nails-spa",
+    slug: "nails-spa",
+    name: "Nails & Hand Spa",
+    qnt: "499",
+    image: "/images/styluxe/service-nails.jpg",
+    alt: "Botanical manicure, pedicure and nail studio at Styluxe",
+  },
 ];
 
 function resolveCategoryImage(cat: any): string {
@@ -39,31 +80,22 @@ function resolveCategoryImage(cat: any): string {
   const name = (cat.name || "").toLowerCase();
   const slug = (cat.slug || "").toLowerCase();
 
-  if (name.includes("classic") || name.includes("kadak") || name.includes("chai") || slug.includes("chai") || name.includes("tea") || slug.includes("tea")) {
-    return `${A}/menu-tea-GDCVsE9V.jpg`;
+  if (name.includes("skin") || name.includes("facial") || slug.includes("skin")) {
+    return "/images/styluxe/service-skin.jpg";
   }
-  if (name.includes("coffee") || slug.includes("coffee")) {
-    return `${A}/menu-coffee-DRjZy5Da.jpg`;
+  if (name.includes("groom") || name.includes("beard") || name.includes("men") || slug.includes("groom")) {
+    return "/images/styluxe/service-grooming.jpg";
   }
-  if (name.includes("burger") || slug.includes("burger")) {
-    return `${A}/hero-cafe-zlWPzgb-.jpg`;
+  if (name.includes("makeup") || name.includes("bridal") || slug.includes("bridal")) {
+    return "/images/styluxe/service-makeup.jpg";
   }
-  if (name.includes("snack") || name.includes("samosa") || name.includes("fries") || name.includes("bite") || slug.includes("snack")) {
-    return `${A}/menu-fries-CAp5uNC2.jpg`;
+  if (name.includes("nail") || name.includes("manicure") || name.includes("pedicure") || slug.includes("nail")) {
+    return "/images/styluxe/service-nails.jpg";
   }
-  if (name.includes("shake") || name.includes("brew") || name.includes("ice") || slug.includes("shake")) {
-    return `${A}/menu-shake-DCrFsPuS.jpg`;
+  if (name.includes("color") || name.includes("keratin") || name.includes("spa") || slug.includes("treatment")) {
+    return "/images/styluxe/salon-equipment.jpg";
   }
-  if (name.includes("sandwich") || slug.includes("sandwich")) {
-    return "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=600&auto=format&fit=crop&q=80";
-  }
-  if (name.includes("kulhad") || slug.includes("kulhad")) {
-    return "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=600&auto=format&fit=crop&q=80";
-  }
-  if (name.includes("artisan") || slug.includes("artisan")) {
-    return "https://images.unsplash.com/photo-1597481499750-3e6b22637e12?w=600&auto=format&fit=crop&q=80";
-  }
-  return `${A}/hero-cafe-zlWPzgb-.jpg`;
+  return "/images/styluxe/service-hair.jpg";
 }
 
 function resolveStartingPrice(cat: any, menuItems: any[]): string {
@@ -83,19 +115,17 @@ function resolveStartingPrice(cat: any, menuItems: any[]): string {
     return `${Math.min(...prices)}`;
   }
 
-  // Fallback defaults by keyword
   const name = (cat.name || "").toLowerCase();
-  if (name.includes("chai") || name.includes("tea")) return "20";
-  if (name.includes("coffee")) return "49";
-  if (name.includes("burger")) return "149";
-  if (name.includes("sandwich")) return "149";
-  if (name.includes("snack") || name.includes("samosa") || name.includes("fries") || name.includes("bite")) return "59";
-  if (name.includes("shake")) return "99";
-  return "29";
+  if (name.includes("groom") || name.includes("men")) return "299";
+  if (name.includes("nail")) return "499";
+  if (name.includes("skin") || name.includes("facial")) return "799";
+  if (name.includes("color") || name.includes("treatment")) return "999";
+  if (name.includes("bridal") || name.includes("makeup")) return "2,499";
+  return "399";
 }
 
 export default function HomeMenuCategories() {
-  const [categories, setCategories] = useState<CategoryCardItem[]>(defaultMenuItems);
+  const [categories, setCategories] = useState<CategoryCardItem[]>(defaultServiceCategories);
 
   useEffect(() => {
     let mounted = true;
@@ -113,9 +143,6 @@ export default function HomeMenuCategories() {
 
         const menuList = Array.isArray(apiMenu) ? apiMenu : [];
 
-        // Filter active categories and sort by displayOrder
-        // Filter active categories, sort by displayOrder,
-        // and show only the first 5 categories
         const activeCategories = apiCategories
           .filter((c: any) => c.status === "active")
           .sort(
@@ -123,6 +150,7 @@ export default function HomeMenuCategories() {
               (a.displayOrder ?? 99) - (b.displayOrder ?? 99)
           )
           .slice(0, 6);
+
         if (activeCategories.length > 0) {
           const dynamicCards: CategoryCardItem[] = activeCategories.map((c: any) => ({
             id: c.id,
@@ -130,7 +158,7 @@ export default function HomeMenuCategories() {
             name: c.name,
             qnt: resolveStartingPrice(c, menuList),
             image: resolveCategoryImage(c),
-            alt: `${c.name} at TeaMax Café`,
+            alt: `${c.name} at Styluxe Salons`,
           }));
 
           setCategories(dynamicCards);
@@ -151,24 +179,33 @@ export default function HomeMenuCategories() {
     <section id="menu" className="menu-section container-xl section-space">
       <div className="section-heading menu-heading-grid">
         <div>
-          <p className="kicker"><span>O</span>ur Menu</p>
-          <h2>Something for<br />Every Craving </h2>
+          <p className="kicker">OUR SERVICES</p>
+          <h2>
+            Services Tailored Around
+            <br />
+            <span className="marker">Your Natural Glow</span>
+          </h2>
           <span className="short-line" />
         </div>
         <div className="menu-intro">
-          <p>From classic teas and coffees to shakes, snacks and quick bites, TeaMax offers a menu designed for everyday café moments.</p>
+          <p>
+            From precision haircuts and botanical hair spas to luminous skin
+            facials, bridal artistry, and men&apos;s grooming — discover expert
+            care at honest prices.
+          </p>
           <Link
-            href="/menu"
+            href="/services"
             className="cafe-action cafe-outline menu-desktop-action"
           >
-            Explore Full Menu <ArrowRight size={17} />
+            View All Services <ArrowRight size={17} />
           </Link>
         </div>
       </div>
+
       <div id="menu-cards" className="menu-grid">
         {categories.map((item) => (
           <Link
-            href={item.slug ? `/menu?category=${encodeURIComponent(item.slug)}` : "/menu"}
+            href={item.slug ? `/services?category=${encodeURIComponent(item.slug)}` : "/services"}
             className="menu-card"
             key={item.id || item.name}
           >
@@ -182,14 +219,15 @@ export default function HomeMenuCategories() {
             />
             <div className="menu-card-copy">
               <h3>{item.name}</h3>
-              <p>Start from ₹{item.qnt} </p>
+              <p>Starting from ₹{item.qnt}</p>
             </div>
           </Link>
         ))}
       </div>
+
       <div className="menu-mobile-action">
-        <Link href="/menu" className="cafe-action cafe-outline">
-          Explore Full Menu <ArrowRight size={17} />
+        <Link href="/services" className="cafe-action cafe-outline">
+          View All Services <ArrowRight size={17} />
         </Link>
       </div>
     </section>

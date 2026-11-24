@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState } from "react";
@@ -12,57 +11,40 @@ import "swiper/css/grid";
 
 const awards = [
   {
-    title: "Restaurant of the Year",
-    text: "Awarded by Harpal Singh Sokhi at 11th Annual Restaurant Award.",
-    image:
-      "https://static.wixstatic.com/media/ac5a6b_9d24531761e04c1aac7007f18c9c71ea~mv2.webp/v1/fill/w_400,h_304,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Icons%20for%20TeaMax%20Website%202023.webp",
-    alt: "Restaurant of the Year award",
+    title: "Luxury Salon Brand of the Year",
+    text: "Recognised for blending botanical salon architecture, hospital-grade hygiene, and accessible everyday luxury.",
+    image: "/images/styluxe/salon-interior.jpg",
+    alt: "Styluxe Luxury Salon Brand of the Year",
   },
   {
-    title: "Top Performing Franchise",
-    text: "Awarded by Ashneer Grover at the Bharat Business Awards",
-    image:
-      "https://static.wixstatic.com/media/ac5a6b_666cfcb6b8a14854898cb9a2f0e09de1~mv2.webp/v1/fill/w_400,h_304,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Bharat%20Business%20Awards%20TeaMax%20Cafe%20India.webp",
-    alt: "Top Performing Franchise award",
+    title: "Emerging Beauty Franchise Leader",
+    text: "Honoured for building a transparent, zero-royalty unisex salon franchise model tailored for modern Indian entrepreneurs.",
+    image: "/images/styluxe/franchise-studio.jpg",
+    alt: "Styluxe Emerging Beauty Franchise Leader",
   },
   {
-    title: "Brand Innovation of the Year",
-    text: "Awarded by Sri Suresh Kumar Singhal, then President of FTCCI, at the",
-    image:
-      "https://static.wixstatic.com/media/ac5a6b_bcc45811a2094ae0a53990faf9b0f0b8~mv2.webp/v1/fill/w_400,h_304,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/IRIE%20Awards.webp",
-    alt: "Brand Innovation of the Year award",
+    title: "Excellence in Hair & Skin Care",
+    text: "Celebrated for certified stylist academy training, authentic global formulations, and high client repeat satisfaction.",
+    image: "/images/styluxe/service-hair.jpg",
+    alt: "Styluxe Excellence in Hair and Skin Care",
   },
   {
-    title: "Franchise of the Year",
-    text: "Awarded by Shri Madan Lal at the Global Business & Education Awards",
-    image:
-      "https://static.wixstatic.com/media/ac5a6b_f0e8410376ac4d94ba02c9a202b63d4e~mv2.jpg/v1/crop/x_0,y_0,w_500,h_382/fill/w_400,h_304,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/GBEA%20Awards_edited.jpg",
-    alt: "Franchise of the Year award",
+    title: "Best Hygiene & Client Safety",
+    text: "Audited across every studio for sterile single-use tools, medical-grade sanitization, and calm guest comfort.",
+    image: "/images/styluxe/service-skin.jpg",
+    alt: "Styluxe Best Hygiene and Client Safety",
   },
   {
-    title: "India Brand Icon Awards",
-    text: "Awarded by Sunil Gavaskar at International Award Meet",
-    image: "/images/IABC 2025 Ashoka FranMark.webp",
-    alt: "India Brand Icon Awards",
+    title: "Men's Grooming Experience Award",
+    text: "Acknowledged for elevating modern men's beard sculpting, scalp therapy, and tailored haircut craftsmanship.",
+    image: "/images/styluxe/service-grooming.jpg",
+    alt: "Styluxe Men's Grooming Experience Award",
   },
   {
-    title: "Franchise of the Year",
-    text: "Awarded by Bhumika Chawla at the Telangana Business Innovation Award",
-    image: "/images/Franchise of the Year 2025.webp",
-    alt: "Franchise of the Year",
-  },
-  {
-    title: "International Excellence Award",
-    text: "Awarded by Padma Shri Saina Nehwal at the International Excellence Awards 2026, organised by Kiteskraft Productions LLP.",
-    image:
-      "/images/nehwal.webp",
-    alt: "International Excellence Award",
-  },
-  {
-    title: "Franchise Ecosystem Builder of the Year",
-    text: "Awarded by Jaya Prada at the Pride of Southern India Awards",
-    image: "/images/Pride of south.webp",
-    alt: "Franchise Ecosystem Builder of the Year",
+    title: "Bridal Artistry Distinction",
+    text: "Recognised by brides and stylists for luminous HD & airbrush artistry rooted in healthy, radiant skin prep.",
+    image: "/images/styluxe/service-makeup.jpg",
+    alt: "Styluxe Bridal Artistry Distinction",
   },
 ];
 
@@ -107,72 +89,52 @@ export default function AwardsRecognitions() {
       aria-labelledby="awards-title"
     >
       <div className="tmx-awards-container">
-
-        {/* Section Heading */}
         <div className="section-heading steps-heading tmx-awards-heading-row">
           <div>
-            <h2 id="awards-title">Awards &amp; Recognitions</h2>
+            <h2 id="awards-title">Standards &amp; Recognitions</h2>
             <span className="short-line" />
           </div>
 
           <p>
-            Recognised for our work across café experiences, franchise growth
-            and brand innovation.
+            Celebrated for elevating modern Indian salon hospitality, certified
+            beauty craftsmanship, and franchise excellence.
           </p>
         </div>
 
-        {/* Awards Swiper Slider */}
         <Swiper
           className="tmx-awards-grid"
           modules={[Autoplay, Grid]}
           loop={true}
           speed={1300}
           autoplay={{
-            delay: 3000,
+            delay: 3200,
             disableOnInteraction: false,
             pauseOnMouseEnter: true,
             waitForTransition: true,
           }}
           slidesPerView={4}
-          slidesPerGroup={4}
+          slidesPerGroup={2}
           spaceBetween={20}
-          grid={{
-            rows: 1,
-            fill: "row",
-          }}
+          grid={{ rows: 1, fill: "row" }}
           watchOverflow={true}
           breakpoints={{
-            // Mobile: 2 columns x 2 rows
             0: {
               slidesPerView: 1,
               slidesPerGroup: 1,
               spaceBetween: 12,
-              grid: {
-                rows: 2,
-                fill: "row",
-              },
+              grid: { rows: 1, fill: "row" },
             },
-
-            // Tablet: 2 cards in one row
             601: {
               slidesPerView: 2,
               slidesPerGroup: 2,
               spaceBetween: 18,
-              grid: {
-                rows: 1,
-                fill: "row",
-              },
+              grid: { rows: 1, fill: "row" },
             },
-
-            // Desktop: 4 cards in one row
             901: {
               slidesPerView: 4,
-              slidesPerGroup: 4,
+              slidesPerGroup: 2,
               spaceBetween: 20,
-              grid: {
-                rows: 1,
-                fill: "row",
-              },
+              grid: { rows: 1, fill: "row" },
             },
           }}
         >
@@ -183,8 +145,6 @@ export default function AwardsRecognitions() {
             return (
               <SwiperSlide key={`${award.title}-${index}`}>
                 <article className="tmx-award-card">
-
-                  {/* Award Image */}
                   <div className="tmx-award-image-box">
                     <img
                       src={award.image}
@@ -194,21 +154,14 @@ export default function AwardsRecognitions() {
                     />
                   </div>
 
-                  {/* Award Content */}
                   <div className="tmx-award-content">
-
-                    {/* Title and Trophy */}
                     <div className="tmx-award-heading">
-                      <h3 className="tmx-award-title">
-                        {award.title}
-                      </h3>
-
+                      <h3 className="tmx-award-title">{award.title}</h3>
                       <span className="tmx-award-trophy">
                         <TrophyIcon />
                       </span>
                     </div>
 
-                    {/* Description */}
                     <p
                       className={`tmx-award-text ${isLong && !isExpanded ? "is-collapsed" : ""
                         }`}
@@ -216,7 +169,6 @@ export default function AwardsRecognitions() {
                       {award.text}
                     </p>
 
-                    {/* View More / Less */}
                     {isLong && (
                       <button
                         type="button"
@@ -232,7 +184,6 @@ export default function AwardsRecognitions() {
                         {isExpanded ? "View less" : "View more"}
                       </button>
                     )}
-
                   </div>
                 </article>
               </SwiperSlide>
@@ -240,18 +191,14 @@ export default function AwardsRecognitions() {
           })}
         </Swiper>
 
-        {/* Bottom Note */}
         <div className="tmx-awards-note">
           <span />
-
           <p>
-            Please note: Award presenters are not associated with the brand
-            TeaMax Cafe India.
+            Styluxe Salons India — Audited hygiene, certified beauty experts,
+            and transparent client care across every studio.
           </p>
-
           <span />
         </div>
-
       </div>
     </section>
   );

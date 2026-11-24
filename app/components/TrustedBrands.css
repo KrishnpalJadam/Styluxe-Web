@@ -4,8 +4,8 @@
 ========================================= */
 
 .tmx-trusted-brands {
-  --tmx-tb-cream: #fff8ee;
-  --tmx-tb-yellow: #ffed82;
+  --tmx-tb-cream: #faf8f4;
+  --tmx-tb-yellow: #d6c7b2;
 
   position: relative;
   isolation: isolate;
@@ -14,8 +14,8 @@
   overflow: hidden;
   box-sizing: border-box;
 
-  /* Original wallpaper image */
-  background: url("/images/back.png") center center / cover no-repeat;
+  /* Subtle Styluxe botanical forest backdrop */
+  background: #4A5D46 url("/images/styluxe-botanical.svg") right bottom / 380px no-repeat;
 }
 
 .mainspace {
@@ -51,12 +51,12 @@
 
 .tmx-trusted-heading h2 {
   margin: 0;
-  /* color: #fff8ee; */
+  /* color: #faf8f4; */
 }
 
 .tmx-trusted-heading .short-line {
   display: block;
-  background: #ffed82;
+  background: #d6c7b2;
 }
 
 .tmx-trusted-brands .tmx-trusted-heading .short-line {
@@ -152,7 +152,7 @@
   padding: 0;
   border: none;
   background: transparent;
-  color: #fff8ee;
+  color: #faf8f4;
   cursor: pointer;
   touch-action: manipulation;
   transform: translateY(-50%);

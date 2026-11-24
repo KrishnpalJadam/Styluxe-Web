@@ -1,4 +1,3 @@
-
 import "./PrivacyPolicy.css";
 import { Header, Footer } from "../components";
 
@@ -8,11 +7,11 @@ const privacypagesections = [
         paragraphs: [
             {
                 heading: "1.1 Personal Information:",
-                text: "We may collect personal information from you when you voluntarily provide it to us through our website, such as when you fill out a contact form or sign up for our newsletter. This may include your name, email address, phone number, and any other information you choose to provide.",
+                text: "We may collect personal information from you when you voluntarily provide it to us through our website, such as when you book a salon appointment, submit a franchise enquiry, join our membership program, or sign up for our newsletter. This may include your name, email address, phone number, city, and service preferences.",
             },
             {
                 heading: "1.2 Automatically Collected Information:",
-                text: "When you visit our website, certain information may be collected automatically, including your IP address, browser type, operating system, referring URLs, and other technical information. We may use cookies and similar technologies to collect this information. You have the option to disable cookies through your browser settings, but this may affect your ability to use certain features of our website.",
+                text: "When you visit our website, certain technical information may be collected automatically, including your IP address, browser type, operating system, referring URLs, and browsing analytics. We may use cookies and similar technologies to improve website performance. You may disable cookies through your browser settings, though certain features may be affected.",
             },
         ],
     },
@@ -22,20 +21,20 @@ const privacypagesections = [
             {
                 heading: "2.1 We may use the personal information you provide to us to:",
                 bullets: [
-                    "Respond to your inquiries or requests.",
-                    "Provide you with information, products, or services you request.",
-                    "Send you marketing or promotional materials if you have opted to receive them.",
-                    "Improve our website and enhance user experience.",
-                    "Monitor and analyze website usage and trends.",
+                    "Confirm salon appointments, memberships, and franchise consultations.",
+                    "Respond to your inquiries, service questions, or support requests.",
+                    "Share seasonal offers, beauty guides, and member rewards if you have opted in.",
+                    "Improve our studio services, digital booking experience, and client care.",
+                    "Monitor and analyze website usage and salon demand trends.",
                 ],
             },
             {
                 heading: "2.2 We may use automatically collected information to:",
                 bullets: [
-                    "Personalize your experience on our website.",
-                    "Understand and analyze user preferences and behavior.",
-                    "Improve our website's functionality and security.",
-                    "Generate aggregated statistical data.",
+                    "Personalize your experience and show nearby Styluxe Salons.",
+                    "Understand user preferences and improve navigation.",
+                    "Maintain website security, reliability, and performance.",
+                    "Generate aggregated statistical insights.",
                 ],
             },
         ],
@@ -45,15 +44,15 @@ const privacypagesections = [
         paragraphs: [
             {
                 heading: "3.1",
-                text: "We will not sell, rent, or lease your personal information to third parties without your consent unless required by law.",
+                text: "We will never sell, rent, or lease your personal information to third parties without your consent unless required by applicable law.",
             },
             {
                 heading: "3.2",
-                text: "We may share your information with trusted third-party service providers who assist us in operating our website, conducting business activities, or servicing you. These providers are contractually obligated to keep your information confidential and secure and are not allowed to use it for any other purpose.",
+                text: "We may share your information with trusted service partners (such as appointment scheduling, CRM, and payment providers) who assist us in operating our website and salon network under strict confidentiality obligations.",
             },
             {
                 heading: "3.3",
-                text: "We may disclose your information to comply with legal obligations, enforce our website's policies, or protect our rights, property, or safety.",
+                text: "We may disclose information where required to comply with legal obligations, enforce our policies, or protect the rights, property, and safety of Styluxe Salons and our guests.",
             },
         ],
     },
@@ -62,7 +61,7 @@ const privacypagesections = [
         paragraphs: [
             {
                 heading: "4.1",
-                text: "We implement appropriate security measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction. However, please note that no method of transmission over the internet or electronic storage is 100% secure, and we cannot guarantee absolute security.",
+                text: "We implement appropriate technical and organizational safeguards to protect your personal information against unauthorized access, alteration, disclosure, or loss. While we strive to safeguard all client data, no internet transmission can be guaranteed 100% impenetrable.",
             },
         ],
     },
@@ -71,7 +70,7 @@ const privacypagesections = [
         paragraphs: [
             {
                 heading: "5.1",
-                text: "Our website may contain links to third-party websites. This Privacy Policy applies only to our website. We have no control over the privacy practices or content of these third-party websites. We encourage you to review the privacy policies of those websites before providing any personal information.",
+                text: "Our website may contain links to external platforms such as Instagram, Google Maps, or WhatsApp. This Privacy Policy applies solely to the Styluxe Salons website, and we encourage reviewing the privacy terms of external services.",
             },
         ],
     },
@@ -80,7 +79,7 @@ const privacypagesections = [
         paragraphs: [
             {
                 heading: "6.1",
-                text: "Our website is not intended for individuals under the age of 16. We do not knowingly collect personal information from children. If you are a parent or guardian and believe your child has provided us with personal information, please contact us, and we will promptly delete such information from our records.",
+                text: "Our online forms and franchise portals are not directed to individuals under the age of 16. If you believe a minor has submitted personal details without parental consent, please contact us for prompt deletion.",
             },
         ],
     },
@@ -89,7 +88,7 @@ const privacypagesections = [
         paragraphs: [
             {
                 heading: "7.1",
-                text: "We reserve the right to update or modify this Privacy Policy at any time. We will notify you of any material changes by posting the revised policy on our website or by other means. Your continued use of our website after the changes indicates your acceptance of the updated Privacy Policy.",
+                text: "Styluxe Salons reserves the right to update or refine this Privacy Policy as our services evolve. Material updates will be posted on this page with an updated effective date.",
             },
         ],
     },
@@ -98,7 +97,7 @@ const privacypagesections = [
         paragraphs: [
             {
                 heading: "8.1",
-                text: "If you have any questions, concerns, or requests regarding this Privacy Policy or our privacy practices, please contact us using the information provided below:",
+                text: "If you have any questions, concerns, or data requests regarding this Privacy Policy, please reach out to our corporate care desk at hello@styluxe.in or call our official helpline below:",
             },
         ],
     },
@@ -110,17 +109,17 @@ export default function PrivacyPolicy() {
             <Header />
 
             <main className="privacypage">
-                {/* Hero Background Image */}
+                {/* Hero Banner */}
                 <section className="privacypagehero">
                     <div className="privacypageheroverlay" />
 
                     <div className="privacypagecontainer privacypageheroinner">
                         <h1 className="privacypagetitle">
-                            Privacy Policy for Teamax Cafe India Website
+                            Privacy &amp; Refund Policy — Styluxe Salons India
                         </h1>
 
                         <p className="privacypageeffectivedate">
-                            Effective Date: 01/Jan/2022
+                            Effective Date: 01/Jan/2026
                         </p>
                     </div>
                 </section>
@@ -129,12 +128,12 @@ export default function PrivacyPolicy() {
                 <section className="privacypagebody">
                     <div className="privacypagecontainer">
                         <p className="privacypageintroduction">
-                            At Teamax Cafe India, we are committed to protecting the privacy
-                            and security of our website users&apos; personal information. This
-                            Privacy Policy outlines how we collect, use, disclose, and store
-                            the information we receive from users of our website. By
-                            accessing or using our website, you agree to the terms and
-                            practices described in this policy.
+                            At Styluxe Salons India, we are committed to protecting the privacy
+                            and trust of our salon guests, website visitors, and franchise
+                            partners. This Privacy Policy explains how we collect, use,
+                            safeguard, and manage information shared on styluxe.in. By
+                            accessing or using our website, you agree to the practices
+                            described below.
                         </p>
 
                         <div className="privacypagesections">
@@ -175,7 +174,7 @@ export default function PrivacyPolicy() {
                             {/* Refund Policy */}
                             <article className="privacypagesection">
                                 <h2 className="privacypagesectiontitle">
-                                    9. Refund Policy
+                                    9. Refund &amp; Rescheduling Policy
                                 </h2>
 
                                 <div className="privacypageparagraph">
@@ -183,21 +182,23 @@ export default function PrivacyPolicy() {
                                         9.1{" "}
                                     </strong>
                                     <span>
-                                        All Payments made against the franchise are non refundable.
-                                        If you have any questions, concerns, or requests regarding
-                                        this Refund Policy or the refund process, please contact
-                                        our customer support using the information provided below:
+                                        All booking advances and payments made toward Styluxe Salons
+                                        franchise onboarding are non-refundable once project
+                                        allocation and architectural planning begin. Salon service
+                                        appointments may be rescheduled with at least 4 hours&apos;
+                                        prior notice. For assistance with any booking or franchise
+                                        billing enquiry, please contact our official helpline:
                                     </span>
                                 </div>
 
                                 <p className="privacypagehelpline">
-                                    Official Helpline: +91 9505 047 047
+                                    Official Helpline: +91 9505 047 047 &nbsp;|&nbsp; Email: hello@styluxe.in
                                 </p>
 
                                 <p className="privacypageparagraph">
-                                    By making a purchase on our website, you acknowledge that
-                                    you have read, understood, and agreed to the terms and
-                                    conditions of this Refund Policy.
+                                    By confirming an appointment or franchise onboarding payment
+                                    with Styluxe Salons, you acknowledge that you have read,
+                                    understood, and agreed to the terms of this Privacy &amp; Refund Policy.
                                 </p>
                             </article>
                         </div>

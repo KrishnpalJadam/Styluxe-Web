@@ -1,12 +1,12 @@
 /* TeaMax visual system — derived from the supplied Lovable reference. */
 :root {
-  --tm-cream: #fff8ee;
+  --tm-cream: #faf8f4;
   --tm-cream-2: #f7f0e4;
   --tm-white: #fff;
-  --tm-yellow: #ffed82;
-  --tm-yellow-deep: #f4d94e;
-  --tm-teal: #263c3d;
-  --tm-teal-2: #193233;
+  --tm-yellow: #d6c7b2;
+  --tm-yellow-deep: #4a5d46;
+  --tm-teal: #0d3b26;
+  --tm-teal-2: #092a1b;
   --tm-text: #17292a;
   --tm-muted: #66706e;
   --tm-border: rgba(38, 60, 61, .13);
@@ -56,7 +56,7 @@ a {
   z-index: 1000;
 
   width: 100%;
-  background: #fff8ee;
+  background: #faf8f4;
 
   /* existing styles */
   display: flex;
@@ -95,7 +95,7 @@ a {
   width: 100%;
   height: 78px;
   z-index: 1000;
-  background: #fff8ee;
+  background: #faf8f4;
 }
 
 .site-header-inner {
@@ -608,7 +608,7 @@ a {
 }
 
 .round-icon {
-  background: #fff7c9;
+  background: #f4f1ea;
   border-radius: 50%;
   color: var(--tm-teal);
   width: 58px;
@@ -923,7 +923,7 @@ a {
 .step p {
   font-size: 16px;
   line-height: 1.5;
-  color: #263c3d;
+  color: #0d3b26;
   margin: 0;
 }
 

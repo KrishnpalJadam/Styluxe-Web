@@ -5,66 +5,65 @@ import FranchisePopup from "./components/FranchisePopup";
 
 export const dynamic = "force-static";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.teamaxcafe.in";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.styluxe.in";
 
 export const metadata: Metadata = {
-  title: "TeaMax Cafe | Tea, Coffee & Cafe Franchise in India",
+  title: "Styluxe Salons | Luxury Hair, Beauty & Grooming Salon Franchise in India",
   description:
-    "Discover TeaMax Cafe for tea, coffee, shakes and tasty bites. Explore our menu, find a cafe or learn about our zero-royalty franchise opportunity.",
+    "Discover Styluxe Salons for luxury hair styling, skin rituals, bridal beauty, and modern grooming. Book an appointment, find a salon near you, or explore our zero-royalty salon franchise.",
   keywords: [
-    "TeaMax Café",
-    "TeaMax cafe franchise",
-    "cafe franchise India",
-    "tea cafe franchise India",
-    "tea cafe business",
-    "chai cafe franchise",
-    "coffee cafe India",
-    "TeaMax menu",
-    "cafe franchise opportunity",
+    "Styluxe Salons",
+    "Styluxe salon franchise",
+    "luxury salon India",
+    "unisex salon India",
+    "hair beauty grooming",
+    "salon franchise opportunity",
+    "Styluxe services",
+    "affordable luxury salon",
   ],
   alternates: { canonical: `${siteUrl}/` },
   openGraph: {
     type: "website",
     locale: "en_IN",
-    siteName: "TeaMax Café",
-    title: "TeaMax Cafe | Tea, Coffee & Cafe Franchise in India",
+    siteName: "Styluxe Salons",
+    title: "Styluxe Salons | Confidence Begins With Care",
     description:
-      "Discover TeaMax Cafe for tea, coffee, shakes and tasty bites. Explore our menu, find a cafe or learn about our zero-royalty franchise opportunity.",
+      "Discover a salon experience designed around expert care, modern style, and confidence that lasts beyond your appointment.",
     url: siteUrl,
     images: [
       {
-        url: "https://cafe-blueprint-magic.lovable.app/assets/hero-cafe-zlWPzgb-.jpg",
-        width: 1536,
-        height: 1024,
-        alt: "Tea, burger and fries at TeaMax",
+        url: "/images/styluxe/hero-salon.jpg",
+        width: 1408,
+        height: 768,
+        alt: "Styluxe Salons luxury hair and grooming experience",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "TeaMax Cafe | Tea, Coffee & Cafe Franchise in India",
+    title: "Styluxe Salons | Confidence Begins With Care",
     description:
-      "Discover TeaMax Cafe for tea, coffee, shakes and tasty bites. Explore our menu, find a cafe or learn about our zero-royalty franchise opportunity.",
-    images: ["/images/cafe-interior.jpg"],
+      "Luxury hair, beauty, skin and grooming experiences — plus zero-royalty salon franchise opportunities across India.",
+    images: ["/images/styluxe/hero-salon.jpg"],
   },
 };
 
 const faqs = [
   {
-    q: "What is TeaMax Café?",
-    a: "TeaMax is an Indian café brand built around tea, coffee, beverages, desserts and café favourites, with a franchise-led growth model.",
+    q: "What services does Styluxe Salons offer?",
+    a: "Styluxe offers a full suite of unisex hair styling and precision cuts, hair coloring and keratin/botox rituals, botanical facials and skin care, men's luxury grooming, bridal & party makeup, and nail spa services.",
   },
   {
-    q: "How can I apply for a TeaMax franchise?",
-    a: "You can submit a franchise enquiry through the TeaMax franchise page. The team can then discuss location, investment and setup requirements.",
+    q: "Do I need a prior appointment to visit a Styluxe Salon?",
+    a: "Walk-ins are always welcome, and you can also book an appointment online or via WhatsApp to reserve your preferred stylist and time slot without waiting.",
   },
   {
-    q: "What does TeaMax support include?",
-    a: "TeaMax presents a structured support model covering setup guidance, operating processes, staff training, technology and marketing support.",
+    q: "How can I apply for a Styluxe Salon franchise?",
+    a: "You can submit a franchise enquiry through our Franchise page. Our expansion team will connect with you to discuss location feasibility, turnkey salon setup, stylist training, and investment plans.",
   },
   {
-    q: "Where can I find the TeaMax menu?",
-    a: "The complete menu is available on the TeaMax Menu page, covering tea, coffee, shakes, juices, ice creams and other café favourites.",
+    q: "What hygiene and product standards does Styluxe follow?",
+    a: "Every Styluxe salon follows strict hospital-grade sanitization protocols, single-use disposables where required, and uses 100% authentic, dermatologically tested international salon brands.",
   },
 ];
 
@@ -75,48 +74,40 @@ export default function HomePage() {
       {
         "@type": "Organization",
         "@id": `${siteUrl}/#organization`,
-        name: "TeaMax Café",
+        name: "Styluxe Salons",
         url: siteUrl,
-        logo: `${siteUrl}/images/logo4.png`,
-        image: `${siteUrl}/images/cafe-interior.jpg`,
+        logo: `${siteUrl}/images/styluxe-emblem.svg`,
+        image: `${siteUrl}/images/styluxe/salon-interior.jpg`,
         description:
-          "Indian café brand serving tea, coffee, fresh juices, shakes, ice creams and café favourites, with franchise opportunities.",
-        sameAs: [
-          "https://www.instagram.com/teamaxcafe",
-          "https://www.facebook.com/TeaMaxCafe/",
-          "https://www.youtube.com/@teamaxcafeindia",
-          "https://www.linkedin.com/company/ashoka-group-since-1969/",
-        ],
+          "Modern Indian luxury hair, beauty, skin, and grooming salon brand offering affordable luxury services and turnkey franchise opportunities.",
         knowsAbout: [
-          "Tea",
-          "Coffee",
-          "Café business",
-          "Café franchise",
-          "Fresh juices",
-          "Milkshakes",
-          "Ice cream",
+          "Hair Styling",
+          "Skin Care & Facials",
+          "Luxury Men's Grooming",
+          "Bridal Makeup",
+          "Hair Treatments",
+          "Salon Franchise",
         ],
       },
       {
-        "@type": "CafeOrCoffeeShop",
-        "@id": `${siteUrl}/#cafe`,
-        name: "TeaMax Café",
+        "@type": "BeautySalon",
+        "@id": `${siteUrl}/#salon`,
+        name: "Styluxe Salons",
         url: siteUrl,
-        image: `${siteUrl}/images/cafe-interior.jpg`,
-        logo: `${siteUrl}/images/logo4.png`,
+        image: `${siteUrl}/images/styluxe/salon-interior.jpg`,
+        logo: `${siteUrl}/images/styluxe-emblem.svg`,
         description:
-          "TeaMax Café serves tea, coffee, fresh juices, shakes, ice creams and café favourites across India.",
-        servesCuisine: ["Indian", "Cafe", "Tea", "Coffee"],
+          "Styluxe Salons combines premium hair, beauty, and grooming experiences with accessible pricing in a serene, welcoming space.",
         priceRange: "₹₹",
         areaServed: { "@type": "Country", name: "India" },
         telephone: "+91-9505047047",
-        email: "hello@teamaxcafe.in",
+        email: "hello@styluxe.in",
         parentOrganization: { "@id": `${siteUrl}/#organization` },
       },
       {
         "@type": "WebSite",
         "@id": `${siteUrl}/#website`,
-        name: "TeaMax Café",
+        name: "Styluxe Salons",
         url: siteUrl,
         publisher: { "@id": `${siteUrl}/#organization` },
         inLanguage: "en-IN",
@@ -125,15 +116,17 @@ export default function HomePage() {
         "@type": "WebPage",
         "@id": `${siteUrl}/#webpage`,
         url: siteUrl,
-        name: "TeaMax Café | Café Franchise in India",
+        name: "Styluxe Salons | Confidence Begins With Care",
         isPartOf: { "@id": `${siteUrl}/#website` },
         about: { "@id": `${siteUrl}/#organization` },
-        primaryImageOfPage: "https://cafe-blueprint-magic.lovable.app/assets/hero-cafe-zlWPzgb-.jpg",
+        primaryImageOfPage: `${siteUrl}/images/styluxe/hero-salon.jpg`,
         inLanguage: "en-IN",
       },
       {
         "@type": "BreadcrumbList",
-        itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: siteUrl }],
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+        ],
       },
     ],
   };

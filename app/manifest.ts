@@ -4,18 +4,18 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "TeaMax Café",
-    short_name: "TeaMax",
-    description: "Tea, coffee, fresh juices, shakes, ice creams and café favourites.",
+    name: "Styluxe Salons",
+    short_name: "Styluxe",
+    description: "Luxury Hair, Beauty, Botanical Skin Care & Modern Grooming Unisex Salons in India.",
     start_url: "/",
     display: "standalone",
-    background_color: "#FFF8EE",
-    theme_color: "#263C3D",
+    background_color: "#FAF8F4",
+    theme_color: "#0D3B26",
     icons: [
       {
-        src: "/images/logo4.png",
-        sizes: "192x192",
-        type: "image/png"
+        src: "/images/styluxe-emblem.svg",
+        sizes: "any",
+        type: "image/svg+xml"
       }
     ]
   };

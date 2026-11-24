@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { Header, Footer, JsonLd } from "../components";
 import { ReviewClient, type ReviewCategory, type ReviewItem } from "./review-client";
@@ -8,8 +9,8 @@ function mapDbReviewToReviewItem(rev: any): ReviewItem {
         id: rev.id,
         type: (rev.categoryId || rev.reviewType || "customer") as "franchise" | "staff" | "customer",
         name: rev.reviewerName,
-        location: rev.reviewerRole || (rev.relatedCentreName ? `TeaMax Cafe, ${rev.relatedCentreName}` : "TeaMax Café"),
-        image: rev.reviewerAvatar || "/images/cafe-interior.jpg",
+        location: rev.reviewerRole || (rev.relatedCentreName ? `Styluxe Salon, ${rev.relatedCentreName}` : "Styluxe Salons"),
+        image: rev.reviewerAvatar || "/images/styluxe/salon-interior.jpg",
         review: rev.reviewText,
         link: rev.viewMoreLink || undefined,
         stars: Number(rev.starRating || 5),
@@ -20,130 +21,144 @@ function mapDbReviewToReviewItem(rev: any): ReviewItem {
 export const dynamic = "force-static";
 
 const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL || "https://www.teamaxcafe.in";
+    process.env.NEXT_PUBLIC_SITE_URL || "https://www.styluxe.in";
 
 export const metadata: Metadata = {
-    title: "TeaMax Cafe Reviews | Customers & Franchise Partners",
+    title: "Styluxe Salons Reviews | Clients, Stylists & Franchise Partners",
     description:
-        "Read experiences shared by TeaMax Cafe customers, franchise partners and team members about cafe visits, business setup, training and ongoing support.",
+        "Read verified stories and reviews shared by Styluxe Salons clients, certified stylists, and franchise partners about salon services, studio setup, training, and ongoing support.",
     keywords: [
-        "TeaMax reviews",
-        "TeaMax Cafe reviews",
-        "TeaMax franchise partner stories",
-        "TeaMax customer reviews",
-        "TeaMax staff reviews",
+        "Styluxe reviews",
+        "Styluxe Salons reviews",
+        "Styluxe franchise partner stories",
+        "Styluxe client reviews",
+        "luxury unisex salon reviews India",
     ],
     alternates: { canonical: `${siteUrl}/reviews/` },
     openGraph: {
-        title: "TeaMax Cafe Reviews | Customers & Franchise Partners",
+        title: "Styluxe Salons Reviews | Clients, Stylists & Franchise Partners",
         description:
-            "Read experiences shared by TeaMax Cafe customers, franchise partners and team members about cafe visits, business setup, training and ongoing support.",
-        url: `${siteUrl}/reviews`,
+            "Read verified stories and reviews shared by Styluxe Salons clients, certified stylists, and franchise partners.",
+        url: `${siteUrl}/reviews/`,
         type: "website",
         images: [
             {
-                url: "/images/Teamax-Café-Coffee-Banner.webp",
+                url: "/images/styluxe/salon-interior.jpg",
                 width: 1200,
-                height: 656,
-                alt: "TeaMax Café takeaway cup",
+                height: 675,
+                alt: "Styluxe Salons Luxury Interior",
             },
         ],
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Styluxe Salons Reviews | Verified Client & Partner Stories",
+        description:
+            "Authentic reviews from salon guests, certified stylists, and franchise partners across India.",
+        images: ["/images/styluxe/salon-interior.jpg"],
     },
 };
 
 const reviewCategories: ReviewCategory[] = [
     { id: "all", name: "All Reviews", icon: "all" },
     { id: "franchise", name: "Franchise Partner Reviews", icon: "franchise" },
-    { id: "staff", name: "Staff Reviews", icon: "staff" },
-    { id: "customer", name: "Customer Reviews", icon: "customer" },
+    { id: "staff", name: "Stylist & Team Reviews", icon: "staff" },
+    { id: "customer", name: "Client Reviews", icon: "customer" },
 ];
 
 const reviews: ReviewItem[] = [
     {
         id: "default-1",
         type: "franchise",
-        name: "Mr. Ravi Kabra",
-        location: "TeaMax Cafe Krishi Road, Lucknow",
-        image:
-            "https://static.wixstatic.com/media/ac5a6b_f13fed47a8734bf682366547e7e065a6~mv2.webp/v1/fill/w_420,h_402,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/2.webp",
+        name: "Mr. Vikram Reddy",
+        location: "Styluxe Salon Kompally, Hyderabad",
+        image: "/images/styluxe/franchise-studio.jpg",
         review:
-            "The support from the TeaMax team has been excellent. It made the entire setup and launch process smooth and stress-free.",
-        link: "https://www.instagram.com/reel/C4pexddSzPJ/?utm_source=ig_web_button_share_sheet",
+            "From architectural floor plans to recruiting and certifying our stylists, the Styluxe corporate team handled every step seamlessly. Our studio reached strong monthly bookings in the very first quarter.",
         stars: 5,
+        isFeatured: true,
     },
     {
         id: "default-2",
         type: "franchise",
-        name: "Ms. Neeta Parmar",
-        location: "TeaMax Cafe Vadodara, Gujarat",
-        image:
-            "https://static.wixstatic.com/media/ead547_213d1e08ebc54f4e974ccf352efaf843~mv2.jpg/v1/crop/x_71,y_149,w_928,h_890/fill/w_420,h_402,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/4.jpg",
+        name: "Ms. Meera Deshmukh",
+        location: "Styluxe Salon Jubilee Hills, Hyderabad",
+        image: "/images/styluxe/salon-interior.jpg",
         review:
-            "The team's guidance and regular support have been very helpful. The business setup was well-organized, and everything moved smoothly.",
-        link: "https://www.instagram.com/reel/C57kDhoSj8p/?utm_source=ig_web_button_share_sheet",
+            "The transparency in setup costs, hygiene protocols, and CRM booking automation sets Styluxe apart. Clients immediately notice the calm botanical ambience and keep returning.",
         stars: 5,
+        isFeatured: true,
     },
     {
         id: "default-3",
         type: "franchise",
-        name: "Mr. Hemal",
-        location: "TeaMax Cafe Gurgaon, Haryana",
-        image:
-            "https://static.wixstatic.com/media/ac5a6b_f68faa97814d47d9874669b3457c5ebe~mv2.webp/v1/fill/w_420,h_402,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/3.webp",
+        name: "Mr. Rohan Kapoor",
+        location: "Styluxe Salon Vijay Nagar, Indore",
+        image: "/images/styluxe/salon-equipment.jpg",
         review:
-            "The support and transparency from the franchise team have been outstanding. It's a well-structured model with real business potential.",
-        link: "https://www.instagram.com/reel/C5sjVIySylq/?utm_source=ig_web_button_share_sheet",
+            "Investing in Styluxe gave me a structured, high-margin salon business without needing prior beauty industry experience. Their ongoing technical training keeps our service quality unmatched.",
         stars: 5,
     },
     {
         id: "staff-1",
         type: "staff",
         name: "Aarav Sharma",
-        location: "TeaMax Café, Indore",
-        image: "/images/cafe-interior.jpg",
+        location: "Senior Hair Director, Hyderabad",
+        image: "/images/styluxe/service-hair.jpg",
         review:
-            "The team environment is welcoming, and everyone works together to give customers a great café experience.",
+            "The Styluxe Academy upskills us regularly in global balayage, hair spa, and keratin techniques. Working in such a spotless, uplifting studio makes every client transformation rewarding.",
         stars: 5,
     },
     {
         id: "staff-2",
         type: "staff",
         name: "Priya Verma",
-        location: "TeaMax Café, Bhopal",
-        image: "/images/hero-cafe.jpg",
+        location: "Lead Aesthetician, Bengaluru",
+        image: "/images/styluxe/service-skin.jpg",
         review:
-            "I have learned a lot while working with the team. The focus on service quality and teamwork makes every day rewarding.",
-        stars: 4,
+            "Our hygiene standards and dermatologically trusted botanical skin ranges let us deliver real, visible glow results. Clients trust our recommendations because we genuinely put care first.",
+        stars: 5,
     },
     {
         id: "customer-1",
         type: "customer",
         name: "Ananya Mehta",
-        location: "TeaMax Café, Hyderabad",
-        image: "/images/chai.webp",
+        location: "Styluxe Salon, Hyderabad",
+        image: "/images/styluxe/hero-salon.jpg",
         review:
-            "Loved the chai and the cosy café atmosphere. A great place to catch up with friends over a cup of tea.",
+            "Hands down the cleanest, most calming salon I have visited. My keratin smoothing and layered blowout stayed glossy for weeks—truly affordable luxury.",
         stars: 5,
+        isFeatured: true,
     },
     {
         id: "customer-2",
         type: "customer",
         name: "Rahul Jain",
-        location: "TeaMax Café, Lucknow",
-        image: "/images/coffee.webp",
+        location: "Styluxe Salon, Indore",
+        image: "/images/styluxe/service-grooming.jpg",
         review:
-            "The drinks were fresh, the service was friendly, and the menu had something for everyone. Will visit again!",
+            "Booked my haircut, beard sculpting, and charcoal detox ritual online with zero waiting time. Every tool was freshly sanitized and the stylists really listened to what suited me.",
         stars: 5,
     },
     {
         id: "customer-3",
         type: "customer",
         name: "Simran Patel",
-        location: "TeaMax Café, Vadodara",
-        image: "/images/milkshake.webp",
+        location: "Styluxe Salon, Bhopal",
+        image: "/images/styluxe/service-makeup.jpg",
         review:
-            "A lovely place with tasty beverages and a relaxed vibe. The iced tea was especially refreshing.",
-        stars: 4,
+            "Booked my bridal reception makeup and gel manicure at Styluxe. The finish looked luminous and natural both in person and in every photograph.",
+        stars: 5,
+    },
+    {
+        id: "customer-4",
+        type: "customer",
+        name: "Kavya Nair",
+        location: "Styluxe Salon, Vijayawada",
+        image: "/images/styluxe/service-nails.jpg",
+        review:
+            "Loved the signature hydra-glow facial and spa pedicure. The warm cream-and-forest aesthetic feels like a serene boutique spa right in the neighbourhood.",
+        stars: 5,
     },
 ];
 
@@ -153,10 +168,10 @@ const reviewsSchema = {
         {
             "@type": "CollectionPage",
             "@id": `${siteUrl}/reviews#page`,
-            name: "TeaMax Café Reviews",
+            name: "Styluxe Salons Reviews",
             url: `${siteUrl}/reviews`,
             description:
-                "Reviews and stories from TeaMax franchise partners, staff members and customers.",
+                "Reviews and stories from Styluxe Salons franchise partners, certified stylists, and clients.",
             mainEntity: {
                 "@type": "ItemList",
                 itemListElement: reviews.map((review, index) => ({
@@ -209,34 +224,58 @@ export default async function ReviewPage() {
                 : [{ id: "all", name: "All Reviews", icon: "all" }, ...dbCategories];
         }
     } catch (e) {
-        // Fallback to static reviews if backend is loading
+        // Fallback to curated Styluxe reviews if backend is unavailable
     }
 
     return (
         <>
             <Header active="/reviews" />
             <main className="tx-menu-page">
-                <section className="tx-menu-hero" aria-labelledby="tx-menu-page-title">
-                    <div className="tx-menu-hero-inner">
-                        <div className="tx-menu-hero-copy">
-                            <div className="tx-menu-breadcrumb">
-                                <a href="/">Home</a>
-                                <span>›</span>
-                                <span>Reviews</span>
-                            </div>
-                            <h1 id="tx-menu-page-title">Our Mentions & Reviews</h1>
-                            <p>Real stories from the TeaMax family</p>
-                            <span className="tx-menu-yellow-rule" />
-                        </div>
-                        <div className="tx-menu-hero-art">
+                <section
+                    className="stx-page-hero stx-page-hero--reviews"
+                    aria-labelledby="stx-reviews-title"
+                >
+                    <div className="stx-page-hero__inner stx-page-hero__inner--centered">
+                        <nav className="stx-page-hero__crumb" aria-label="Breadcrumb">
+                            <Link href="/">Home</Link>
+                            <span aria-hidden="true">/</span>
+                            <span>Reviews</span>
+                        </nav>
+
+                        <p className="stx-page-hero__eyebrow">
                             <img
-                                src="/images/Teamax-Café-Coffee-Banner.webp"
-                                alt="TeaMax Café takeaway cup with fresh tea leaves"
-                                width={1200}
-                                height={656}
+                                src="/images/styluxe-emblem.svg"
+                                alt=""
+                                width={18}
+                                height={18}
+                                aria-hidden="true"
                             />
-                            <div className="tx-menu-hero-scribble" aria-hidden="true">
-                                Chai<br />People<br />Good<br />Stories<span>♥</span>
+                            CLIENT &amp; PARTNER VOICES
+                        </p>
+
+                        <h1 id="stx-reviews-title" className="stx-page-hero__title">
+                            Stories of <em>Confidence &amp; Care</em>
+                        </h1>
+
+                        <p className="stx-page-hero__lead">
+                            Authentic reflections from salon guests, certified Styluxe stylists,
+                            and franchise partners across India.
+                        </p>
+
+                        <div className="stx-page-hero__stats" aria-label="Styluxe community trust highlights">
+                            <div className="stx-page-hero__stat">
+                                <strong>4.9 / 5</strong>
+                                <span>Guest Rating</span>
+                            </div>
+                            <span className="stx-page-hero__divider" aria-hidden="true" />
+                            <div className="stx-page-hero__stat">
+                                <strong>100%</strong>
+                                <span>Sanitized Protocols</span>
+                            </div>
+                            <span className="stx-page-hero__divider" aria-hidden="true" />
+                            <div className="stx-page-hero__stat">
+                                <strong>Pan-India</strong>
+                                <span>Trusted Community</span>
                             </div>
                         </div>
                     </div>

@@ -1,22 +1,20 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import Link from "next/link";
 import "./franchise.css";
 import { Header } from "../components";
 import FranchiseFormSection from "./franchise-form";
-import { getCommonCategories, getCommonMenu, API_BASE_URL } from "../lib/api";
+import { getCommonCategories, getReviews } from "../lib/api";
 import {
   Users,
   MapPin,
   Percent,
   Download,
   IndianRupee,
-  ChefHat,
+  Scissors,
   Coins,
   Store,
   Award,
-  TrendingUp,
   Laptop,
   Megaphone,
   Headphones,
@@ -37,37 +35,59 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
-
-
 import dynamic from "next/dynamic";
 
-const FranchiseIndiaMap = dynamic(
-  () => import("./FranchiseIndiaMap"),
+const FranchiseIndiaMap = dynamic(() => import("./FranchiseIndiaMap"), {
+  ssr: false,
+  loading: () => <div className="tm-fc-map-loading">Loading map...</div>,
+});
+
+const defaultPartnerTestimonials = [
   {
-    ssr: false,
-    loading: () => (
-      <div className="tm-fc-map-loading">Loading map...</div>
-    ),
-  }
-);
+    id: "stx-t1",
+    starRating: 5,
+    reviewText:
+      "Styluxe gave us a complete turnkey luxury salon blueprint — from 3D architectural execution and ergonomic stations to academy-trained stylists and booking POS.",
+    reviewerAvatar: "/images/styluxe/service-hair.jpg",
+    reviewerName: "Meera Nair",
+    reviewerRole: "Franchise Partner · Styluxe Kompally",
+  },
+  {
+    id: "stx-t2",
+    starRating: 5,
+    reviewText:
+      "The zero-royalty model and centralized authentic product procurement allowed our studio to build loyal memberships from month one.",
+    reviewerAvatar: "/images/styluxe/service-grooming.jpg",
+    reviewerName: "Arjun Deshmukh",
+    reviewerRole: "Franchise Partner · Styluxe Indore",
+  },
+  {
+    id: "stx-t3",
+    starRating: 5,
+    reviewText:
+      "Clients immediately fall in love with the calm cream-and-forest-green sanctuary vibe. Repeat visits and bridal bookings exceeded our projections.",
+    reviewerAvatar: "/images/styluxe/service-skin.jpg",
+    reviewerName: "Kavita Rao",
+    reviewerRole: "Franchise Partner · Styluxe Gachibowli",
+  },
+];
 
-export function FranchiseClient({ active = "/cafe-franchise-india" }: { active?: string } = {}) {
-  // FAQ accordion state
+export function FranchiseClient({
+  active = "/salon-franchise-india",
+  variant = "flagship",
+}: { active?: string; variant?: "flagship" | "express" } = {}) {
+  const isExpress = variant === "express";
+
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-
-  // Categories slider state
   const [catIndex, setCatIndex] = useState(0);
   const [itemsPerViewCat, setItemsPerViewCat] = useState(6);
   const catTouchStartX = useRef<number | null>(null);
 
-  // Testimonials slider state
   const [testIndex, setTestIndex] = useState(0);
   const [itemsPerViewTest, setItemsPerViewTest] = useState(3);
   const testTouchStartX = useRef<number | null>(null);
-  const [testimonials, setTestimonials] = useState<any[]>([]);
-  const [reviewsLoading, setReviewsLoading] = useState(true);
-  const [reviewsError, setReviewsError] = useState(false);
-  // Categories list (8 items)
+  const [testimonials, setTestimonials] = useState<any[]>(defaultPartnerTestimonials);
+  const [reviewsLoading, setReviewsLoading] = useState(false);
 
   type FranchiseCategory = {
     id: string;
@@ -76,244 +96,122 @@ export function FranchiseClient({ active = "/cafe-franchise-india" }: { active?:
     image: string;
   };
 
-  const CATEGORY_ASSETS =
-    "https://cafe-blueprint-magic.lovable.app/assets";
-
   const defaultCategories: FranchiseCategory[] = [
-    {
-      id: "tea",
-      name: "Tea & Coffee",
-      image: `${CATEGORY_ASSETS}/menu-tea-GDCVsE9V.jpg`,
-    },
-    {
-      id: "burgers",
-      name: "Burgers & Sandwiches",
-      image: `${CATEGORY_ASSETS}/hero-cafe-zlWPzgb-.jpg`,
-    },
-    {
-      id: "snacks",
-      name: "Fries & Snacks",
-      image: `${CATEGORY_ASSETS}/menu-fries-CAp5uNC2.jpg`,
-    },
-    {
-      id: "pizza",
-      name: "Pizza & Pasta",
-      image:
-        "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80",
-    },
-    {
-      id: "shakes",
-      name: "Milkshakes & Thickshakes",
-      image: `${CATEGORY_ASSETS}/menu-shake-DCrFsPuS.jpg`,
-    },
-    {
-      id: "mojitos",
-      name: "Mojitos & Refreshers",
-      image:
-        "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=400&q=80",
-    },
-    {
-      id: "momos",
-      name: "Gourmet Momos",
-      image:
-        "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=400&q=80",
-    },
-    {
-      id: "desserts",
-      name: "Artisanal Desserts",
-      image:
-        "https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&w=400&q=80",
-    },
+    { id: "hair", name: "Hair Cuts & Styling", image: "/images/styluxe/service-hair.jpg" },
+    { id: "color", name: "Hair Color & Balayage", image: "/images/styluxe/salon-equipment.jpg" },
+    { id: "spa", name: "Keratin & Hair Spa", image: "/images/styluxe/salon-products.jpg" },
+    { id: "skin", name: "Skin & Hydra Facials", image: "/images/styluxe/service-skin.jpg" },
+    { id: "grooming", name: "Men's Luxury Grooming", image: "/images/styluxe/service-grooming.jpg" },
+    { id: "bridal", name: "Bridal & Party Makeup", image: "/images/styluxe/service-makeup.jpg" },
+    { id: "nails", name: "Nails & Hand Spa", image: "/images/styluxe/service-nails.jpg" },
+    { id: "memberships", name: "VIP Care Memberships", image: "/images/styluxe/salon-interior.jpg" },
   ];
 
-  const [categories, setCategories] =
-    useState<FranchiseCategory[]>(defaultCategories);
+  const [categories, setCategories] = useState<FranchiseCategory[]>(defaultCategories);
 
   useEffect(() => {
     let mounted = true;
-
     async function loadCategories() {
       try {
-        const [apiCategories, apiMenu] = await Promise.all([
-          getCommonCategories(),
-          getCommonMenu().catch(() => []),
-        ]);
-
-        if (
-          !mounted ||
-          !Array.isArray(apiCategories) ||
-          apiCategories.length === 0
-        ) {
-          return;
-        }
-
-        const menuItems = Array.isArray(apiMenu) ? apiMenu : [];
+        const apiCategories = await getCommonCategories();
+        if (!mounted || !Array.isArray(apiCategories) || apiCategories.length === 0) return;
 
         const activeCategories = apiCategories
-          .filter((category: any) => category.status === "active")
-          .sort(
-            (a: any, b: any) =>
-              (a.displayOrder ?? 99) - (b.displayOrder ?? 99)
-          );
+          .filter((c: any) => c.status === "active")
+          .sort((a: any, b: any) => (a.displayOrder ?? 99) - (b.displayOrder ?? 99));
 
         if (activeCategories.length === 0) return;
 
-        const dynamicCategories: FranchiseCategory[] =
-          activeCategories.map((category: any) => {
-            const name = category.name || "Menu Category";
-            const slug = (category.slug || "").toLowerCase();
-            const lowerName = name.toLowerCase();
-
-            let fallbackImage =
-              `${CATEGORY_ASSETS}/hero-cafe-zlWPzgb-.jpg`;
-
-            if (
-              lowerName.includes("tea") ||
-              lowerName.includes("chai") ||
-              slug.includes("tea") ||
-              slug.includes("chai")
-            ) {
-              fallbackImage =
-                `${CATEGORY_ASSETS}/menu-tea-GDCVsE9V.jpg`;
-            } else if (
-              lowerName.includes("coffee") ||
-              slug.includes("coffee")
-            ) {
-              fallbackImage =
-                `${CATEGORY_ASSETS}/menu-coffee-DRjZy5Da.jpg`;
-            } else if (
-              lowerName.includes("snack") ||
-              lowerName.includes("fries") ||
-              lowerName.includes("samosa") ||
-              slug.includes("snack")
-            ) {
-              fallbackImage =
-                `${CATEGORY_ASSETS}/menu-fries-CAp5uNC2.jpg`;
-            } else if (
-              lowerName.includes("shake") ||
-              slug.includes("shake")
-            ) {
-              fallbackImage =
-                `${CATEGORY_ASSETS}/menu-shake-DCrFsPuS.jpg`;
-            } else if (
-              lowerName.includes("sandwich") ||
-              slug.includes("sandwich")
-            ) {
-              fallbackImage =
-                "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=600&auto=format&fit=crop&q=80";
-            }
-
-            const categoryImage = category.image;
-
-            const image =
-              typeof categoryImage === "string" &&
-                categoryImage.trim() !== "" &&
-                !categoryImage.startsWith("blob:") &&
-                (
-                  categoryImage.startsWith("https://") ||
-                  categoryImage.startsWith("http://") ||
-                  categoryImage.startsWith("/")
-                )
-                ? categoryImage
-                : fallbackImage;
-
-            return {
-              id: String(category.id),
-              name,
-              slug: category.slug,
-              image,
-            };
-          });
+        const dynamicCategories: FranchiseCategory[] = activeCategories.map((c: any) => ({
+          id: String(c.id),
+          name: c.name || "Salon Service",
+          slug: c.slug,
+          image:
+            typeof c.image === "string" &&
+              c.image.trim() !== "" &&
+              !c.image.startsWith("blob:")
+              ? c.image
+              : "/images/styluxe/service-hair.jpg",
+        }));
 
         if (mounted) {
           setCategories(dynamicCategories);
           setCatIndex(0);
         }
       } catch (error) {
-        console.error(
-          "Failed to fetch franchise categories:",
-          error
-        );
-        // Keep the existing default categories if the API fails.
+        console.warn("Failed to fetch franchise service categories:", error);
       }
     }
-
     loadCategories();
-
     return () => {
       mounted = false;
     };
   }, []);
 
-
   useEffect(() => {
-    const fetchTestimonials = async () => {
-      try {
-        const response = await fetch(
-          `${API_BASE_URL}/reviews`
-        );
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch reviews");
-        }
-
-        const result = await response.json();
-
-        const franchiseReviews = (result.data || [])
+    let mounted = true;
+    setReviewsLoading(true);
+    getReviews({ status: "published" })
+      .then((data) => {
+        if (!mounted) return;
+        const franchiseReviews = (data || [])
           .filter(
             (review: any) =>
               review.reviewType === "franchise" &&
               review.status === "published" &&
-              review.displayOn?.includes("franchise_page")
+              (!review.displayOn || review.displayOn?.includes("franchise_page"))
           )
-          .sort(
-            (a: any, b: any) =>
-              a.displayOrder - b.displayOrder
-          );
+          .sort((a: any, b: any) => (a.displayOrder || 0) - (b.displayOrder || 0));
 
-        setTestimonials(franchiseReviews);
-      } catch (error) {
-        console.error("Error fetching franchise reviews:", error);
-        setReviewsError(true);
-      } finally {
-        setReviewsLoading(false);
-      }
+        if (franchiseReviews.length > 0) {
+          setTestimonials(franchiseReviews);
+        }
+      })
+      .catch(() => { })
+      .finally(() => {
+        if (mounted) setReviewsLoading(false);
+      });
+    return () => {
+      mounted = false;
     };
-
-    fetchTestimonials();
   }, []);
-  // Testimonials list (6 items)
 
+  const packageFee = isExpress ? "₹7,99,999" : "₹12,49,999";
+  const packageShort = isExpress ? "₹7.99 Lakh" : "₹12.5 Lakh";
+  const gstAmount = isExpress ? "₹1,44,000" : "₹2,25,000";
+  const interiorEst = isExpress ? "₹4,50,000" : "₹7,50,000";
+  const totalEst = isExpress ? "₹12,49,999" : "₹19,99,999";
+  const minSpace = isExpress ? "400 sq. ft." : "600 sq. ft.";
+  const recSpace = isExpress ? "550+ sq. ft." : "1,000+ sq. ft.";
+  const timelineLabel = isExpress ? "30–35 Days" : "35–45 Days";
 
-  // FAQs list
   const faqs = [
     {
-      q: "How much does a TeaMax franchise cost?",
-      a: "The core TeaMax franchise package starts at ₹3,69,999 (+ 18% GST ₹66,599). Depending on your chosen location, initial raw materials, transport and shop interior setup (approx ₹60,000 per 100 sq.ft, ₹1,20,000 for 200 sq.ft setup), the total estimated setup budget is approximately ₹4.89 Lakhs.",
+      q: "How much does a Styluxe Salon franchise cost?",
+      a: `The ${isExpress ? "Styluxe Express Studio" : "Styluxe Flagship Salon"} franchise package starts at ${packageFee} (+ 18% GST). Depending on salon square footage and civil readiness, total turnkey setup including signature botanical interiors is estimated around ${totalEst} (excl. taxes).`,
     },
     {
-      q: "What is the franchise license period?",
-      a: "The standard franchise license agreement is granted for 2 Years. After 52 years, license renewal terms apply as per company policy with minimal administrative overhead.",
+      q: "What is the salon franchise agreement tenure?",
+      a: "The standard Styluxe Salon franchise license is granted for 5 Years, with simple renewal terms designed to support long-term studio growth.",
     },
     {
-      q: "Does TeaMax charge royalty?",
-      a: "No! TeaMax operates on a 0% ongoing royalty model. All profits from your day-to-day beverage and food sales belong 100% to you as the franchise partner.",
+      q: "Does Styluxe charge an ongoing monthly royalty?",
+      a: "No! Styluxe operates on a 0% ongoing royalty model for foundational partners — meaning your daily hair, skin, bridal, and grooming service profits stay with you.",
     },
     {
-      q: "How long does café setup take?",
-      a: "Our streamlined setup timeline is only 25 to 30 days from agreement signing to store inauguration, thanks to our standardized kitchen equipment package and modular counter designs.",
+      q: "How long does turnkey salon setup take?",
+      a: `Our streamlined architecture and equipment deployment timeline is ${timelineLabel} from agreement signing and site handover to grand launch.`,
     },
     {
-      q: "Do I need experience in the food business?",
-      a: "No prior experience is necessary. Our chef-less operating model, standardized recipes, automated kitchen machinery, and in-depth training ensure anyone can operate the cafe smoothly.",
+      q: "Do I need beauty or salon experience to own a Styluxe franchise?",
+      a: "No prior salon experience is required. We support you with certified stylist recruitment, Styluxe Academy training, standardized service SOPs, and automated salon POS & appointment software.",
     },
     {
-      q: "Does TeaMax guarantee profits?",
-      a: "While no business can guarantee absolute profits, TeaMax provides high gross margins (55%–65%), proven operating SOPs, national marketing visibility, and aggregator assistance (Swiggy/Zomato) to maximize your success.",
+      q: "How does Styluxe help with stylist hiring and product sourcing?",
+      a: "Our central team provides hiring benchmarks, technical skill assessments, hands-on training, and direct authentic brand procurement at preferred partner margins.",
     },
   ];
 
-  // Screen resize listener for dynamic slide counts
   useEffect(() => {
     const handleResize = () => {
       const w = window.innerWidth;
@@ -337,25 +235,14 @@ export function FranchiseClient({ active = "/cafe-franchise-india" }: { active?:
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Category slider controls
   const maxCatIndex = Math.max(0, categories.length - itemsPerViewCat);
-  const handleCatPrev = () => {
-    setCatIndex((prev) => (prev > 0 ? prev - 1 : maxCatIndex));
-  };
-  const handleCatNext = () => {
-    setCatIndex((prev) => (prev < maxCatIndex ? prev + 1 : 0));
-  };
+  const handleCatPrev = () => setCatIndex((prev) => (prev > 0 ? prev - 1 : maxCatIndex));
+  const handleCatNext = () => setCatIndex((prev) => (prev < maxCatIndex ? prev + 1 : 0));
 
-  // Testimonial slider controls
   const maxTestIndex = Math.max(0, testimonials.length - itemsPerViewTest);
-  const handleTestPrev = () => {
-    setTestIndex((prev) => (prev > 0 ? prev - 1 : maxTestIndex));
-  };
-  const handleTestNext = () => {
-    setTestIndex((prev) => (prev < maxTestIndex ? prev + 1 : 0));
-  };
+  const handleTestPrev = () => setTestIndex((prev) => (prev > 0 ? prev - 1 : maxTestIndex));
+  const handleTestNext = () => setTestIndex((prev) => (prev < maxTestIndex ? prev + 1 : 0));
 
-  // Touch Swipe handlers for Categories
   const handleCatTouchStart = (e: React.TouchEvent) => {
     catTouchStartX.current = e.touches[0].clientX;
   };
@@ -367,7 +254,6 @@ export function FranchiseClient({ active = "/cafe-franchise-india" }: { active?:
     catTouchStartX.current = null;
   };
 
-  // Touch Swipe handlers for Testimonials
   const handleTestTouchStart = (e: React.TouchEvent) => {
     testTouchStartX.current = e.touches[0].clientX;
   };
@@ -383,66 +269,54 @@ export function FranchiseClient({ active = "/cafe-franchise-india" }: { active?:
     setOpenFaq((prev) => (prev === index ? null : index));
   };
 
-
   const handleHeroWhatsApp = () => {
-    const msg =
-      "Hi TeaMax Team, I would like to get franchise details for TeaMax Cafe (₹3.69 Lakh model). Please send me the franchise proposal.";
-
-    const whatsappUrl =
-      `https://go.teamaxcafe.in/whatsapp?text=${encodeURIComponent(msg)}`;
-
-    window.open(whatsappUrl, "_blank");
+    const msg = `Hi Styluxe Team, I would like to get franchise details for Styluxe ${isExpress ? "Express Studio" : "Luxury Salon"
+      } (${packageShort} model). Please share the franchise proposal.`;
+    window.open(`https://wa.me/919505047047?text=${encodeURIComponent(msg)}`, "_blank");
   };
-
 
   const scrollToForm = () => {
     const el = document.getElementById("franchise-form");
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
+    if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <div className="tm-fc-page">
-      {/* ====================================================================
-          1. HEADER / NAVBAR
-          ==================================================================== */}
       <Header active={active} />
 
-      {/* ====================================================================
-          2. HERO SECTION
-          ==================================================================== */}
+      {/* HERO SECTION */}
       <section className="tm-fc-hero">
         <div className="tm-fc-container">
           <div className="tm-fc-hero-grid">
-            {/* Left Content */}
             <div className="tm-fc-hero-content">
-              <span className="tm-fc-tag-script">#aajkichai</span>
+              <span className="tm-fc-tag-script">
+                {isExpress ? "Styluxe Express Studio" : "Styluxe Luxury Salons"}
+              </span>
 
               <h1 className="tm-fc-hero-title">
                 Start Your Own
                 <br />
-                TeaMax Café Franchise
+                Styluxe {isExpress ? "Express " : ""}Salon Franchise
                 <span className="highlight-yellow">
-                  at ₹3.69 Lakh<span className="tm-fc-hero-star">*</span>
+                  at {packageShort}
+                  <span className="tm-fc-hero-star">*</span>
                 </span>
               </h1>
 
               <p className="tm-fc-hero-sub">
-                Zero Royalty. Chef-less Operations.
+                Zero Royalty. Turnkey Luxury Interiors.
                 <br />
-                Complete Franchise Support.
+                Stylist Training &amp; Complete Operational Support.
               </p>
 
-              {/* Stats badges with Lucide Icons */}
               <div className="tm-fc-hero-stats">
                 <div className="tm-fc-hero-stat-item">
                   <div className="tm-fc-stat-icon-wrap">
                     <Users size={18} strokeWidth={2.2} />
                   </div>
                   <div className="tm-fc-hero-stat-info">
-                    <strong>1,309+</strong>
-                    <span>Partner Signups</span>
+                    <strong>150+</strong>
+                    <span>Curated Services</span>
                   </div>
                 </div>
 
@@ -451,8 +325,8 @@ export function FranchiseClient({ active = "/cafe-franchise-india" }: { active?:
                     <MapPin size={18} strokeWidth={2.2} />
                   </div>
                   <div className="tm-fc-hero-stat-info">
-                    <strong>27+</strong>
-                    <span>States</span>
+                    <strong>Pan India</strong>
+                    <span>Expansion Support</span>
                   </div>
                 </div>
 
@@ -462,41 +336,34 @@ export function FranchiseClient({ active = "/cafe-franchise-india" }: { active?:
                   </div>
                   <div className="tm-fc-hero-stat-info">
                     <strong>0%</strong>
-                    <span>Royalty</span>
+                    <span>Ongoing Royalty</span>
                   </div>
                 </div>
               </div>
 
-              {/* Action Buttons */}
               <div className="tm-fc-hero-actions">
-                <button
-                  onClick={handleHeroWhatsApp}
-                  className="tm-fc-btn-primary"
-                >
+                <button onClick={handleHeroWhatsApp} className="tm-fc-btn-primary">
                   <span>Get Details on WhatsApp</span>
                   <FaWhatsapp size={19} />
                 </button>
 
-                <a
-                  className="tm-fc-btn-secondary" href="https://drive.google.com/file/d/1hXeKMuqImeq0eA3cL_934FS44iZvXJRQ/view"
-                  target="blank"  >
-                  <span>Download Proposal</span>
+                <button onClick={scrollToForm} className="tm-fc-btn-secondary">
+                  <span>Request Proposal</span>
                   <Download size={17} strokeWidth={2.2} />
-                </a>
+                </button>
               </div>
 
               <p className="tm-fc-hero-disclaimer">
-                *Franchise fee ₹3,69,999 + applicable taxes. Interior setup and
-                other applicable expenses are additional.
+                *Franchise setup fee {packageFee} + applicable taxes. Civil interior
+                finishing and local rentals vary by city and carpet area.
               </p>
             </div>
 
-            {/* Right Visual Image */}
             <div className="tm-fc-hero-visual">
               <div className="tm-fc-hero-img-wrap">
                 <img
-                  src="/images/franchise-hero-combo.jpg"
-                  alt="TeaMax Food & Beverage Combo Spread"
+                  src="/images/styluxe/salon-interior.jpg"
+                  alt="Styluxe Luxury Salon Reception and Styling Floor"
                   className="tm-fc-hero-img"
                   width="500"
                   height="500"
@@ -507,65 +374,61 @@ export function FranchiseClient({ active = "/cafe-franchise-india" }: { active?:
         </div>
       </section>
 
-      {/* ====================================================================
-          3. KEY HIGHLIGHTS BAR (Ribbon) - Lucide Icons
-          ==================================================================== */}
+      {/* KEY HIGHLIGHTS RIBBON */}
       <section className="tm-fc-ribbon">
         <div className="tm-fc-container">
           <div className="tm-fc-ribbon-grid">
             <div className="tm-fc-ribbon-item">
               <div className="tm-fc-ribbon-icon">
-                <Percent size={22} strokeWidth={2.5} />
+                <Percent size={22} strokeWidth={2.2} />
               </div>
               <div className="tm-fc-ribbon-title">Zero Royalty</div>
-              <div className="tm-fc-ribbon-sub">No monthly royalty</div>
+              <div className="tm-fc-ribbon-sub">Keep 100% of service profits</div>
             </div>
 
             <div className="tm-fc-ribbon-item">
               <div className="tm-fc-ribbon-icon">
-                <ChefHat size={23} strokeWidth={2.2} />
+                <Scissors size={22} strokeWidth={2.1} />
               </div>
-              <div className="tm-fc-ribbon-title">Chef-less Model</div>
-              <div className="tm-fc-ribbon-sub">Easy SOP operations</div>
+              <div className="tm-fc-ribbon-title">Stylist Academy</div>
+              <div className="tm-fc-ribbon-sub">Hiring &amp; technical SOPs</div>
             </div>
 
             <div className="tm-fc-ribbon-item">
               <div className="tm-fc-ribbon-icon">
-                <IndianRupee size={22} strokeWidth={2.4} />
+                <IndianRupee size={22} strokeWidth={2.2} />
               </div>
-              <div className="tm-fc-ribbon-title">Affordable Investment</div>
-              <div className="tm-fc-ribbon-sub">₹3.69 Lakh + taxes</div>
+              <div className="tm-fc-ribbon-title">Transparent Capex</div>
+              <div className="tm-fc-ribbon-sub">{packageShort} + taxes</div>
             </div>
 
             <div className="tm-fc-ribbon-item">
               <div className="tm-fc-ribbon-icon">
-                <Store size={22} strokeWidth={2.2} />
+                <Store size={22} strokeWidth={2.1} />
               </div>
-              <div className="tm-fc-ribbon-title">Complete Setup Support</div>
-              <div className="tm-fc-ribbon-sub">Equipment & training</div>
+              <div className="tm-fc-ribbon-title">Turnkey Interiors</div>
+              <div className="tm-fc-ribbon-sub">3D layouts &amp; equipment</div>
             </div>
 
             <div className="tm-fc-ribbon-item ribbon-span-mobile">
               <div className="tm-fc-ribbon-icon">
-                <Award size={23} strokeWidth={2.2} />
+                <Award size={22} strokeWidth={2.1} />
               </div>
-              <div className="tm-fc-ribbon-title">Proven Business Model</div>
-              <div className="tm-fc-ribbon-sub">Pan India success</div>
+              <div className="tm-fc-ribbon-title">High-Repeat Model</div>
+              <div className="tm-fc-ribbon-sub">Memberships &amp; loyalty</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ====================================================================
-          4. YOUR CAFÉ BUSINESS, MADE SIMPLE. - Lucide Icons
-          ==================================================================== */}
+      {/* SALON BUSINESS MADE SIMPLE */}
       <section className="tm-fc-simple-section">
         <div className="tm-fc-container">
           <div className="tm-fc-simple-grid">
             <div className="tm-fc-simple-media">
               <img
-                src="/images/franchise-storefront.webp"
-                alt="Modern TeaMax Cafe Storefront and Counter"
+                src="/images/styluxe/franchise-studio.jpg"
+                alt="Modern Styluxe Luxury Salon Storefront"
                 width="600"
                 height="450"
               />
@@ -573,74 +436,75 @@ export function FranchiseClient({ active = "/cafe-franchise-india" }: { active?:
 
             <div className="tm-fc-simple-content">
               <h2>
-                Your Café Business,
+                Your Luxury Salon Business,
                 <br />
                 Made Simple.
               </h2>
               <p className="lead">
-                TeaMax brings together a standardized food and beverage menu,
-                practical operating procedures and franchise support to help
-                entrepreneurs start and manage their own branded café.
+                Styluxe brings together calm botanical architecture, certified
+                hair &amp; skin service menus, smart booking software, and
+                end-to-end launch support so you can run a thriving salon
+                confidently.
               </p>
 
               <div className="tm-fc-features-grid">
                 <div className="tm-fc-feature-card">
                   <div className="tm-fc-feature-icon">
-                    <Percent size={20} strokeWidth={2.4} />
+                    <Percent size={20} strokeWidth={2.2} />
                   </div>
                   <div className="tm-fc-feature-text">
                     <strong>No Royalty</strong>
-                    <span>on your sales</span>
+                    <span>on service revenue</span>
                   </div>
                 </div>
 
                 <div className="tm-fc-feature-card">
                   <div className="tm-fc-feature-icon">
-                    <ChefHat size={21} strokeWidth={2.2} />
+                    <Scissors size={20} strokeWidth={2.1} />
                   </div>
                   <div className="tm-fc-feature-text">
-                    <strong>Chef-less</strong>
-                    <span>operations</span>
+                    <strong>Stylist Training</strong>
+                    <span>&amp; hiring support</span>
                   </div>
                 </div>
 
                 <div className="tm-fc-feature-card">
                   <div className="tm-fc-feature-icon">
-                    <Coins size={20} strokeWidth={2.2} />
+                    <Coins size={20} strokeWidth={2.1} />
                   </div>
                   <div className="tm-fc-feature-text">
-                    <strong>Low Investment</strong>
-                    <span>₹3.69 Lakh + taxes</span>
+                    <strong>55%–65% Margins</strong>
+                    <span>high-yield services</span>
                   </div>
                 </div>
 
                 <div className="tm-fc-feature-card">
                   <div className="tm-fc-feature-icon">
-                    <Laptop size={20} strokeWidth={2.2} />
+                    <Laptop size={20} strokeWidth={2.1} />
                   </div>
                   <div className="tm-fc-feature-text">
-                    <strong>Training &</strong>
-                    <span>POS support</span>
+                    <strong>Smart Booking</strong>
+                    <span>&amp; salon POS CRM</span>
                   </div>
                 </div>
 
                 <div className="tm-fc-feature-card">
                   <div className="tm-fc-feature-icon">
-                    <Megaphone size={20} strokeWidth={2.2} />
+                    <Megaphone size={20} strokeWidth={2.1} />
                   </div>
                   <div className="tm-fc-feature-text">
-                    <strong>Marketing</strong>
-                    <span>guidance</span>
+                    <strong>Digital Marketing</strong>
+                    <span>&amp; launch campaigns</span>
                   </div>
                 </div>
 
                 <div className="tm-fc-feature-card">
                   <div className="tm-fc-feature-icon">
-                    <Headphones size={20} strokeWidth={2.2} />
+                    <Headphones size={20} strokeWidth={2.1} />
                   </div>
                   <div className="tm-fc-feature-text">
                     <strong>Ongoing</strong>
-                    <span>franchise support</span>
+                    <span>operations support</span>
                   </div>
                 </div>
               </div>
@@ -649,209 +513,210 @@ export function FranchiseClient({ active = "/cafe-franchise-india" }: { active?:
         </div>
       </section>
 
-      {/* ====================================================================
-          5. FRANCHISE INVESTMENT SECTION - Lucide Icons
-          ==================================================================== */}
+      {/* FRANCHISE INVESTMENT */}
       <section className="tm-fc-investment-section">
         <div className="tm-fc-container">
           <div className="tm-fc-section-header left-aligned">
             <h2 className="tm-fc-section-title">Franchise Investment</h2>
             <p className="tm-fc-section-desc" style={{ margin: 0 }}>
-              A clear investment structure to help you plan confidently.
+              A clear, transparent investment structure to plan your Styluxe
+              studio confidently.
             </p>
           </div>
 
           <div className="tm-fc-invest-grid">
-            {/* Card 1: Dark Forest Green */}
             <div className="tm-fc-invest-card-dark">
               <div>
-                <span className="card-tag">Franchise Package</span>
-                <div className="card-price">₹3,69,999</div>
-                <div className="card-tax">+ 18% GST (₹66,599)</div>
+                <span className="card-tag">
+                  {isExpress ? "Express Studio Package" : "Flagship Salon Package"}
+                </span>
+                <div className="card-price">{packageFee}</div>
+                <div className="card-tax">+ 18% GST ({gstAmount})</div>
 
                 <ul className="tm-fc-dark-list">
                   <li>
                     <span>Franchise License</span>
-                    <strong>2 Years</strong>
+                    <strong>5 Years</strong>
                   </li>
                   <li>
-                    <span>Royalty</span>
+                    <span>Ongoing Royalty</span>
                     <strong>0%</strong>
                   </li>
                   <li>
-                    <span>Booking Amount</span>
-                    <strong>₹10,000</strong>
+                    <span>Booking Token</span>
+                    <strong>₹50,000</strong>
                   </li>
                 </ul>
               </div>
 
               <p className="card-foot">
-                *Booking amount adjusted against final franchise fee.
+                *Booking token adjusted in full against the final franchise fee.
               </p>
             </div>
 
-            {/* Card 2: White Table Card */}
             <div className="tm-fc-invest-card-table">
               <div>
                 <h3>Additional Setup Investment (Estimated)</h3>
                 <div className="tm-fc-table-rows">
                   <div className="tm-fc-table-row">
                     <div>
-                      <span>Interior & Exterior Setup (200 sq. ft.)</span>
-                      <div className="tm-fc-row-sub">₹60K per 100 sq. ft.</div>
+                      <span>
+                        Signature Botanical Interior &amp; Signage ({recSpace})
+                      </span>
+                      <div className="tm-fc-row-sub">
+                        Fluted panels, brass mirrors &amp; lighting
+                      </div>
                     </div>
-                    <strong>₹1,20,000</strong>
+                    <strong>{interiorEst}</strong>
                   </div>
                   <div className="tm-fc-table-row">
-                    <span>Cafe equipment, cafe software, owner and staff training and more</span>
-                    <span className="tm-fc-included-badge text-dark">Included</span>
+                    <span>
+                      Hydraulic styling chairs, wash units, POS software &amp;
+                      training
+                    </span>
+                    <span className="tm-fc-included-badge text-dark">
+                      Included
+                    </span>
                   </div>
                   <div className="tm-fc-table-row">
                     <span>Taxes (GST at 18%)</span>
-                    <strong>₹66,599</strong>
+                    <strong>{gstAmount}</strong>
                   </div>
                   <div className="tm-fc-table-row">
-                    <span>Initial Raw Materials</span>
-                    <strong>Additional</strong>
+                    <span>Opening Retail &amp; Backbar Products</span>
+                    <strong>Included Kit</strong>
                   </div>
                   <div className="tm-fc-table-row">
-                    <span>Transportation</span>
-                    <strong>Additional</strong>
+                    <span>Logistics &amp; Civil Site Readiness</span>
+                    <strong>As Actuals</strong>
                   </div>
                 </div>
 
                 <div className="tm-fc-table-highlight">
-                  <span>Illustrative Total (Excl. Taxes)</span>
-                  <strong>₹4,89,999</strong>
+                  <span>Illustrative Turnkey Total (Excl. Taxes)</span>
+                  <strong>{totalEst}</strong>
                 </div>
               </div>
 
               <p className="note">
-                *Interior estimate is ₹60,000 per 100 sq. ft. (Total ₹1,20,000 for 200 sq. ft.). Actual cost
-                depends on location, size, layout and materials.
+                *Actual interior cost depends on city, carpet area, plumbing
+                readiness, and local material pricing.
               </p>
             </div>
 
-            {/* Card 3: Yellow Download Card with Calculator icon */}
             <div className="tm-fc-invest-card-yellow">
               <div className="tm-fc-calc-icon">
-                <Calculator size={26} strokeWidth={2.2} />
+                <Calculator size={26} strokeWidth={2} />
               </div>
 
-              <h3>Get Detailed Investment Breakup</h3>
+              <h3>Get Detailed Salon ROI &amp; Capex Breakup</h3>
 
-              <a href="https://drive.google.com/file/d/1hXeKMuqImeq0eA3cL_934FS44iZvXJRQ/view" target="blank" className="tm-fc-btn-dark">
-                <span>Download Now</span>
-                <Download size={16} strokeWidth={2.3} />
-              </a>
+              <button onClick={scrollToForm} className="tm-fc-btn-dark">
+                <span>Request Breakup</span>
+                <Download size={16} strokeWidth={2.2} />
+              </button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ====================================================================
-          6. WHAT'S INCLUDED IN THE FRANCHISE PACKAGE
-          ==================================================================== */}
+      {/* WHAT'S INCLUDED */}
       <section className="tm-fc-package-section">
         <div className="tm-fc-container">
           <div className="tm-fc-section-header left-aligned">
             <h2 className="tm-fc-section-title">
-              What&apos;s Included in the Franchise Package
+              What&apos;s Included in the Salon Franchise Package
             </h2>
             <p className="tm-fc-section-desc" style={{ margin: 0 }}>
-              Everything you need to get started.
+              Everything you need to launch a refined luxury salon studio.
             </p>
           </div>
 
           <div className="tm-fc-package-grid">
-            {/* Card 1: Kitchen Equipment */}
             <div className="tm-fc-package-card">
               <div className="tm-fc-package-thumb">
                 <img
-                  src="/images/franchise-kitchen-equipment.jpg"
-                  alt="Kitchen Equipment Set"
+                  src="/images/styluxe/salon-equipment.jpg"
+                  alt="Luxury Salon Styling Stations and Equipment"
                   width="300"
                   height="200"
                 />
               </div>
               <div className="tm-fc-package-body">
-                <h3 className="tm-fc-package-title">Kitchen Equipment</h3>
+                <h3 className="tm-fc-package-title">Salon Equipment</h3>
                 <ul className="tm-fc-package-list">
-                  <li>Tea & Coffee Machine</li>
-                  <li>Deep Freezer</li>
-                  <li>Refrigerator</li>
-                  <li>Griller, Fryer, Blender</li>
-                  <li>Chopper, Induction Stove</li>
-                  <li>Beverage Flask</li>
+                  <li>Forest-Green Hydraulic Styling Chairs</li>
+                  <li>Ergonomic Shampoo Loungers</li>
+                  <li>Micro-Mist Hair Steamer &amp; Hydra Unit</li>
+                  <li>Brushed Brass Arched Mirrors</li>
+                  <li>Professional Dryers, Irons &amp; Shears</li>
+                  <li>UV Sterilizer &amp; Hygiene Cabinets</li>
                 </ul>
               </div>
             </div>
 
-            {/* Card 2: Café Setup & Branding */}
             <div className="tm-fc-package-card">
               <div className="tm-fc-package-thumb">
                 <img
-                  src="/images/franchise-setup-branding.jpg"
-                  alt="Café Setup and Branding"
+                  src="/images/styluxe/salon-interior.jpg"
+                  alt="Styluxe Salon Architectural Interiors"
                   width="300"
                   height="200"
                 />
               </div>
               <div className="tm-fc-package-body">
-                <h3 className="tm-fc-package-title">Café Setup & Branding</h3>
+                <h3 className="tm-fc-package-title">Studio Design &amp; Branding</h3>
                 <ul className="tm-fc-package-list">
-                  <li>Location Analysis Report</li>
-                  <li>Café Layout & Design Guidelines</li>
-                  <li>3D Design Assistance</li>
-                  <li>Branding Guidelines</li>
-                  <li>Menu Designs</li>
-                  <li>Startup Kit & Packaging Essentials</li>
+                  <li>Location Feasibility Analysis</li>
+                  <li>2D Floor Plan &amp; Plumbing Blueprints</li>
+                  <li>3D Luxury Botanical Interior Renders</li>
+                  <li>Fluted Reception &amp; Illuminated Signage</li>
+                  <li>Branded Capes, Aprons &amp; Rate Menus</li>
+                  <li>Opening Backbar &amp; Retail Display Kit</li>
                 </ul>
               </div>
             </div>
 
-            {/* Card 3: Training & Technology */}
             <div className="tm-fc-package-card">
               <div className="tm-fc-package-thumb">
                 <img
-                  src="/images/franchise-training-tech.jpg"
-                  alt="Training and POS Technology"
+                  src="/images/styluxe/hero-salon.jpg"
+                  alt="Styluxe Academy Training and Salon POS"
                   width="300"
                   height="200"
                 />
               </div>
               <div className="tm-fc-package-body">
-                <h3 className="tm-fc-package-title">Training & Technology</h3>
+                <h3 className="tm-fc-package-title">Academy &amp; Technology</h3>
                 <ul className="tm-fc-package-list">
-                  <li>Owner & Staff Training</li>
-                  <li>Staff Hiring Guidelines</li>
-                  <li>Standard Recipes & SOPs</li>
-                  <li>POS Billing Software</li>
-                  <li>Inventory Management</li>
-                  <li>Sales Reporting Tools</li>
+                  <li>Owner &amp; Salon Manager Onboarding</li>
+                  <li>Stylist Hiring &amp; Skill Trade Tests</li>
+                  <li>Standard Service Rituals &amp; Hygiene SOPs</li>
+                  <li>Smart Booking &amp; Billing POS Software</li>
+                  <li>Membership &amp; Loyalty Wallet System</li>
+                  <li>Automated WhatsApp Reminders</li>
                 </ul>
               </div>
             </div>
 
-            {/* Card 4: Business Support */}
             <div className="tm-fc-package-card">
               <div className="tm-fc-package-thumb">
                 <img
-                  src="/images/franchise-business-support.jpg"
-                  alt="Business Support and Partnership"
+                  src="/images/styluxe/salon-products.jpg"
+                  alt="Styluxe Brand Marketing and Product Supply"
                   width="300"
                   height="200"
                 />
               </div>
               <div className="tm-fc-package-body">
-                <h3 className="tm-fc-package-title">Business Support</h3>
+                <h3 className="tm-fc-package-title">Growth &amp; Business Support</h3>
                 <ul className="tm-fc-package-list">
-                  <li>FSSAI Registration Assistance</li>
-                  <li>Swiggy & Zomato Assistance</li>
-                  <li>Brand Marketing Pan India</li>
-                  <li>Dedicated Support Helpline</li>
-                  <li>Operational Assistance</li>
-                  <li>Affordable Sourcing Module</li>
+                  <li>Grand Launch Digital &amp; Influencer Kit</li>
+                  <li>Google Maps &amp; Local SEO Setup</li>
+                  <li>Seasonal Bridal &amp; Festive Campaigns</li>
+                  <li>Centralized Authentic Product Sourcing</li>
+                  <li>Dedicated Operations Helpline</li>
+                  <li>Monthly Performance Mentoring</li>
                 </ul>
               </div>
             </div>
@@ -859,91 +724,88 @@ export function FranchiseClient({ active = "/cafe-franchise-india" }: { active?:
         </div>
       </section>
 
-      {/* ====================================================================
-          7. SMALL SPACE. BIG BUSINESS POSSIBILITIES. - Lucide Icons
-          ==================================================================== */}
+      {/* SPACE REQUIREMENTS */}
       <section className="tm-fc-space-section">
         <div className="tm-fc-container">
           <div className="tm-fc-space-grid">
             <div className="tm-fc-space-content">
               <h2>
-                Small Space.
+                Smart Footprint.
                 <br />
-                Big Business Possibilities.
+                High-Margin Salon Economics.
               </h2>
               <p className="lead">
-                TeaMax is designed to operate in compact spaces, making it
-                suitable for high-footfall areas.
+                Styluxe studios are ergonomically planned to maximize chair
+                utilization, private facial suites, and welcoming guest flow.
               </p>
 
               <div className="tm-fc-space-stats">
                 <div className="tm-fc-space-stat-pill">
                   <div className="tm-fc-space-stat-icon">
-                    <Maximize2 size={18} strokeWidth={2.3} />
+                    <Maximize2 size={18} strokeWidth={2.2} />
                   </div>
-                  <strong>150 sq. ft.</strong>
+                  <strong>{minSpace}</strong>
                   <span>Min. Space</span>
                 </div>
 
                 <div className="tm-fc-space-stat-pill">
                   <div className="tm-fc-space-stat-icon">
-                    <Store size={18} strokeWidth={2.3} />
+                    <Store size={18} strokeWidth={2.2} />
                   </div>
-                  <strong>200+ sq. ft.</strong>
+                  <strong>{recSpace}</strong>
                   <span>Recommended</span>
                 </div>
 
                 <div className="tm-fc-space-stat-pill">
                   <div className="tm-fc-space-stat-icon">
-                    <Building2 size={18} strokeWidth={2.3} />
+                    <Building2 size={18} strokeWidth={2.2} />
                   </div>
-                  <strong>Ground Floor</strong>
-                  <span>Preferred</span>
+                  <strong>Ground / 1st</strong>
+                  <span>High-Visibility Floor</span>
                 </div>
               </div>
 
               <button onClick={scrollToForm} className="tm-fc-btn-primary">
                 <span>Check My Location Eligibility</span>
-                <ArrowRight size={17} strokeWidth={2.3} />
+                <ArrowRight size={17} strokeWidth={2.2} />
               </button>
             </div>
 
-            {/* Split Dark Card with Lucide MapPin */}
             <div className="tm-fc-space-card-split">
               <div className="tm-fc-space-locations">
-                <h3>Ideal Café Locations</h3>
+                <h3>Ideal Salon Locations</h3>
                 <ul className="tm-fc-location-list">
                   <li>
-                    <MapPin size={16} strokeWidth={2.4} className="tm-fc-loc-icon" />
-                    Colleges & Educational Areas
+                    <MapPin size={16} strokeWidth={2.2} className="tm-fc-loc-icon" />
+                    Upscale Residential Townships
                   </li>
                   <li>
-                    <MapPin size={16} strokeWidth={2.4} className="tm-fc-loc-icon" />
-                    Residential Neighbourhoods
+                    <MapPin size={16} strokeWidth={2.2} className="tm-fc-loc-icon" />
+                    High-Street Lifestyle Markets
                   </li>
                   <li>
-                    <MapPin size={16} strokeWidth={2.4} className="tm-fc-loc-icon" />
-                    Commercial Markets
+                    <MapPin size={16} strokeWidth={2.2} className="tm-fc-loc-icon" />
+                    IT Parks &amp; Corporate Corridors
                   </li>
                   <li>
-                    <MapPin size={16} strokeWidth={2.4} className="tm-fc-loc-icon" />
-                    Office & Business Districts
+                    <MapPin size={16} strokeWidth={2.2} className="tm-fc-loc-icon" />
+                    Shopping Malls &amp; Retail Plazas
                   </li>
                   <li>
-                    <MapPin size={16} strokeWidth={2.4} className="tm-fc-loc-icon" />
-                    Main Roads & Shopping Streets
+                    <MapPin size={16} strokeWidth={2.2} className="tm-fc-loc-icon" />
+                    Gated Community Clubhouses
                   </li>
                   <li>
-                    <MapPin size={16} strokeWidth={2.4} className="tm-fc-loc-icon" />
-                    High-Footfall Transit Areas
+                    <MapPin size={16} strokeWidth={2.2} className="tm-fc-loc-icon" />
+                    Main Boulevard Corner Frontages
                   </li>
                 </ul>
               </div>
 
               <div className="tm-fc-space-img-wrap">
                 <img
-                  src="/images/Teamax cafe store pic (2).webp"
-                  alt="Compact TeaMax Kiosk Storefront"
+                  src="/images/styluxe/franchise-studio.jpg"
+                  alt="Styluxe Salon Studio Facade"
                   className="tm-fc-space-img"
                 />
               </div>
@@ -952,18 +814,16 @@ export function FranchiseClient({ active = "/cafe-franchise-india" }: { active?:
         </div>
       </section>
 
-      {/* ====================================================================
-          8. ONE CAFÉ. MULTIPLE FOOD & BEVERAGE CATEGORIES. (ACTIVE SLIDER)
-          ==================================================================== */}
+      {/* MULTI-CATEGORY SERVICE CAROUSEL */}
       <section className="tm-fc-categories-section">
         <div className="tm-fc-container">
           <div className="tm-fc-section-header">
             <h2 className="tm-fc-section-title">
-              One Café. Multiple Food & Beverage Categories.
+              One Luxury Studio. Eight High-Demand Beauty Categories.
             </h2>
             <p className="tm-fc-section-desc">
-              A flexible menu designed around convenience, standardized
-              preparation and customer preferences.
+              Diversified unisex services drive consistent weekday walk-ins,
+              high-ticket bridal bookings, and recurring memberships.
             </p>
           </div>
 
@@ -975,7 +835,7 @@ export function FranchiseClient({ active = "/cafe-franchise-india" }: { active?:
             <button
               className="tm-fc-slider-arrow prev"
               onClick={handleCatPrev}
-              aria-label="Previous category slide"
+              aria-label="Previous service slide"
             >
               <ChevronLeft size={22} strokeWidth={2.5} />
             </button>
@@ -1016,13 +876,12 @@ export function FranchiseClient({ active = "/cafe-franchise-india" }: { active?:
             <button
               className="tm-fc-slider-arrow next"
               onClick={handleCatNext}
-              aria-label="Next category slide"
+              aria-label="Next service slide"
             >
               <ChevronRight size={22} strokeWidth={2.5} />
             </button>
           </div>
 
-          {/* Dots Indicator */}
           <div className="tm-fc-slider-dots">
             {Array.from({ length: maxCatIndex + 1 }).map((_, idx) => (
               <button
@@ -1036,91 +895,86 @@ export function FranchiseClient({ active = "/cafe-franchise-india" }: { active?:
         </div>
       </section>
 
-      {/* ====================================================================
-          9. FROM APPLICATION TO CAFÉ LAUNCH (TIMELINE)
-          ==================================================================== */}
+      {/* TIMELINE */}
       <section className="tm-fc-timeline-section">
         <div className="tm-fc-container">
           <div className="tm-fc-timeline-header-wrap">
             <h2 className="tm-fc-section-title">
-              From Application to Café Launch
+              From Application to Salon Launch
             </h2>
             <div className="tm-fc-timeline-badge">
-              Estimated Setup Timeline: 25–30 Days
+              Estimated Turnkey Timeline: {timelineLabel}
             </div>
           </div>
 
           <div className="tm-fc-timeline-grid">
             <div className="tm-fc-step-item">
               <div className="tm-fc-step-circle">
-                <FileText size={22} strokeWidth={2.2} />
+                <FileText size={22} strokeWidth={2} />
               </div>
               <h3 className="tm-fc-step-title">Apply for Franchise</h3>
               <p className="tm-fc-step-desc">
-                Submit your enquiry and receive the proposal.
+                Submit your enquiry and receive the salon investment kit.
               </p>
             </div>
 
             <div className="tm-fc-step-item">
               <div className="tm-fc-step-circle">
-                <Handshake size={22} strokeWidth={2.2} />
+                <Handshake size={22} strokeWidth={2} />
               </div>
-              <h3 className="tm-fc-step-title">Registration & Agreement</h3>
+              <h3 className="tm-fc-step-title">Registration &amp; Terms</h3>
               <p className="tm-fc-step-desc">
-                Complete registration and review terms.
+                Lock your territory and complete agreement formalities.
               </p>
             </div>
 
             <div className="tm-fc-step-item">
               <div className="tm-fc-step-circle">
-                <MapPin size={22} strokeWidth={2.2} />
+                <MapPin size={22} strokeWidth={2} />
               </div>
-              <h3 className="tm-fc-step-title">Location Assessment</h3>
+              <h3 className="tm-fc-step-title">Site Evaluation</h3>
               <p className="tm-fc-step-desc">
-                Share your proposed premises for evaluation.
+                Validate footfall, frontage, and salon utility layout.
               </p>
             </div>
 
             <div className="tm-fc-step-item">
               <div className="tm-fc-step-circle">
-                <LayoutGrid size={22} strokeWidth={2.2} />
+                <LayoutGrid size={22} strokeWidth={2} />
               </div>
-              <h3 className="tm-fc-step-title">Café Design & Equipment</h3>
+              <h3 className="tm-fc-step-title">3D Design &amp; Fit-Out</h3>
               <p className="tm-fc-step-desc">
-                Get design guidance and material processing.
+                Execute signature Styluxe interiors and install equipment.
               </p>
             </div>
 
             <div className="tm-fc-step-item">
               <div className="tm-fc-step-circle">
-                <Wrench size={22} strokeWidth={2.2} />
+                <Wrench size={22} strokeWidth={2} />
               </div>
-              <h3 className="tm-fc-step-title">Setup & Training</h3>
+              <h3 className="tm-fc-step-title">Stylist Hiring &amp; SOPs</h3>
               <p className="tm-fc-step-desc">
-                Complete café setup and training.
+                Trade-test stylists, train staff, and configure salon POS.
               </p>
             </div>
 
             <div className="tm-fc-step-item">
               <div className="tm-fc-step-circle">
-                <Rocket size={22} strokeWidth={2.2} />
+                <Rocket size={22} strokeWidth={2} />
               </div>
-              <h3 className="tm-fc-step-title">Launch Your TeaMax</h3>
+              <h3 className="tm-fc-step-title">Launch Your Styluxe</h3>
               <p className="tm-fc-step-desc">
-                Start operations with launch guidance.
+                Inaugurate with hyperlocal launch campaigns and offers.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ====================================================================
-          10. BUSINESS SUPPORT + FRANCHISE NETWORK
-          ==================================================================== */}
+      {/* BUSINESS SUPPORT + INDIA MAP */}
       <section className="tm-fc-network-section">
         <div className="tm-fc-container">
           <div className="tm-fc-network-grid">
-
             <div className="tm-fc-support-col">
               <h2>
                 You&apos;re in Business
@@ -1128,8 +982,8 @@ export function FranchiseClient({ active = "/cafe-franchise-india" }: { active?:
                 for Yourself, Not by Yourself.
               </h2>
               <p className="lead">
-                TeaMax provides support at every stage of your franchise
-                journey.
+                Styluxe partners with you at every stage — from architectural
+                design and stylist readiness to year-round client acquisition.
               </p>
 
               <ul className="tm-fc-support-checklist">
@@ -1137,203 +991,49 @@ export function FranchiseClient({ active = "/cafe-franchise-india" }: { active?:
                   <span className="tm-fc-check-icon">
                     <Check size={13} strokeWidth={3} />
                   </span>
-                  Location analysis & design support
+                  Location feasibility &amp; 3D botanical interior blueprints
                 </li>
                 <li>
                   <span className="tm-fc-check-icon">
                     <Check size={13} strokeWidth={3} />
                   </span>
-                  Training & operational guidance
+                  Certified stylist trade-testing &amp; academy onboarding
                 </li>
                 <li>
                   <span className="tm-fc-check-icon">
                     <Check size={13} strokeWidth={3} />
                   </span>
-                  National brand visibility
+                  Centralized authentic hair &amp; skincare supply chain
                 </li>
                 <li>
                   <span className="tm-fc-check-icon">
                     <Check size={13} strokeWidth={3} />
                   </span>
-                  Social media & local marketing guidelines
+                  Social media creatives, bridal campaigns &amp; local SEO
                 </li>
                 <li>
                   <span className="tm-fc-check-icon">
                     <Check size={13} strokeWidth={3} />
                   </span>
-                  Swiggy & Zomato assistance
+                  Online booking, CRM, memberships &amp; loyalty POS
                 </li>
                 <li>
                   <span className="tm-fc-check-icon">
                     <Check size={13} strokeWidth={3} />
                   </span>
-                  Franchise helpline and ongoing assistance
+                  Dedicated partner helpline and periodic quality audits
                 </li>
               </ul>
             </div>
 
-
             <div className="tm-fc-network-card">
-              {/* <div className="tm-fc-network-stats-col">
-                <h3>Our Franchise Network</h3>
-                <div className="tm-fc-network-stats-grid">
-                  <div className="tm-fc-net-stat-row">
-                    <div className="tm-fc-net-stat-icon">
-                      <Users size={18} strokeWidth={2.3} />
-                    </div>
-                    <div className="tm-fc-net-stat-info">
-                      <strong>1,309+</strong>
-                      <span>Franchise Partner Signups</span>
-                    </div>
-                  </div>
-
-                  <div className="tm-fc-net-stat-row">
-                    <div className="tm-fc-net-stat-icon">
-                      <MapPin size={18} strokeWidth={2.3} />
-                    </div>
-                    <div className="tm-fc-net-stat-info">
-                      <strong>27+</strong>
-                      <span>States</span>
-                    </div>
-                  </div>
-
-                  <div className="tm-fc-net-stat-row">
-                    <div className="tm-fc-net-stat-icon">
-                      <TrendingUp size={18} strokeWidth={2.3} />
-                    </div>
-                    <div className="tm-fc-net-stat-info">
-                      <strong>14+</strong>
-                      <span>Avg. Launches per Month</span>
-                    </div>
-                  </div>
-
-                  <div className="tm-fc-net-stat-row">
-                    <div className="tm-fc-net-stat-icon">
-                      <Star size={18} strokeWidth={2.3} fill="#102d29" />
-                    </div>
-                    <div className="tm-fc-net-stat-info">
-                      <strong>9.1/10</strong>
-                      <span>Partner Satisfaction</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-             
-              <div className="tm-fc-network-map-col">
-                <span className="tm-fc-map-tag">Growing Across India</span>
-                <svg
-                  className="tm-fc-map-svg"
-                  viewBox="0 0 300 350"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M135 25 L160 20 L180 40 L165 75 L200 95 L220 85 L250 115 L230 140 L200 135 L190 170 L210 190 L180 230 L160 270 L140 330 L130 290 L100 240 L85 200 L75 160 L50 145 L70 110 L100 95 L110 50 Z"
-                    fill="#0a3d38"
-                    stroke="#1c5c55"
-                    strokeWidth="2"
-                  />
-                  <line
-                    x1="60"
-                    y1="100"
-                    x2="240"
-                    y2="100"
-                    stroke="#144e47"
-                    strokeWidth="1"
-                    strokeDasharray="4 4"
-                  />
-                  <line
-                    x1="70"
-                    y1="180"
-                    x2="210"
-                    y2="180"
-                    stroke="#144e47"
-                    strokeWidth="1"
-                    strokeDasharray="4 4"
-                  />
-                  <line
-                    x1="100"
-                    y1="260"
-                    x2="170"
-                    y2="260"
-                    stroke="#144e47"
-                    strokeWidth="1"
-                    strokeDasharray="4 4"
-                  />
-
-                 
-                  <circle cx="135" cy="85" r="5" fill="#ffd028" />
-                  <circle
-                    cx="135"
-                    cy="85"
-                    r="9"
-                    stroke="#ffd028"
-                    strokeWidth="1.5"
-                    opacity="0.6"
-                  />
-
-                  <circle cx="85" cy="185" r="5" fill="#ffd028" />
-                  <circle
-                    cx="85"
-                    cy="185"
-                    r="9"
-                    stroke="#ffd028"
-                    strokeWidth="1.5"
-                    opacity="0.6"
-                  />
-
-                  <circle cx="115" cy="265" r="5" fill="#ffd028" />
-                  <circle
-                    cx="115"
-                    cy="265"
-                    r="9"
-                    stroke="#ffd028"
-                    strokeWidth="1.5"
-                    opacity="0.6"
-                  />
-
-                  <circle cx="130" cy="215" r="5" fill="#ffd028" />
-                  <circle cx="135" cy="275" r="4.5" fill="#ffd028" />
-                  <circle cx="210" cy="145" r="5" fill="#ffd028" />
-                  <circle
-                    cx="210"
-                    cy="145"
-                    r="9"
-                    stroke="#ffd028"
-                    strokeWidth="1.5"
-                    opacity="0.6"
-                  />
-                  <circle cx="120" cy="140" r="4" fill="#ffd028" />
-                  <circle cx="78" cy="140" r="4" fill="#ffd028" />
-
-                  <polygon
-                    points="245,285 260,260 275,285 260,310"
-                    fill="none"
-                    stroke="#ffd028"
-                    strokeWidth="1.5"
-                    opacity="0.4"
-                  />
-                  <polygon
-                    points="25,45 35,30 45,45 35,60"
-                    fill="none"
-                    stroke="#ffd028"
-                    strokeWidth="1.5"
-                    opacity="0.3"
-                  />
-                </svg>
-              </div> */}
               <FranchiseIndiaMap />
             </div>
           </div>
         </div>
-
       </section>
 
-      {/* ====================================================================
-          11. WHAT OUR FRANCHISE PARTNERS SAY (ACTIVE SLIDER)
-          ==================================================================== */}
-
+      {/* PARTNER TESTIMONIALS */}
       <section className="tm-fc-testimonials-section">
         <div className="tm-fc-container">
           <div className="tm-fc-section-header">
@@ -1344,15 +1044,7 @@ export function FranchiseClient({ active = "/cafe-franchise-india" }: { active?:
 
           {reviewsLoading ? (
             <p className="tm-fc-testimonial-message">
-              Loading franchise testimonials...
-            </p>
-          ) : reviewsError ? (
-            <p className="tm-fc-testimonial-message">
-              Unable to load testimonials. Please try again later.
-            </p>
-          ) : testimonials.length === 0 ? (
-            <p className="tm-fc-testimonial-message">
-              No franchise testimonials available yet.
+              Loading partner testimonials...
             </p>
           ) : (
             <>
@@ -1388,7 +1080,6 @@ export function FranchiseClient({ active = "/cafe-franchise-india" }: { active?:
                         }}
                       >
                         <div className="tm-fc-test-card">
-                          {/* Star Rating */}
                           <div
                             style={{
                               display: "flex",
@@ -1401,28 +1092,22 @@ export function FranchiseClient({ active = "/cafe-franchise-india" }: { active?:
                                 key={i}
                                 size={15}
                                 fill={
-                                  i < (test.starRating || 0)
-                                    ? "#ffd028"
-                                    : "none"
+                                  i < (test.starRating || 5) ? "#b89454" : "none"
                                 }
-                                color="#ffd028"
+                                color="#b89454"
                               />
                             ))}
                           </div>
 
-                          {/* Review Text */}
-                          <p className="tm-fc-test-quote">
-                            “{test.reviewText}”
-                          </p>
+                          <p className="tm-fc-test-quote">“{test.reviewText}”</p>
 
-                          {/* Reviewer Details */}
                           <div className="tm-fc-test-author">
                             <img
                               src={
                                 test.reviewerAvatar ||
-                                "/images/default-avatar.png"
+                                "/images/styluxe/service-hair.jpg"
                               }
-                              alt={test.reviewerName || "Franchise Partner"}
+                              alt={test.reviewerName || "Styluxe Partner"}
                               className="tm-fc-test-avatar"
                               loading="lazy"
                             />
@@ -1448,23 +1133,16 @@ export function FranchiseClient({ active = "/cafe-franchise-india" }: { active?:
                 </button>
               </div>
 
-              {/* Dots Indicator */}
               {maxTestIndex > 0 && (
                 <div className="tm-fc-slider-dots">
-                  {Array.from({ length: maxTestIndex + 1 }).map(
-                    (_, idx) => (
-                      <button
-                        key={idx}
-                        className={`tm-fc-dot ${testIndex === idx ? "active" : ""
-                          }`}
-                        onClick={() => setTestIndex(idx)}
-                        aria-label={`Go to testimonial ${idx + 1}`}
-                        aria-current={
-                          testIndex === idx ? "true" : undefined
-                        }
-                      />
-                    )
-                  )}
+                  {Array.from({ length: maxTestIndex + 1 }).map((_, idx) => (
+                    <button
+                      key={idx}
+                      className={`tm-fc-dot ${testIndex === idx ? "active" : ""}`}
+                      onClick={() => setTestIndex(idx)}
+                      aria-label={`Go to testimonial ${idx + 1}`}
+                    />
+                  ))}
                 </div>
               )}
             </>
@@ -1472,120 +1150,102 @@ export function FranchiseClient({ active = "/cafe-franchise-india" }: { active?:
         </div>
       </section>
 
-
-      {/* ====================================================================
-          12. FREQUENTLY ASKED QUESTIONS
-          ==================================================================== */}
+      {/* FAQS */}
       <section className="tm-fc-faq-section">
         <div className="tm-fc-container">
           <div className="tm-fc-faq-top">
             <h2 className="tm-fc-section-title">Frequently Asked Questions</h2>
-
           </div>
-
 
           <div className="tm-fc-faq-grid">
-
-            {/* Left Column */}
             <div className="tm-fc-faq-column">
-              {faqs.filter((_, idx) => idx % 2 === 0).map((faq, idx) => {
-                const faqIndex = idx * 2;
-
-                return (
-                  <div
-                    key={faq.q}
-                    className={`tm-fc-faq-item ${openFaq === faqIndex ? "open" : ""
-                      }`}
-                    onClick={() => toggleFaq(faqIndex)}
-                  >
-                    <div className="tm-fc-faq-question">
-                      <div style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "10px"
-                      }}>
-                        <HelpCircle
-                          size={17}
-                          className="tm-fc-faq-icon-user"
+              {faqs
+                .filter((_, idx) => idx % 2 === 0)
+                .map((faq, idx) => {
+                  const faqIndex = idx * 2;
+                  return (
+                    <div
+                      key={faq.q}
+                      className={`tm-fc-faq-item ${openFaq === faqIndex ? "open" : ""
+                        }`}
+                      onClick={() => toggleFaq(faqIndex)}
+                    >
+                      <div className="tm-fc-faq-question">
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "10px",
+                          }}
+                        >
+                          <HelpCircle size={17} className="tm-fc-faq-icon-user" />
+                          <span>{faq.q}</span>
+                        </div>
+                        <ChevronDown
+                          size={18}
+                          className="tm-fc-faq-chevron"
+                          style={{
+                            transform:
+                              openFaq === faqIndex
+                                ? "rotate(180deg)"
+                                : "rotate(0deg)",
+                          }}
                         />
-                        <span>{faq.q}</span>
                       </div>
-
-                      <ChevronDown
-                        size={18}
-                        className="tm-fc-faq-chevron"
-                        style={{
-                          transform: openFaq === faqIndex
-                            ? "rotate(180deg)"
-                            : "rotate(0deg)"
-                        }}
-                      />
+                      {openFaq === faqIndex && (
+                        <div className="tm-fc-faq-answer">{faq.a}</div>
+                      )}
                     </div>
-
-                    {openFaq === faqIndex && (
-                      <div className="tm-fc-faq-answer">
-                        {faq.a}
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
+                  );
+                })}
             </div>
 
-            {/* Right Column */}
             <div className="tm-fc-faq-column">
-              {faqs.filter((_, idx) => idx % 2 !== 0).map((faq, idx) => {
-                const faqIndex = idx * 2 + 1;
-
-                return (
-                  <div
-                    key={faq.q}
-                    className={`tm-fc-faq-item ${openFaq === faqIndex ? "open" : ""
-                      }`}
-                    onClick={() => toggleFaq(faqIndex)}
-                  >
-                    <div className="tm-fc-faq-question">
-                      <div style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "10px"
-                      }}>
-                        <HelpCircle
-                          size={17}
-                          className="tm-fc-faq-icon-user"
+              {faqs
+                .filter((_, idx) => idx % 2 !== 0)
+                .map((faq, idx) => {
+                  const faqIndex = idx * 2 + 1;
+                  return (
+                    <div
+                      key={faq.q}
+                      className={`tm-fc-faq-item ${openFaq === faqIndex ? "open" : ""
+                        }`}
+                      onClick={() => toggleFaq(faqIndex)}
+                    >
+                      <div className="tm-fc-faq-question">
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "10px",
+                          }}
+                        >
+                          <HelpCircle size={17} className="tm-fc-faq-icon-user" />
+                          <span>{faq.q}</span>
+                        </div>
+                        <ChevronDown
+                          size={18}
+                          className="tm-fc-faq-chevron"
+                          style={{
+                            transform:
+                              openFaq === faqIndex
+                                ? "rotate(180deg)"
+                                : "rotate(0deg)",
+                          }}
                         />
-                        <span>{faq.q}</span>
                       </div>
-
-                      <ChevronDown
-                        size={18}
-                        className="tm-fc-faq-chevron"
-                        style={{
-                          transform: openFaq === faqIndex
-                            ? "rotate(180deg)"
-                            : "rotate(0deg)"
-                        }}
-                      />
+                      {openFaq === faqIndex && (
+                        <div className="tm-fc-faq-answer">{faq.a}</div>
+                      )}
                     </div>
-
-                    {openFaq === faqIndex && (
-                      <div className="tm-fc-faq-answer">
-                        {faq.a}
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
+                  );
+                })}
             </div>
-
           </div>
-
         </div>
       </section>
 
-      {/* ====================================================================
-          13. BOTTOM LEAD CAPTURE FORM (From franchise-form.tsx)
-          ==================================================================== */}
+      {/* LEAD CAPTURE FORM */}
       <div id="apply">
         <FranchiseFormSection />
       </div>

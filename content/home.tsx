@@ -1,19 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
+  ArrowDownRight,
   ArrowRight,
+  Award,
   BarChart3,
-  ChefHat,
-  Coffee,
   Handshake,
   IndianRupee,
   MapPinned,
-  MessageCircle,
-  Play,
-  Rocket,
-  Store,
-  Target,
-  UsersRound,
+  ShieldCheck,
+  Sparkles,
+  Smartphone,
 } from "lucide-react";
 import HowItWorks from "../app/HowItWorks";
 import FranchiseStories from "../app/components/FranchiseStories";
@@ -23,202 +20,343 @@ import WhyChooseUs from "../app/components/WhyChooseUs";
 import AwardsRecognitions from "../app/components/AwardsRecognitions";
 import HomeMenuCategories from "../app/components/HomeMenuCategories";
 
-const A = "https://cafe-blueprint-magic.lovable.app/assets";
-
-const benefits = [
-  { icon: IndianRupee, label: <>1309 +<br /></>, des: <>Franchise Partners</> },
-  { icon: BarChart3, label: <>27 +<br /></>, des: <>States</> },
-  // { icon: ChefHat, label: <>51 +<br /></>, des: <>Months</> },
-  // { icon: Target, label: <>Complete<br /></>,des:<>Franchise Partners</> },
-];
-
-const whyChoose = [
-  { icon: Store, text: <>Proven<br />Business Model</> },
-  { icon: UsersRound, text: <>Training &amp;<br />Operations Support</> },
-  { icon: MessageCircle, text: <>Marketing<br />Support</> },
-  { icon: Coffee, text: <>POS &amp;<br />Technology</> },
-  { icon: Handshake, text: <>Owner &amp; Staff<br />Training</> },
+const trustPillars = [
+  {
+    icon: ShieldCheck,
+    title: "Premium Hygiene",
+    desc: "Clean, Sanitized & Safe Environment",
+  },
+  {
+    icon: Award,
+    title: "Certified Professionals",
+    desc: "Skilled Stylists & Beauty Expert Professionals",
+  },
+  {
+    icon: Sparkles,
+    title: "Affordable Luxury",
+    desc: "Premium Experience at Honest Prices",
+  },
+  {
+    icon: Smartphone,
+    title: "Smart Experience",
+    desc: "Online Booking, Memberships & Loyalty Rewards",
+  },
 ];
 
 const faqs = [
   [
-    "What should I consider before investing in a cafe franchise in India?",
-    "Before investing in a cafe franchise, entrepreneurs should evaluate factors such as investment requirement, brand support, menu options, operational guidance, location suitability, and long-term business potential. A structured franchise model can help first-time business owners start their café journey with proper guidance."
+    "What makes Styluxe Salons different from regular neighborhood salons?",
+    "Styluxe combines upscale botanical salon ambience, certified stylists, hospital-grade sanitization, and authentic global beauty products at honest, transparent everyday pricing.",
   ],
   [
-    "Why is TeaMax Cafe considered an affordable cafe franchise opportunity in India?",
-    "TeaMax Cafe provides an affordable café franchise model with a focus on simplified operations, standardized processes, menu support, training, and branding assistance. It is designed for entrepreneurs looking for an organized entry into the food and beverage industry."
+    "Are Styluxe Salons unisex and suitable for both men and women?",
+    "Yes. Every Styluxe salon is thoughtfully designed with dedicated zones for women's hair styling, beauty & skincare rituals, bridal suites, and men's precision haircuts and luxury beard grooming.",
   ],
   [
-    "What makes TeaMax Cafe a suitable chai franchise option for new entrepreneurs?",
-    "TeaMax Cafe combines the popularity of chai culture in India with a wider café menu including beverages and snacks. The model supports entrepreneurs with setup guidance, training, operational systems, and marketing assistance to help manage the outlet effectively."
+    "How can I start a Styluxe Salon franchise in my city?",
+    "Submit a franchise enquiry on our Franchise page. Our expansion team guides you through site evaluation, 3D luxury interior design, equipment installation, stylist recruitment & academy training, and grand launch marketing.",
   ],
   [
-    "How can I start a cafe franchise business with TeaMax Cafe?",
-    "To start a TeaMax Cafe franchise, you can submit a franchise enquiry, discuss business requirements with the team, finalize a suitable location, complete the franchise process, and receive support for café setup, training, and launch."
+    "Do I need prior beauty industry experience to own a Styluxe franchise?",
+    "Not at all. Styluxe provides standardized operating procedures (SOPs), certified stylist hiring & training support, smart salon POS & booking software, and ongoing brand guidance so any entrepreneur can operate smoothly.",
   ],
   [
-    "What support does TeaMax Cafe provide to cafe franchise partners?",
-    "TeaMax Cafe supports franchise partners with café setup guidance, equipment assistance, menu planning, training, branding support, digital marketing assistance, and operational guidance to help establish the outlet."
-  ]
+    "What ongoing support does Styluxe provide to franchise partners?",
+    "Partners receive end-to-end launch support, zero ongoing royalty options, centralized product sourcing at preferred margins, seasonal offer campaigns, digital lead generation, and a dedicated operations helpline.",
+  ],
 ];
 
 export default function Home() {
   return (
-    <div className="tm-home ">
-      <section className="hero-section martop" aria-labelledby="hero-title">
-        <Image
-          className="hero-image"
-          src="/images/Teamax website Banner.webp"
-          width={1536}
-          height={1024}
-          priority
-          unoptimized
-          alt="Tea, burger and fries at TeaMax"
-        />
-        <div className="container-xl hero-inner">
-          <div className="hero-copy">
-            <p className="eyebrow"> EXPRESS <span>|</span> CAFÉ <span>|</span> LOUNGE</p>
-            <h1 id="hero-title">India's Most
-              <br /> Affordable <br /><span className="marker"> Franchise</span></h1>
-            <p className="hero-description">Build your café with TeaMax  – a structured franchise model with no royalty and support across setup, training, technology and marketing. </p>
-            <div className="hero-actions">
-              <Link href="/cafe-franchise-india#apply" className="cafe-action">Get Franchise Details <ArrowRight size={17} /></Link>
-              {/* <Link href="/about-us" className="play-button" aria-label="Watch TeaMax stories"><Play size={15} fill="currentColor" /></Link>
-              <span className="watch-label">Read More</span> */}
+    <div className="tm-home">
+      {/* =================================================================
+          1. STYLUXE HERO — EXACT REFERENCE COMPOSITION & PALETTE
+      ================================================================= */}
+      <section className="stx-hero" aria-labelledby="hero-title">
+        <div className="container-xl stx-hero-grid">
+          <div className="stx-hero-copy">
+            <p className="stx-eyebrow-crest">
+              <img src="/images/styluxe-emblem.svg" alt="" aria-hidden="true" />
+              <span>WELCOME TO STYLUXE</span>
+            </p>
+
+            <h1 id="hero-title" className="stx-hero-title">
+              <span className="stx-hero-title-main">Confidence</span>
+              <span className="stx-hero-title-italic">Begins With Care</span>
+            </h1>
+
+            <p className="stx-hero-pillars">
+              Luxury Hair &bull; Beauty &bull; Grooming
+            </p>
+
+            <p className="stx-hero-desc">
+              Discover a salon experience designed around expert care, modern
+              style, and confidence that lasts beyond your appointment.
+            </p>
+
+            <div className="stx-hero-actions">
+              <Link href="/salon-locations" className="stx-btn-primary">
+                Book Appointment <ArrowDownRight size={16} />
+              </Link>
+              <Link href="/salon-franchise-india#apply" className="stx-btn-sage">
+                Explore Franchise <ArrowDownRight size={16} />
+              </Link>
             </div>
           </div>
-          <div className="hero-handwriting" aria-hidden="true">Good<br />Tea<br /><span>Brighter<br />Days</span></div>
+
+          <div className="stx-hero-media">
+            <Image
+              src="/images/styluxe/hero-salon.jpg"
+              width={1408}
+              height={768}
+              priority
+              unoptimized
+              alt="Styluxe Salons expert hair styling and luxury grooming"
+            />
+          </div>
         </div>
       </section>
 
-      <section id="about" className="containernew perks-wrap" aria-label="TeaMax benefits">
-        <div className="perks">
-          {benefits.map(({ icon: Icon, label, des }, i) => (
-            <div className={`perk perk-${i + 1}`} key={i}>
-              {/* <span className="icon-spot"><Icon size={31} strokeWidth={1.6} /></span> */}
-              <strong>{label}</strong>
-              <span>{des}</span>
-            </div>
-          ))}
+      {/* =================================================================
+          2. 4-FEATURE TRUST BAR (SCREENSHOT 3)
+      ================================================================= */}
+      <section className="stx-trust-strip" aria-label="Styluxe core promises">
+        <div className="container-xl">
+          <div className="stx-trust-grid">
+            {trustPillars.map(({ icon: Icon, title, desc }) => (
+              <div className="stx-trust-item" key={title}>
+                <span className="stx-trust-icon" aria-hidden="true">
+                  <Icon size={22} strokeWidth={1.6} />
+                </span>
+                <div>
+                  <strong>{title}</strong>
+                  <span>{desc}</span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
-      <div className="hero-mobile-cta">
-        <Link href="/cafe-franchise-india#apply" className="cafe-action">
-          Get Franchise Details
-          <ArrowRight size={17} />
-        </Link>
-      </div>
+
+      {/* =================================================================
+          3. ABOUT STYLUXE PREVIEW WITH ORGANIC CURVED FRAME (SCREENSHOT 3)
+      ================================================================= */}
+      <section id="about" className="stx-about-preview" aria-labelledby="about-styluxe-title">
+        <div className="container-xl stx-about-grid">
+          <div className="stx-organic-frame">
+            <Image
+              src="/images/styluxe/salon-interior.jpg"
+              alt="Styluxe Salons calm botanical reception and styling lounge"
+              width={1024}
+              height={940}
+              unoptimized
+              loading="lazy"
+            />
+          </div>
+
+          <div className="stx-about-copy">
+            <p className="stx-eyebrow-crest">
+              <img src="/images/styluxe-emblem.svg" alt="" aria-hidden="true" />
+              <span>ABOUT STYLUXE</span>
+            </p>
+
+            <h2 id="about-styluxe-title" className="stx-about-heading">
+              At Styluxe, We Believe Confidence Begins With Care.
+            </h2>
+
+            <p>
+              Created for the modern generation, Styluxe combines premium salon
+              experiences with accessible pricing, offering expert hair, beauty,
+              and grooming services in a luxurious yet welcoming environment.
+            </p>
+            <p>
+              Every Styluxe salon is designed around comfort, professionalism,
+              and consistency so every visit leaves you looking your best and
+              feeling even better.
+            </p>
+
+            <div className="stx-about-stats">
+              <div>
+                <strong>150+</strong>
+                <span>Curated Services</span>
+              </div>
+              <div>
+                <strong>50+</strong>
+                <span>Master Stylists</span>
+              </div>
+              <div>
+                <strong>4.9★</strong>
+                <span>Client Rating</span>
+              </div>
+            </div>
+
+            <div className="stx-hero-actions">
+              <Link href="/about-us" className="stx-btn-primary">
+                Our Story <ArrowRight size={16} />
+              </Link>
+              <Link href="/services" className="cafe-action cafe-outline">
+                Explore Services
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =================================================================
+          4. SIGNATURE SERVICES CATEGORIES (CONVERTED HOME MENU)
+      ================================================================= */}
       <HomeMenuCategories />
-      <TrustedBrands />
+
+      {/* =================================================================
+          5. ASSOCIATE PRODUCT & TECH PARTNERS
+      ================================================================= */}
+
+
+      {/* =================================================================
+          6. AWARDS & RECOGNITIONS
+      ================================================================= */}
       <AwardsRecognitions />
 
+      {/* =================================================================
+          7. SALON FRANCHISE OPPORTUNITY SPLIT SECTION
+      ================================================================= */}
       <section id="franchise" className="franchise-section">
         <div className="franchise-photo">
-          <Image src={`./images/TeaMax cafe store design.webp`} alt="TeaMax café store interior" width={1024} height={1024} unoptimized loading="lazy" />
+          <Image
+            src="/images/styluxe/franchise-studio.jpg"
+            alt="Styluxe luxury salon storefront and interior"
+            width={1024}
+            height={768}
+            unoptimized
+            loading="lazy"
+          />
         </div>
         <div className="franchise-content">
-          <p className="eyebrow">FRANCHISE OPPORTUNITY</p>
-          <h2>Start Your Own<br /><span className="marker">TeaMax Café</span></h2>
-          <p className="franchise-description">Bring your café vision to life with TeaMax. Get the guidance, tools and business support you need, from setting up your café to managing daily operations, training and marketing.
+          <p className="eyebrow">SALON FRANCHISE OPPORTUNITY</p>
+          <h2>
+            Start Your Own
+            <br />
+            <span className="marker">Styluxe Salon</span>
+          </h2>
+          <p className="franchise-description">
+            Bring affordable luxury beauty and grooming to your city with
+            Styluxe. Get turnkey salon interior blueprints, stylist academy
+            training, smart booking technology, and pan-India marketing support.
           </p>
           <div className="franchise-features">
             {[
-              { icon: IndianRupee, a: "Affordable", b: "Investment" },
-              { icon: Handshake, a: "No", b: "Royalty" },
-              { icon: BarChart3, a: "8–12 Months", b: "ROI" },
+              { icon: IndianRupee, a: "Transparent", b: "Investment" },
+              { icon: Handshake, a: "Zero", b: "Royalty" },
+              { icon: BarChart3, a: "10–14 Months", b: "Est. ROI" },
               { icon: MapPinned, a: "Pan India", b: "Support" },
             ].map(({ icon: Icon, a, b }) => (
-              <div key={a}><span className="round-icon"><Icon size={30} strokeWidth={1.5} /></span><strong className="fs44">{a}<br />{b}</strong></div>
+              <div key={a}>
+                <span className="round-icon">
+                  <Icon size={26} strokeWidth={1.6} />
+                </span>
+                <strong className="fs44">
+                  {a}
+                  <br />
+                  {b}
+                </strong>
+              </div>
             ))}
           </div>
-          <Link href="/cafe-franchise-india#apply" className="cafe-action">Apply for Franchise <ArrowRight size={17} /></Link>
+          <Link href="/salon-franchise-india#apply" className="cafe-action">
+            Apply for Franchise <ArrowRight size={17} />
+          </Link>
         </div>
       </section>
 
-      {/* <section className="stats-band " aria-label="TeaMax by the numbers">
-        <div className="container-xl stats-inner">
-          <div className="stats-map" aria-hidden="true"><MapPinned size={76} strokeWidth={0.7} /></div>
-          <div className="stat"><strong>1309+</strong><span>Franchise Partners</span></div>
-          <div className="stat"><strong>27+</strong><span>States</span></div>
-          <div className="stat"><strong>51</strong><span>Months</span></div>
-          <p className="stats-script">Brewing<br />Success<br /><span>Together ♥</span></p>
-        </div>
-      </section> */}
-
-      {/* <section className="why-section container-xl section-space" aria-labelledby="why-heading">
-        <div className="section-heading why-heading">
-          <div><h2 id="why-heading">Why Choose TeaMax?</h2><span className="short-line" /></div>
-          <p>A simple, profitable and scalable café business backed by a strong brand and dedicated support.</p>
-        </div>
-        <div className="why-grid">
-          {whyChoose.map(({ icon: Icon, text }, i) => (
-            <div className="why-item" key={i}><span className="round-icon"><Icon size={26} strokeWidth={1.5} /></span><strong>{text}</strong></div>
-          ))}
-        </div>
-
-        <div id="stories" className="story-section">
-          <div className="story-photo">
-            <Image src={`${A}/partner-cafe-DmVDPVbU.jpg`} width={1024} height={768} alt="TeaMax franchise partner holding a cup" unoptimized loading="lazy" />
-            <Link href="/post" className="story-play" aria-label="View TeaMax partner stories"><Play fill="currentColor" /></Link>
-          </div>
-          <div className="story-copy">
-            <p className="eyebrow">PARTNER STORIES</p>
-            <blockquote><span>“</span> TeaMax gave me a business that is easy to run and highly profitable. <span>”</span></blockquote>
-            <span className="short-line" />
-            <p><strong>Franchise Partner</strong><br />Bangalore, Karnataka</p>
-            <div className="story-arrows"><Link href="/post" aria-label="Previous partner story">‹</Link><Link href="/post" aria-label="Next partner story">›</Link></div>
-          </div>
-        </div>
-      </section> */}
+      {/* =================================================================
+          8. WHY CHOOSE STYLUXE (LUXURY EXPERIENCE, HONEST PRICING)
+      ================================================================= */}
       <WhyChooseUs />
 
-      {/* <section id="gallery" className="steps-section container-xl section-space" aria-labelledby="how-heading">
-        <div className="section-heading steps-heading">
-          <div><h2 id="how-heading">How It Works?</h2><span className="short-line" /></div>
-          <p>A simple 4-step process to start your TeaMax Café.</p>
-        </div>
-        <div className="steps-grid">
-          {[
-            { icon: IndianRupee, title: "Apply", detail: "Fill the franchise form" },
-            { icon: MessageCircle, title: "Connect", detail: "Discuss with our team" },
-            { icon: Store, title: "Confirm", detail: "Finalize location & agreement" },
-            { icon: Rocket, title: "Launch", detail: "Get setup & start your café" },
-          ].map(({ icon: Icon, title, detail }, i) => (
-            <div className="step" key={title}>
-              <div className="step-count"><span>{i + 1}</span><b>{i + 1}</b></div>
-              <span className="step-icon"><Icon size={25} strokeWidth={1.4} /></span>
-              <h3>{title}</h3><p>{detail}</p>
-            </div>
-          ))}
-        </div>
-      </section> */}
-
+      {/* =================================================================
+          9. HOW IT WORKS (4-STEP SALON LAUNCH JOURNEY)
+      ================================================================= */}
       <HowItWorks />
+
+      {/* =================================================================
+          10. CLIENT & FRANCHISE PARTNER STORIES
+      ================================================================= */}
       <FranchiseStories />
+
+      {/* =================================================================
+          11. BEAUTY JOURNAL & SALON NEWS
+      ================================================================= */}
       <HomeBlogSection />
+
+      {/* =================================================================
+          12. STYLUXE FAQS
+      ================================================================= */}
       <section className="home-faq container-xl" aria-labelledby="faq-heading">
         <div className="home-faq-inner">
-          <div><p className="eyebrow">QUICK ANSWERS</p><h2 id="faq-heading">TeaMax Café<br /><span className="marker">FAQs.</span></h2><p>Clear answers about TeaMax, the menu and the franchise opportunity.</p></div>
+          <div>
+            <p className="eyebrow">QUICK ANSWERS</p>
+            <h2 id="faq-heading">
+              Styluxe Salons
+              <br />
+              <span className="marker">FAQs.</span>
+            </h2>
+            <p>
+              Clear answers about Styluxe treatments, hygiene standards,
+              bookings, and our turnkey salon franchise model.
+            </p>
+          </div>
           <div className="faq-list">
-            {faqs.map(([q, a]) => <details key={q}><summary>{q}<span>+</span></summary><p>{a}</p></details>)}
+            {faqs.map(([q, a]) => (
+              <details key={q}>
+                <summary>
+                  {q}
+                  <span>+</span>
+                </summary>
+                <p>{a}</p>
+              </details>
+            ))}
           </div>
         </div>
       </section>
 
-      <section id="contact" className="container-xl contact-section ">
+      {/* =================================================================
+          13. FINAL CTA BANNER
+      ================================================================= */}
+      <section id="contact" className="container-xl contact-section">
         <div className="contact-banner">
-          <Image src="/images/str.webp" width={1200} height={704} alt="A warm cup of chai at TeaMax Café" unoptimized loading="lazy" />
+          <Image
+            src="/images/styluxe/service-skin.jpg"
+            width={1200}
+            height={704}
+            alt="Radiant skincare and luxury salon care at Styluxe Salons"
+            unoptimized
+            loading="lazy"
+          />
           <div className="contact-shape">
-            <h2>Let&apos;s Brew<br />Your Success Story</h2>
-            <p>Own a TeaMax Café and be part of a growing community of successful franchise partners.</p>
-            <Link href="/cafe-franchise-india#apply" className="cafe-action">Get Franchise Details <ArrowRight size={17} /></Link>
+            <h2>
+              Let&apos;s Style
+              <br />
+              Your Success Story
+            </h2>
+            <p>
+              Book your next self-care ritual or partner with Styluxe Salons to
+              build a high-demand luxury beauty studio in your city.
+            </p>
+            <Link href="/salon-franchise-india#apply" className="cafe-action">
+              Get Franchise Details <ArrowRight size={17} />
+            </Link>
           </div>
-          <div className="contact-script">Chai<br /><span>People</span><br />Good<br /><span>Stories</span></div>
+          <div className="contact-script">
+            Luxury
+            <br />
+            <span>Hair</span>
+            <br />
+            Beauty &amp;
+            <br />
+            <span>Care</span>
+          </div>
         </div>
       </section>
     </div>
   );
 }
-
-

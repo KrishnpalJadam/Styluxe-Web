@@ -1,9 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Nunito+Sans:wght@400;500;600;700;800&family=Kalam:wght@700&display=swap");
 
 .tm-centres {
-    --tm-cream: #fff8ee;
-    --tm-yellow: #ffed82;
-    --tm-teal: #073638;
+    --tm-cream: #faf8f4;
+    --tm-yellow: #d6c7b2;
+    --tm-teal: #0d3b26;
     --tm-ink: #10252d;
     --tm-muted: #63717a;
     --tm-border: #e9dfd0;
@@ -813,5 +812,5 @@
 }
 
 .text-dark2 {
-    color: #073638;
+    color: #0d3b26;
 }

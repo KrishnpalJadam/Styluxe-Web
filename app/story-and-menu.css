@@ -1,21 +1,21 @@
 /* ==========================================================================
    TeaMax Café — Minimal Design System (Our Story & Menu Pages)
-   Palette: Cream (#FFF8EE) · Deep Slate Teal (#263C3D) · Warm Yellow (#FFED82)
+   Palette: Cream (#faf8f4) · Deep Slate Teal (#0d3b26) · Warm Yellow (#d6c7b2)
    Inspiration: tvanamm.com minimal artisanal aesthetic
    ========================================================================== */
 
 :root {
-  --tm-cream: #FFF8EE;
+  --tm-cream: #faf8f4;
   --tm-cream-card: #FFFFFF;
   --tm-cream-soft: #F9F2E6;
-  --tm-teal: #263C3D;
+  --tm-teal: #0d3b26;
   --tm-teal-deep: #1A2A2B;
   --tm-teal-light: #355051;
   --tm-teal-muted: rgba(38, 60, 61, 0.72);
   --tm-teal-faint: rgba(38, 60, 61, 0.06);
   --tm-teal-border: rgba(38, 60, 61, 0.12);
-  --tm-yellow: #263c3d;
-  --tm-yellow-hover: #263c3d;
+  --tm-yellow: #0d3b26;
+  --tm-yellow-hover: #0d3b26;
   --tm-yellow-muted: rgba(255, 237, 130, 0.35);
   --tm-font-serif: var(--font-display), "Georgia", "Times New Roman", serif;
   --tm-font-sans: var(--font-outfit), system-ui, -apple-system, sans-serif;
@@ -172,7 +172,7 @@
 }
 
 .tm-btn-yellow {
-  background-color: #263C3D;
+  background-color: #0d3b26;
   color: var(--tm-teal);
   box-shadow: 0 2px 8px rgba(38, 60, 61, 0.06);
 }
@@ -230,7 +230,7 @@
 
 .tm-pill-teal {
   background-color: var(--tm-teal);
-  color: #263C3D;
+  color: #0d3b26;
 }
 
 .tm-pill-outline {
@@ -333,13 +333,13 @@
   font-size: clamp(26px, 2.5vw, 36px);
   font-weight: 400;
   line-height: 1.1;
-  color: #263C3D !important;
+  color: #0d3b26 !important;
 }
 
 .tm-stat-item span {
   display: block;
   font-size: 12px;
-  color: #263C3D !important;
+  color: #0d3b26 !important;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-top: 4px;
@@ -962,12 +962,12 @@
 
 /* ==========================================================================
    Franchise Page Styles (tvanamm.com inspired, minimal & professional)
-   Palette: Cream (#FFF8EE) · Deep Slate Teal (#263C3D) · Warm Yellow (#FFED82)
+   Palette: Cream (#faf8f4) · Deep Slate Teal (#0d3b26) · Warm Yellow (#d6c7b2)
    ========================================================================== */
 
 .tm-franchise-hero {
-  background-color: #fff8ee;
-  color: #263C3D;
+  background-color: #faf8f4;
+  color: #0d3b26;
   padding-top: 50px;
   /* padding-bottom: 80px; */
   position: relative;
@@ -982,11 +982,11 @@
 }
 
 .tm-franchise-hero .tm-eyebrow {
-  color: #263C3D;
+  color: #0d3b26;
 }
 
 .tm-franchise-hero .tm-eyebrow::before {
-  background-color: #263C3D;
+  background-color: #0d3b26;
 }
 
 .tm-franchise-hero h1 {
@@ -995,7 +995,7 @@
   font-weight: 400;
   line-height: 1.1;
   letter-spacing: -0.025em;
-  color: #263C3D;
+  color: #0d3b26;
   margin: 0 0 20px 0;
 }
 
@@ -1007,7 +1007,7 @@
 .tm-franchise-hero-lead {
   font-size: clamp(16px, 1.25vw, 19px);
   line-height: 1.65;
-  color: #263C3D;
+  color: #0d3b26;
   max-width: 620px;
   margin-bottom: 32px;
 }
@@ -1483,19 +1483,19 @@
   font-weight: 400;
   line-height: 1.08;
   letter-spacing: -0.025em;
-  color: #263C3D;
+  color: #0d3b26;
   margin: 0 0 16px 0;
 }
 
 .tm-blog-hero h1 em {
   font-style: italic;
-  color: #263C3D;
+  color: #0d3b26;
 }
 
 .tm-blog-hero p {
   font-size: clamp(15.5px, 1.2vw, 18px);
   line-height: 1.6;
-  color: #263C3D;
+  color: #0d3b26;
   max-width: 600px;
   margin: 0;
 }
@@ -1601,7 +1601,7 @@
 /* Blog Card (Dark Slate Teal Card matching image 3) */
 .tm-blog-card {
   background-color: #fff;
-  color: #263C3D;
+  color: #0d3b26;
   border-radius: 20px;
   padding: 30px 26px;
   display: flex;
@@ -1673,7 +1673,7 @@
   font-weight: 400;
   line-height: 1.32;
   letter-spacing: -0.015em;
-  color: #263C3D;
+  color: #0d3b26;
   margin: 0 0 14px 0;
   transition: color 0.2s ease;
 }
@@ -1685,7 +1685,7 @@
 .tm-blog-card-excerpt {
   font-size: 13.5px;
   line-height: 1.62;
-  color: #263C3D;
+  color: #0d3b26;
   margin: 0 0 24px 0;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -1700,7 +1700,7 @@
   padding-top: 16px;
   border-top: 1px solid rgba(255, 248, 238, 0.1);
   font-size: 12.5px;
-  color: #263C3D;
+  color: #0d3b26;
 }
 
 .tm-blog-card-readmore {
@@ -2020,13 +2020,13 @@
 
 /* ==========================================================================
    Menu Redesign (Matching tvanamm.com pattern, minimal & professional)
-   Palette: Cream (#FFF8EE) · Deep Slate Teal (#263C3D) · Warm Yellow (#FFED82)
+   Palette: Cream (#faf8f4) · Deep Slate Teal (#0d3b26) · Warm Yellow (#d6c7b2)
    ========================================================================== */
 
 /* Menu Hero */
 .tm-menu-hero {
-  background-color: #FFF8EE;
-  color: #263c3d;
+  background-color: #faf8f4;
+  color: #0d3b26;
   padding-top: 140px;
   padding-bottom: 70px;
   position: relative;
@@ -2041,7 +2041,7 @@
 }
 
 .tm-menu-hero .tm-eyebrow {
-  color: #263c3d;
+  color: #0d3b26;
 }
 
 .tm-menu-hero .tm-eyebrow::before {
@@ -2054,19 +2054,19 @@
   font-weight: 400;
   line-height: 1.1;
   letter-spacing: -0.025em;
-  color: #263C3D;
+  color: #0d3b26;
   margin: 0 0 16px 0;
 }
 
 .tm-menu-hero h1 em {
   font-style: italic;
-  color: #263C3D;
+  color: #0d3b26;
 }
 
 .tm-menu-hero-lead {
   font-size: clamp(15.5px, 1.2vw, 18px);
   line-height: 1.6;
-  color: #263C3D;
+  color: #0d3b26;
   max-width: 600px;
   margin: 0 0 24px 0;
 }
@@ -2543,17 +2543,17 @@
 }
 
 /* ==========================================================================
-   CAFE ANIMATIONS & MAXIMUM #FFED82 COLOR SUITE
+   CAFE ANIMATIONS & MAXIMUM #d6c7b2 COLOR SUITE
    - Section-by-section unique cafe animations
-   - Maximum use of #ffed82 (Warm Golden Butter Yellow)
-   - #263c3d reserved for CTAs, actions and high-contrast text
+   - Maximum use of #d6c7b2 (Warm Golden Butter Yellow)
+   - #0d3b26 reserved for CTAs, actions and high-contrast text
    ========================================================================== */
 
 :root {
-  --tm-yellow: #FFED82;
-  --tm-yellow-hover: #ffed82;
+  --tm-yellow: #d6c7b2;
+  --tm-yellow-hover: #d6c7b2;
   --tm-yellow-light: #FFFBE8;
-  --tm-yellow-border: #FFED82;
+  --tm-yellow-border: #d6c7b2;
   --tm-yellow-glow: 0 0 24px rgba(255, 237, 130, 0.5);
   --tm-yellow-shadow: 0 12px 28px -6px rgba(255, 237, 130, 0.45);
   --tm-yellow-muted: rgba(255, 237, 130, 0.5);
@@ -2630,11 +2630,11 @@
 
   0%,
   100% {
-    box-shadow: 0 0 0 2px #FFED82, 0 8px 24px -4px rgba(255, 237, 130, 0.4);
+    box-shadow: 0 0 0 2px #d6c7b2, 0 8px 24px -4px rgba(255, 237, 130, 0.4);
   }
 
   50% {
-    box-shadow: 0 0 0 4px #FFED82, 0 14px 34px -4px rgba(255, 237, 130, 0.7);
+    box-shadow: 0 0 0 4px #d6c7b2, 0 14px 34px -4px rgba(255, 237, 130, 0.7);
   }
 }
 
@@ -2708,19 +2708,19 @@
 }
 
 /* --------------------------------------------------------------------------
-   MAXIMIZING #FFED82 ACCROSS UI ELEMENTS
+   MAXIMIZING #d6c7b2 ACCROSS UI ELEMENTS
    -------------------------------------------------------------------------- */
 
-/* Eyebrows & Kickers: Bright #FFED82 line */
+/* Eyebrows & Kickers: Bright #d6c7b2 line */
 .tm-eyebrow::before,
 .tm-eyebrow-light::before,
 .section-kicker::before,
 .home-eyebrow::after {
-  background-color: #FFED82 !important;
+  background-color: #d6c7b2 !important;
   box-shadow: 0 0 8px rgba(255, 237, 130, 0.6) !important;
 }
 
-/* Headings italic emphasis: Radiant #FFED82 */
+/* Headings italic emphasis: Radiant #d6c7b2 */
 .tm-heading-xl em,
 .tm-heading-lg em,
 .tm-heading-md em,
@@ -2728,12 +2728,12 @@
 .tm-menu-hero h1 em,
 .tm-franchise-hero h1 em,
 .tm-blog-hero h1 em {
-  /* color: #FFED82 !important; */
+  /* color: #d6c7b2 !important; */
   font-style: italic !important;
   text-shadow: 0 0 16px rgba(255, 237, 130, 0.35);
 }
 
-/* Pills & Badges: #FFED82 Dominance with clean #263C3D text */
+/* Pills & Badges: #d6c7b2 Dominance with clean #0d3b26 text */
 .tm-pill,
 .tm-pill-yellow,
 .tm-model-tag,
@@ -2744,8 +2744,8 @@
 .tm-city-badge,
 .home-stat strong,
 .tm-menu-nav-count {
-  /* background-color: #FFED82 !important; */
-  color: #263C3D;
+  /* background-color: #d6c7b2 !important; */
+  color: #0d3b26;
   font-weight: 600 !important;
   /* border: 1px solid rgba(255, 237, 130, 0.8) !important; */
   /* box-shadow: 0 2px 8px rgba(255, 237, 130, 0.25); */
@@ -2757,8 +2757,8 @@
 
 .tm-pill-outline {
   background-color: rgba(255, 237, 130, 0.18) !important;
-  border: 1.5px solid #FFED82 !important;
-  color: #263C3D !important;
+  border: 1.5px solid #d6c7b2 !important;
+  color: #0d3b26 !important;
 }
 
 .tm-menu-arch-badge2 {
@@ -2768,7 +2768,7 @@
 .tm-city-badge:hover,
 .tm-menu-chip:hover,
 .tm-pill:hover {
-  background-color: #ffed82 !important;
+  background-color: #d6c7b2 !important;
   transform: translateY(-2px);
   box-shadow: 0 4px 14px rgba(255, 237, 130, 0.5) !important;
 }
@@ -2777,8 +2777,8 @@
 .teamax-nav a:hover,
 .teamax-nav a.is-active,
 .teamax-nav a[aria-current="page"] {
-  background: #FFED82 !important;
-  color: #263C3D !important;
+  background: #d6c7b2 !important;
+  color: #0d3b26 !important;
   font-weight: 600 !important;
   box-shadow: 0 2px 10px rgba(255, 237, 130, 0.45);
 }
@@ -2786,10 +2786,10 @@
 /* Header Primary CTA */
 .teamax-cta,
 .teamax-mobile-cta {
-  background: #263C3D !important;
+  background: #0d3b26 !important;
   color: #fff !important;
   font-weight: 650 !important;
-  /* border: 1px solid #FFED82 !important;
+  /* border: 1px solid #d6c7b2 !important;
   box-shadow: 0 4px 16px rgba(255, 237, 130, 0.5) !important;
   transition: all 0.26s ease !important;
   animation: tmGoldGlowPulse 3.5s infinite ease-in-out; */
@@ -2797,7 +2797,7 @@
 
 .teamax-cta:hover,
 .teamax-mobile-cta:hover {
-  background: #ffed82 !important;
+  background: #d6c7b2 !important;
   transform: translateY(-2px) !important;
   box-shadow: 0 8px 24px rgba(255, 237, 130, 0.7) !important;
 }
@@ -2805,35 +2805,35 @@
 /* Primary Action Buttons */
 .tm-btn-yellow,
 .home-button-gold {
-  /* background: #FFED82 !important; */
+  /* background: #d6c7b2 !important; */
   color: #fff !important;
   font-weight: 600 !important;
-  /* border: 1px solid #FFED82 !important;
+  /* border: 1px solid #d6c7b2 !important;
   box-shadow: 0 4px 16px rgba(255, 237, 130, 0.45) !important; */
   /* animation: tmGoldGlowPulse 4s infinite ease-in-out; */
 }
 
 /* .tm-btn-yellow:hover,
 .home-button-gold:hover {
-  background: #ffed82 !important;
+  background: #d6c7b2 !important;
   transform: translateY(-2px) scale(1.02);
   box-shadow: 0 8px 26px rgba(255, 237, 130, 0.65) !important;
 } */
 
 /* Secondary Button Outlines with Golden Glow */
 .tm-btn-outline {
-  border: 1.5px solid #FFED82 !important;
+  border: 1.5px solid #d6c7b2 !important;
   color: var(--tm-teal) !important;
   background: rgba(255, 237, 130, 0.1) !important;
 }
 
 .tm-btn-outline:hover {
-  background: #FFED82 !important;
-  color: #263C3D !important;
+  background: #d6c7b2 !important;
+  color: #0d3b26 !important;
   box-shadow: 0 4px 16px rgba(255, 237, 130, 0.5) !important;
 }
 
-/* Feature Numbers & Step Badges in #FFED82 */
+/* Feature Numbers & Step Badges in #d6c7b2 */
 .tm-feature-num,
 .tm-step-num,
 .benefit-card-top span {
@@ -2844,8 +2844,8 @@
   height: 32px !important;
   padding: 0 8px !important;
   border-radius: 9999px !important;
-  /* background-color: #FFED82 !important; */
-  color: #263C3D !important;
+  /* background-color: #d6c7b2 !important; */
+  color: #0d3b26 !important;
   font-weight: 700 !important;
   font-size: 13px !important;
   border: 1px solid rgba(255, 237, 130, 0.9) !important;
@@ -2854,8 +2854,8 @@
 
 /* Feature Icons */
 .tm-feature-icon {
-  background-color: #FFED82 !important;
-  color: #263C3D !important;
+  background-color: #d6c7b2 !important;
+  color: #0d3b26 !important;
   border-radius: 14px !important;
   border: 1px solid rgba(255, 237, 130, 0.8) !important;
   box-shadow: 0 4px 12px rgba(255, 237, 130, 0.35) !important;
@@ -2885,28 +2885,28 @@
 .tm-model-card:hover,
 .tm-menu-banner-card:hover,
 .tm-blog-card:hover {
-  border-color: #FFED82 !important;
+  border-color: #d6c7b2 !important;
   box-shadow: 0 16px 36px -10px rgba(255, 237, 130, 0.45), 0 4px 16px rgba(38, 60, 61, 0.08) !important;
   transform: translateY(-5px) !important;
 }
 
 /* Featured Dark Cards: Glorious Yellow Outline */
 .tm-model-card-dark {
-  border: 2px solid #FFED82 !important;
-  box-shadow: 0 0 0 1px #FFED82, 0 16px 40px -10px rgba(255, 237, 130, 0.45) !important;
+  border: 2px solid #d6c7b2 !important;
+  box-shadow: 0 0 0 1px #d6c7b2, 0 16px 40px -10px rgba(255, 237, 130, 0.45) !important;
   animation: tmGoldGlowPulse 4s infinite ease-in-out;
 }
 
 /* Callout Box & Blockquotes */
 .tm-callout-box {
   border: 1.5px solid rgba(255, 237, 130, 0.6) !important;
-  border-left: 5px solid #FFED82 !important;
+  border-left: 5px solid #d6c7b2 !important;
   background: #FFFDEE !important;
   box-shadow: 0 4px 18px rgba(255, 237, 130, 0.2);
 }
 
 .tm-article-body blockquote {
-  border-left: 5px solid #FFED82 !important;
+  border-left: 5px solid #d6c7b2 !important;
   background: rgba(255, 237, 130, 0.14) !important;
   box-shadow: inset 2px 0 8px rgba(255, 237, 130, 0.2);
 }
@@ -2917,7 +2917,7 @@
 .tm-field-textarea:focus,
 .tm-menu-search-large input:focus,
 .tm-blog-search input:focus {
-  border-color: #FFED82 !important;
+  border-color: #d6c7b2 !important;
   box-shadow: 0 0 0 3px rgba(255, 237, 130, 0.55) !important;
 }
 
@@ -2955,17 +2955,17 @@
 .tm-stats-ribbon,
 .home-stats {
   animation: tmStatPop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s both;
-  border-top: 2px solid #FFED82 !important;
+  border-top: 2px solid #d6c7b2 !important;
 }
 
 .tm-stat-item:hover strong,
 .home-stat:hover strong {
-  /* color: #FFED82 !important; */
+  /* color: #d6c7b2 !important; */
   animation: tmGoldTextShine 1.5s ease-in-out infinite;
 }
 
 .home-stat svg {
-  color: #263C3D !important;
+  color: #0d3b26 !important;
   transition: transform 0.3s ease;
 }
 
@@ -3051,7 +3051,7 @@
 
 .tm-blog-card:hover .tm-blog-card-readmore svg {
   transform: translateX(6px);
-  color: #263C3D;
+  color: #0d3b26;
   transition: transform 0.25s ease;
 }
 
@@ -3068,12 +3068,12 @@
 
 .tm-brewing-feat-card:hover {
   transform: translateY(-3px);
-  border-color: #FFED82 !important;
+  border-color: #d6c7b2 !important;
   background: rgba(255, 237, 130, 0.12) !important;
 }
 
 .tm-brewing-feat-card strong {
-  color: #263C3D !important;
+  color: #0d3b26 !important;
 }
 
 /* 7. Franchise Steps Sequence */
@@ -3089,7 +3089,7 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: #FFED82;
+  background: #d6c7b2;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -3106,12 +3106,12 @@
 
 .tm-faq-item:hover,
 .tm-faq-item[open] {
-  border-color: #FFED82 !important;
+  border-color: #d6c7b2 !important;
   box-shadow: 0 4px 18px rgba(255, 237, 130, 0.25);
 }
 
 .tm-faq-item summary::after {
-  color: #FFED82 !important;
+  color: #d6c7b2 !important;
   font-weight: 700 !important;
 }
 
@@ -3806,7 +3806,7 @@ body {
   border-radius: 50%;
   border: 1px solid rgba(38, 60, 61, 0.15);
   background: #ffffff;
-  color: var(--tm-teal, #263C3D);
+  color: var(--tm-teal, #0d3b26);
   font-family: inherit;
   font-size: 14px;
   font-weight: 700;
@@ -3816,15 +3816,15 @@ body {
 }
 
 .tx-menu-page-btn:hover:not(:disabled) {
-  border-color: var(--tm-teal, #263C3D);
+  border-color: var(--tm-teal, #0d3b26);
   background: #fbf7f0;
   transform: translateY(-1px);
 }
 
 .tx-menu-page-btn.is-active {
-  background: var(--tm-teal, #263C3D);
+  background: var(--tm-teal, #0d3b26);
   color: #ffffff;
-  border-color: var(--tm-teal, #263C3D);
+  border-color: var(--tm-teal, #0d3b26);
   box-shadow: 0 4px 12px rgba(38, 60, 61, 0.2);
 }
 
@@ -4277,18 +4277,18 @@ body {
   overflow: hidden;
   display: flex;
   align-items: center;
-  background-color: #103b39;
+  background-color: #0D3B26;
   background-image:
     linear-gradient(90deg,
-      rgba(16, 48, 46, 0.12) 0%,
-      rgba(16, 48, 46, 0.05) 48%,
-      rgba(16, 48, 46, 0) 70%),
-    url("/images/Teamax%20Coffee%20Cups%20on%20Teal%20Background.webp");
+      rgba(13, 59, 38, 0.88) 0%,
+      rgba(13, 59, 38, 0.65) 48%,
+      rgba(13, 59, 38, 0.25) 75%),
+    url("/images/styluxe/salon-interior.jpg");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
   padding: 58px 0;
-  color: #fff8ee;
+  color: #faf8f4;
 }
 
 .tm-story-hero *,
@@ -4324,7 +4324,7 @@ body {
   justify-content: center;
   padding: 8px 19px;
   border-radius: 50px;
-  background: #ffed82;
+  background: #d6c7b2;
   color: #183b38;
   font-family: var(--tm-font-sans, sans-serif);
   font-size: 12px;
@@ -4335,7 +4335,7 @@ body {
 .tm-story-hero__eyebrow-line {
   width: 150px;
   height: 1px;
-  background: #ffed82;
+  background: #d6c7b2;
 }
 
 .tm-story-hero__title {
@@ -4349,7 +4349,7 @@ body {
 
   font-family: var(--tm-font-serif);
   letter-spacing: -.025em;
-  color: #263c3d;
+  color: #0d3b26;
   margin: 0 0 20px;
   font-size: clamp(34px, 4.5vw, 60px);
 
@@ -4357,7 +4357,7 @@ body {
 }
 
 .tm-story-hero__title span {
-  color: #ffed82;
+  color: #d6c7b2;
 }
 
 .tm-story-hero__description {
@@ -4377,7 +4377,7 @@ body {
   max-width: 800px;
   margin: 17px 0 14px;
   padding: 15px 20px;
-  border: 1.5px solid #ffed82;
+  border: 1.5px solid #d6c7b2;
   border-radius: 23px;
   background: rgba(13, 51, 48, 0.57);
 }
@@ -4388,8 +4388,8 @@ body {
   justify-content: center;
   flex: 0 0 70px;
   min-height: 55px;
-  border-right: 1px solid #ffed82;
-  color: #ffed82;
+  border-right: 1px solid #d6c7b2;
+  color: #d6c7b2;
   font-family: Georgia, serif;
   font-size: 44px;
 }
@@ -4403,7 +4403,7 @@ body {
 }
 
 .tm-story-hero__highlight strong {
-  color: #ffed82;
+  color: #d6c7b2;
   font-weight: 750;
 }
 
@@ -4427,9 +4427,9 @@ body {
   gap: 12px;
   min-height: 46px;
   padding: 12px 23px;
-  border: 1px solid #ffed82;
+  border: 1px solid #d6c7b2;
   border-radius: 50px;
-  background: #ffed82;
+  background: #d6c7b2;
   color: #183b38 !important;
   font-family: var(--tm-font-sans, sans-serif);
   font-size: 13px;
@@ -4449,7 +4449,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  color: #fff8ee !important;
+  color: #faf8f4 !important;
   font-family: var(--tm-font-sans, sans-serif);
   font-size: 13px;
   font-weight: 600;
@@ -4458,7 +4458,7 @@ body {
 }
 
 .tm-story-hero__link:hover {
-  color: #ffed82 !important;
+  color: #d6c7b2 !important;
 }
 
 /* Laptop screens */
@@ -4499,13 +4499,13 @@ body {
     align-items: flex-end;
     background-size: auto 440px;
     background-position: right top;
-    background-color: #103b39;
+    background-color: #0D3B26;
     background-image:
       linear-gradient(180deg,
-        rgba(16, 59, 57, 0) 0%,
-        #103b39 80%,
-        #103b39 100%),
-      url("/images/Teamax%20Coffee%20Cups%20on%20Teal%20Background.webp");
+        rgba(13, 59, 38, 0.18) 0%,
+        #0D3B26 78%,
+        #0D3B26 100%),
+      url("/images/styluxe/salon-interior.jpg");
     background-repeat: no-repeat;
   }
 

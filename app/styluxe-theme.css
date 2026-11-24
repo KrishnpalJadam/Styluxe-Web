@@ -1,0 +1,2064 @@
+/* ==========================================================================
+   STYLUXE SALONS — MASTER BRAND DESIGN SYSTEM
+   Exact palette & typography from Styluxe reference screenshots:
+   - Deep Forest Green: #0D3B26 (primary brand, headlines, primary CTAs)
+   - Muted Sage Olive:  #4A5D46 (secondary CTAs, italic display, dark banners)
+   - Warm Champagne:    #D6C7B2 / #C5B297 (subtle luxury accent, badges, rules)
+   - Alabaster Cream:   #FAF8F4 (primary page background)
+   - Soft Linen Tint:   #F4F1EA (trust ribbon, alternating soft bands)
+   - Pure White:        #FFFFFF (cards, sticky scrolled nav, clean sections)
+   - Charcoal Footer:   #252625 (footer background)
+   - Display Serif:     Cormorant Garamond (--font-serif)
+   - UI / Body Sans:    Plus Jakarta Sans (--font-body)
+   ========================================================================== */
+
+:root {
+  /* Styluxe Core Tokens */
+  --stx-forest: #0d3b26;
+  --stx-forest-deep: #092a1b;
+  --stx-sage: #4a5d46;
+  --stx-sage-deep: #3b4b38;
+  --stx-sage-soft: #eef2ec;
+  --stx-champagne: #d6c7b2;
+  --stx-champagne-deep: #b8a386;
+  --stx-champagne-soft: #f5efe6;
+  --stx-cream: #faf8f4;
+  --stx-linen: #f4f1ea;
+  --stx-white: #ffffff;
+  --stx-charcoal: #252625;
+  --stx-ink: #1b2721;
+  --stx-muted: #56625b;
+  --stx-border: rgba(13, 59, 38, 0.12);
+  --stx-border-strong: rgba(13, 59, 38, 0.24);
+  --stx-shadow-sm: 0 4px 18px rgba(13, 59, 38, 0.05);
+  --stx-shadow-md: 0 14px 36px rgba(13, 59, 38, 0.08);
+  --stx-shadow-lg: 0 22px 54px rgba(13, 59, 38, 0.12);
+
+  /* Typography bridge for all legacy classes */
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: var(--font-serif);
+  --font-outfit: var(--font-body);
+  --font-script: var(--font-serif);
+  --tm-font-serif: "Cormorant Garamond", Georgia, serif;
+  --tm-font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Legacy TeaMax CSS variable remapping -> Styluxe exact brand system */
+  --tm-cream: #faf8f4;
+  --tm-cream-2: #f4f1ea;
+  --tm-cream-card: #ffffff;
+  --tm-cream-soft: #f4f1ea;
+  --tm-white: #ffffff;
+  --tm-yellow: #d6c7b2;
+  --tm-yellow-deep: #4a5d46;
+  --tm-yellow-hover: #c5b297;
+  --tm-yellow-light: #f4efe6;
+  --tm-yellow-dark: #b8a386;
+  --tm-yellow-muted: rgba(214, 199, 178, 0.35);
+  --tm-teal: #0d3b26;
+  --tm-teal-2: #092a1b;
+  --tm-teal-deep: #092a1b;
+  --tm-teal-light: #4a5d46;
+  --tm-teal-muted: #56625b;
+  --tm-teal-faint: rgba(13, 59, 38, 0.05);
+  --tm-teal-border: rgba(13, 59, 38, 0.12);
+  --tm-dark-forest: #0d3b26;
+  --tm-dark-hero: #0d3b26;
+  --tm-dark-card: #144730;
+  --tm-cream-bg: #faf8f4;
+  --tm-border-light: #e6e0d4;
+  --tm-text: #1b2721;
+  --tm-text-dark: #1b2721;
+  --tm-text-muted: #56625b;
+  --tm-text-light: #faf8f4;
+  --tm-muted: #56625b;
+  --tm-border: rgba(13, 59, 38, 0.12);
+  --tm-shadow: 0 16px 42px rgba(13, 59, 38, 0.08);
+}
+
+html,
+body {
+  background: var(--stx-cream) !important;
+  color: var(--stx-ink) !important;
+  font-family: var(--font-body), "Plus Jakarta Sans", sans-serif !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif;
+  color: var(--stx-forest);
+}
+
+/* ==========================================================================
+   HEADER — EXACT STYLUXE NAVIGATION BAR
+   ========================================================================== */
+.site-header {
+  background: rgba(250, 248, 244, 0.96) !important;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(13, 59, 38, 0.08);
+  height: 80px !important;
+}
+
+.site-header .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--stx-forest) !important;
+  text-decoration: none;
+}
+
+.stx-brand-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stx-brand-wordmark {
+  font-family: var(--font-body), "Plus Jakarta Sans", sans-serif;
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--stx-forest);
+  line-height: 1;
+}
+
+.stx-brand-logo--light .stx-brand-wordmark {
+  color: #ffffff;
+}
+
+.site-nav {
+  gap: clamp(16px, 2vw, 30px) !important;
+}
+
+.site-nav a {
+  font-family: var(--font-body), "Plus Jakarta Sans", sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: #1f2b24 !important;
+  position: relative;
+  padding: 6px 2px;
+  transition: color 0.2s ease !important;
+}
+
+.site-nav a:hover,
+.site-nav a.active {
+  color: var(--stx-forest) !important;
+  font-weight: 600 !important;
+}
+
+.site-nav a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1.5px;
+  background: var(--stx-forest);
+  border-radius: 2px;
+}
+
+/* Primary & Secondary Styluxe Buttons */
+.cafe-action,
+.stx-btn-primary {
+  min-height: 44px;
+  padding: 0 24px;
+  font-family: var(--font-body), "Plus Jakarta Sans", sans-serif !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 8px !important;
+  background: var(--stx-forest) !important;
+  color: #ffffff !important;
+  border: 1px solid var(--stx-forest) !important;
+  transition: transform 0.22s ease, background 0.22s ease, box-shadow 0.22s ease !important;
+}
+
+.cafe-action:hover,
+.stx-btn-primary:hover {
+  background: var(--stx-forest-deep) !important;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(13, 59, 38, 0.2);
+}
+
+.stx-btn-sage {
+  min-height: 44px;
+  padding: 0 24px;
+  font-family: var(--font-body), "Plus Jakarta Sans", sans-serif !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 8px !important;
+  background: var(--stx-sage) !important;
+  color: #ffffff !important;
+  border: 1px solid var(--stx-sage) !important;
+  transition: transform 0.22s ease, background 0.22s ease, box-shadow 0.22s ease !important;
+}
+
+.stx-btn-sage:hover {
+  background: var(--stx-sage-deep) !important;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(74, 93, 70, 0.24);
+}
+
+.cafe-outline {
+  background: transparent !important;
+  color: var(--stx-forest) !important;
+  border: 1px solid rgba(13, 59, 38, 0.32) !important;
+}
+
+.cafe-outline:hover {
+  background: var(--stx-forest) !important;
+  color: #ffffff !important;
+  border-color: var(--stx-forest) !important;
+}
+
+.stx-btn-champagne {
+  min-height: 44px;
+  padding: 0 26px;
+  font-family: var(--font-body), "Plus Jakarta Sans", sans-serif;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 8px;
+  background: var(--stx-champagne);
+  color: var(--stx-forest);
+  border: 1px solid var(--stx-champagne);
+  transition: transform 0.22s ease, background 0.22s ease;
+}
+
+.stx-btn-champagne:hover {
+  background: #e4d8c7;
+  color: var(--stx-forest-deep);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   STYLUXE HOME HERO — MATCHING REFERENCE SCREENSHOT 2
+   ========================================================================== */
+.stx-hero {
+  position: relative;
+  background-color: var(--stx-cream);
+  padding: 112px 0 64px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.stx-hero::before {
+  content: "";
+  position: absolute;
+  left: -40px;
+  bottom: -20px;
+  width: 390px;
+  height: 390px;
+  background: url("/images/styluxe-botanical.svg") no-repeat center / contain;
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.stx-hero::after {
+  content: "";
+  position: absolute;
+  right: -60px;
+  top: 40px;
+  width: 300px;
+  height: 300px;
+  background: url("/images/styluxe-botanical.svg") no-repeat center / contain;
+  transform: scaleX(-1) rotate(12deg);
+  opacity: 0.65;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.stx-hero-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 0.96fr) minmax(0, 1.04fr);
+  align-items: center;
+  gap: 44px;
+}
+
+.stx-eyebrow-crest {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body), "Plus Jakarta Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--stx-sage);
+  margin-bottom: 18px;
+}
+
+.stx-eyebrow-crest img {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+.stx-hero-title {
+  margin: 0 0 18px;
+  line-height: 1.04;
+}
+
+.stx-hero-title-main {
+  display: block;
+  font-family: var(--font-body), "Plus Jakarta Sans", sans-serif;
+  font-size: clamp(44px, 5.2vw, 68px);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  color: var(--stx-forest);
+}
+
+.stx-hero-title-italic {
+  display: block;
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(42px, 4.8vw, 64px);
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: -0.01em;
+  color: var(--stx-sage);
+  margin-top: 2px;
+}
+
+.stx-hero-pillars {
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(21px, 2vw, 27px);
+  font-weight: 500;
+  color: var(--stx-forest);
+  letter-spacing: 0.01em;
+  margin: 0 0 16px;
+}
+
+.stx-hero-desc {
+  max-width: 470px;
+  font-size: 15.5px;
+  line-height: 1.72;
+  color: var(--stx-muted);
+  margin: 0 0 30px;
+}
+
+.stx-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+}
+
+.stx-hero-media {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(13, 59, 38, 0.11);
+  border: 1px solid rgba(13, 59, 38, 0.08);
+  background: var(--stx-linen);
+}
+
+.stx-hero-media img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16 / 10.6;
+  object-fit: cover;
+  display: block;
+}
+
+/* ==========================================================================
+   STYLUXE 4-PILLAR TRUST BAR — MATCHING REFERENCE SCREENSHOT 3
+   ========================================================================== */
+.stx-trust-strip {
+  position: relative;
+  background: var(--stx-linen);
+  border-top: 1px solid rgba(13, 59, 38, 0.06);
+  border-bottom: 1px solid rgba(13, 59, 38, 0.07);
+  padding: 28px 0 34px;
+}
+
+.stx-trust-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  align-items: center;
+}
+
+.stx-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.stx-trust-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid rgba(13, 59, 38, 0.14);
+  color: var(--stx-forest);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(13, 59, 38, 0.05);
+}
+
+.stx-trust-item strong {
+  display: block;
+  font-family: var(--font-body), "Plus Jakarta Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--stx-forest);
+  line-height: 1.25;
+}
+
+.stx-trust-item span {
+  display: block;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--stx-muted);
+  margin-top: 3px;
+}
+
+/* ==========================================================================
+   STYLUXE ABOUT PREVIEW — ASYMMETRICAL ORGANIC ARCH (SCREENSHOT 3)
+   ========================================================================== */
+.stx-about-preview {
+  background: var(--stx-white);
+  padding: 78px 0;
+}
+
+.stx-about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.96fr) minmax(0, 1.04fr);
+  gap: 56px;
+  align-items: center;
+}
+
+.stx-organic-frame {
+  position: relative;
+  border-radius: 130px 18px 130px 18px;
+  overflow: hidden;
+  box-shadow: var(--stx-shadow-lg);
+  border: 1px solid var(--stx-border);
+  background: var(--stx-linen);
+}
+
+.stx-organic-frame img {
+  width: 100%;
+  aspect-ratio: 1 / 0.92;
+  object-fit: cover;
+  display: block;
+}
+
+.stx-about-heading {
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif !important;
+  font-size: clamp(32px, 3.6vw, 48px) !important;
+  font-weight: 500 !important;
+  line-height: 1.12 !important;
+  letter-spacing: 0.01em !important;
+  text-transform: uppercase;
+  color: var(--stx-forest) !important;
+  margin: 0 0 22px !important;
+}
+
+.stx-about-copy p {
+  font-size: 15.5px;
+  line-height: 1.78;
+  color: var(--stx-muted);
+  margin: 0 0 16px;
+}
+
+.stx-about-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin: 26px 0 28px;
+  padding: 20px 0;
+  border-top: 1px solid var(--stx-border);
+  border-bottom: 1px solid var(--stx-border);
+}
+
+.stx-about-stats strong {
+  display: block;
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--stx-forest);
+  line-height: 1.05;
+}
+
+.stx-about-stats span {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--stx-sage);
+  margin-top: 4px;
+}
+
+/* ==========================================================================
+   HOME SECTIONS REFINEMENT TO STYLUXE EDITORIAL AESTHETIC
+   ========================================================================== */
+.tm-home {
+  background: var(--stx-cream) !important;
+  color: var(--stx-ink) !important;
+}
+
+.section-heading h2,
+.franchise-content h2,
+.contact-shape h2,
+.home-faq h2 {
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.01em !important;
+  color: var(--stx-forest) !important;
+}
+
+.marker {
+  background: linear-gradient(transparent 78%, rgba(214, 199, 178, 0.55) 78%, rgba(214, 199, 178, 0.55) 94%, transparent 94%) !important;
+  font-style: italic;
+  color: var(--stx-sage) !important;
+}
+
+.short-line {
+  height: 2.5px !important;
+  width: 56px !important;
+  background: var(--stx-sage) !important;
+}
+
+.kicker {
+  font-family: var(--font-body), "Plus Jakarta Sans", sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase;
+  color: var(--stx-sage) !important;
+}
+
+.menu-card {
+  background: #ffffff !important;
+  border: 1px solid var(--stx-border) !important;
+  border-radius: 16px !important;
+  box-shadow: var(--stx-shadow-sm) !important;
+}
+
+.menu-card:hover {
+  border-color: rgba(13, 59, 38, 0.28) !important;
+  box-shadow: var(--stx-shadow-md) !important;
+}
+
+.menu-card h3 {
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif !important;
+  font-size: 22px !important;
+  font-weight: 600 !important;
+  color: var(--stx-forest) !important;
+}
+
+.menu-card p {
+  color: var(--stx-sage) !important;
+  font-size: 13.5px !important;
+}
+
+/* Home Franchise Section */
+.franchise-section {
+  background: var(--stx-white);
+  padding-block: 48px;
+}
+
+.franchise-photo {
+  border-radius: 0 140px 140px 0 !important;
+  box-shadow: var(--stx-shadow-md);
+}
+
+.round-icon {
+  background: var(--stx-linen) !important;
+  border: 1px solid rgba(13, 59, 38, 0.14);
+  color: var(--stx-forest) !important;
+}
+
+.round-icon svg {
+  filter: none !important;
+}
+
+/* Home CTA Banner -> Exact Styluxe Dark Sage Botanical Band (Screenshot 1) */
+.contact-banner {
+  background: var(--stx-sage) !important;
+  border-radius: 22px !important;
+  overflow: hidden;
+}
+
+.contact-shape {
+  background: rgba(13, 59, 38, 0.92) !important;
+}
+
+.contact-shape h2 {
+  color: #ffffff !important;
+}
+
+.contact-shape p {
+  color: rgba(250, 248, 244, 0.88) !important;
+}
+
+.contact-shape .cafe-action {
+  background: var(--stx-champagne) !important;
+  color: var(--stx-forest) !important;
+  border-color: var(--stx-champagne) !important;
+}
+
+.contact-shape .cafe-action:hover {
+  background: #e5dac9 !important;
+  color: var(--stx-forest-deep) !important;
+}
+
+.contact-script {
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif !important;
+  font-style: italic !important;
+  font-weight: 500 !important;
+  color: #ffffff !important;
+}
+
+.contact-script span {
+  color: var(--stx-champagne) !important;
+}
+
+/* FAQ Home */
+.home-faq details {
+  background: #ffffff !important;
+  border: 1px solid var(--stx-border) !important;
+  border-radius: 12px !important;
+}
+
+.home-faq summary {
+  color: var(--stx-forest) !important;
+  font-weight: 600 !important;
+}
+
+/* ==========================================================================
+   FOOTER — EXACT STYLUXE DARK CHARCOAL FOOTER (#252625)
+   ========================================================================== */
+.tm-footer {
+  background: var(--stx-charcoal) !important;
+  color: #e6e4de !important;
+  border-top: 3px solid var(--stx-sage);
+}
+
+.tm-footer h4 {
+  font-family: var(--font-body), "Plus Jakarta Sans", sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase;
+  color: #ffffff !important;
+}
+
+.tm-footer h4::after {
+  background: var(--stx-champagne) !important;
+}
+
+.tm-footer-description,
+.tm-footer-office p,
+.tm-footer-links a,
+.tm-footer-contact-items a,
+.tm-footer-bottom p,
+.tm-footer-bottom a {
+  color: #c8cbc7 !important;
+}
+
+.tm-footer-links a:hover,
+.tm-footer-contact-items a:hover,
+.tm-footer-bottom a:hover {
+  color: var(--stx-champagne) !important;
+}
+
+.tm-footer-office strong {
+  color: #ffffff !important;
+}
+
+.tm-footer-venture {
+  border-color: rgba(214, 199, 178, 0.25) !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+}
+
+.tm-footer-venture span {
+  color: #c8cbc7 !important;
+}
+
+.tm-footer-venture strong {
+  color: var(--stx-champagne) !important;
+}
+
+.tm-footer-socials a {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+}
+
+.tm-footer-socials a:hover {
+  background: var(--stx-champagne) !important;
+  color: var(--stx-forest) !important;
+  border-color: var(--stx-champagne) !important;
+}
+
+.tm-footer-bottom {
+  border-top-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.tm-footer-top {
+  background: var(--stx-champagne) !important;
+  color: var(--stx-forest) !important;
+}
+
+/* WhatsApp Floating Button */
+.tm-whatsapp-float {
+  background: var(--stx-forest) !important;
+  color: #ffffff !important;
+  box-shadow: 0 10px 26px rgba(13, 59, 38, 0.32) !important;
+}
+
+.tm-whatsapp-float:hover {
+  background: var(--stx-sage) !important;
+}
+
+/* ==========================================================================
+   TRUSTED BRANDS / PRODUCT PARTNERS — STYLUXE BOTANICAL STYLE
+   ========================================================================== */
+.tmx-trusted-brands {
+  background: var(--stx-sage) !important;
+  background-image: linear-gradient(120deg, #3e513c 0%, #4d6149 55%, #374a36 100%) !important;
+  padding: 26px 0 !important;
+}
+
+.tmx-trusted-heading .short-line,
+.tmx-trusted-brands .tmx-trusted-heading .short-line {
+  background: var(--stx-sage) !important;
+}
+
+.tmx-trusted-brand-circle {
+  background: #ffffff !important;
+  border: 1px solid rgba(214, 199, 178, 0.45);
+  box-shadow: 0 8px 22px rgba(13, 59, 38, 0.18) !important;
+}
+
+.stx-partner-wordmark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6px;
+}
+
+.stx-partner-wordmark strong {
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--stx-forest);
+  line-height: 1.15;
+}
+
+.stx-partner-wordmark span {
+  font-family: var(--font-body), "Plus Jakarta Sans", sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--stx-sage);
+  margin-top: 4px;
+}
+
+/* ==========================================================================
+   AWARDS & RECOGNITIONS — STYLUXE DEEP FOREST BOTANICAL BAND
+   ========================================================================== */
+.tmx-awards-section {
+  --aw-bg: #0d3b26 !important;
+  --aw-card: #faf8f4 !important;
+  --aw-teal: #0d3b26 !important;
+  --aw-yellow: #d6c7b2 !important;
+  --aw-muted: #56625b !important;
+  background: #0d3b26 !important;
+}
+
+.tmx-award-card {
+  border-color: rgba(214, 199, 178, 0.35) !important;
+  background: #ffffff !important;
+}
+
+.tmx-award-title {
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif !important;
+  font-weight: 600 !important;
+  color: var(--stx-forest) !important;
+}
+
+.tmx-award-trophy {
+  background: var(--stx-champagne-soft) !important;
+  color: var(--stx-forest) !important;
+  border: 1px solid var(--stx-champagne);
+}
+
+.tmx-award-view-more {
+  color: var(--stx-forest) !important;
+}
+
+/* ==========================================================================
+   WHY CHOOSE US — STYLUXE SAGE OLIVE BAND
+   ========================================================================== */
+.tmx-why-choose {
+  --tmx-wcu-teal: #485a46 !important;
+  --tmx-wcu-yellow: #d6c7b2 !important;
+  --tmx-wcu-white: #faf8f4 !important;
+  background: linear-gradient(135deg, #3e503d 0%, #4b5e48 60%, #374736 100%) !important;
+}
+
+.tmx-why-choose-heading {
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.01em !important;
+}
+
+.tmx-why-choose-yellow-line {
+  height: 3px !important;
+  width: 90px !important;
+  border-radius: 4px !important;
+  transform: none !important;
+  background: var(--stx-champagne) !important;
+}
+
+.tmx-why-choose-yellow-line::after {
+  display: none !important;
+}
+
+.tmx-why-choose-product {
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.tmx-why-choose-product img {
+  object-fit: cover !important;
+}
+
+.tmx-why-choose-card {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(250, 248, 244, 0.18) !important;
+}
+
+.tmx-why-choose-card:hover {
+  background: rgba(255, 255, 255, 0.11) !important;
+  border-color: var(--stx-champagne) !important;
+}
+
+.tmx-why-choose-icon {
+  background: rgba(250, 248, 244, 0.14) !important;
+  border: 1px solid rgba(214, 199, 178, 0.45);
+  color: #faf8f4 !important;
+}
+
+.tmx-why-choose-card-title {
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif !important;
+  font-size: 23px !important;
+  font-weight: 600 !important;
+}
+
+/* ==========================================================================
+   FRANCHISE STORIES / TESTIMONIALS — STYLUXE EDITORIAL STYLE
+   ========================================================================== */
+.tmx-franchise-stories {
+  --tmx-fs-cream: #faf8f4 !important;
+  --tmx-fs-yellow: #d6c7b2 !important;
+  --tmx-fs-yellow-deep: #4a5d46 !important;
+  --tmx-fs-teal: #0d3b26 !important;
+  --tmx-fs-text: #1b2721 !important;
+  --tmx-fs-border: rgba(13, 59, 38, 0.12) !important;
+  background: #ffffff !important;
+}
+
+.tmx-franchise-stories-intro h2 {
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif !important;
+  font-weight: 500 !important;
+}
+
+.tmx-franchise-stories-intro h2 em {
+  font-style: italic !important;
+  color: var(--stx-sage) !important;
+  background: linear-gradient(transparent 78%, rgba(214, 199, 178, 0.5) 78%, rgba(214, 199, 178, 0.5) 94%, transparent 94%) !important;
+}
+
+.tmx-franchise-stories-button {
+  background: var(--stx-forest) !important;
+  border-radius: 8px !important;
+}
+
+.tmx-franchise-stories-button:hover {
+  background: var(--stx-forest-deep) !important;
+}
+
+.tmx-franchise-story-card {
+  background: #faf8f4 !important;
+  border: 1px solid var(--stx-border) !important;
+}
+
+.tmx-franchise-story-avatar {
+  border-color: var(--stx-champagne) !important;
+  box-shadow: 0 0 0 4px rgba(214, 199, 178, 0.25) !important;
+}
+
+.tmx-franchise-story-stars {
+  color: #b89454 !important;
+}
+
+.tmx-franchise-story-divider {
+  background: rgba(13, 59, 38, 0.12) !important;
+}
+
+.tmx-stories-slider-arrow {
+  background: var(--stx-forest) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(13, 59, 38, 0.25) !important;
+}
+
+/* ==========================================================================
+   HOME BLOG SECTION — STYLUXE BEAUTY JOURNAL
+   ========================================================================== */
+.tm-home-blog-section {
+  background: var(--stx-cream) !important;
+}
+
+.tm-home-blog-eyebrow::before {
+  background: var(--stx-sage) !important;
+}
+
+.tm-home-blog-heading {
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif !important;
+  font-weight: 500 !important;
+  color: var(--stx-forest) !important;
+}
+
+.tm-home-blog-view-all {
+  background: var(--stx-forest) !important;
+  border-color: var(--stx-forest) !important;
+  border-radius: 8px !important;
+}
+
+.tm-home-blog-card {
+  background: #ffffff !important;
+  border: 1px solid var(--stx-border) !important;
+}
+
+.tm-home-blog-card:hover {
+  border-color: var(--stx-sage) !important;
+}
+
+.tm-home-blog-category {
+  background: var(--stx-linen) !important;
+  border-color: var(--stx-champagne) !important;
+  color: var(--stx-forest) !important;
+}
+
+.tm-home-blog-title {
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif !important;
+  font-size: 24px !important;
+  font-weight: 600 !important;
+  color: var(--stx-forest) !important;
+}
+
+/* ==========================================================================
+   MENU / SERVICES PAGE — STYLUXE POLISH
+   ========================================================================== */
+.tx-menu-page {
+  background: var(--stx-cream) !important;
+}
+
+.tx-menu-hero {
+  background: var(--stx-linen) !important;
+  border-bottom: 1px solid var(--stx-border);
+}
+
+.tx-menu-hero-copy h1,
+.tx-menu-heading {
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif !important;
+  color: var(--stx-forest) !important;
+  font-weight: 500 !important;
+}
+
+.tx-menu-yellow-rule {
+  background: var(--stx-sage) !important;
+}
+
+.tx-menu-hero-scribble {
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif !important;
+  font-style: italic !important;
+  color: var(--stx-forest) !important;
+}
+
+.tx-menu-category-button.is-selected,
+.tx-menu-search-button,
+.tx-menu-page-btn.is-active {
+  background: var(--stx-forest) !important;
+  color: #ffffff !important;
+  border-color: var(--stx-forest) !important;
+}
+
+.tx-menu-popular-badge {
+  background: var(--stx-forest) !important;
+  color: var(--stx-champagne) !important;
+}
+
+.tx-menu-product-card {
+  background: #ffffff !important;
+  border: 1px solid var(--stx-border) !important;
+}
+
+.tx-menu-product-name {
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif !important;
+  font-size: 21px !important;
+  color: var(--stx-forest) !important;
+}
+
+/* ==========================================================================
+   REVIEWS PAGE — STYLUXE POLISH
+   ========================================================================== */
+.tx-menu-shell {
+  font-family: var(--font-body), "Plus Jakarta Sans", sans-serif !important;
+}
+
+.tx-reviews-shell .tm-review-card {
+  border-color: var(--stx-border) !important;
+  color: var(--stx-ink) !important;
+  border-radius: 18px !important;
+}
+
+.tx-reviews-shell .tm-review-rating {
+  color: #b89454 !important;
+}
+
+/* ==========================================================================
+   OFFERS PAGE — STYLUXE POLISH
+   ========================================================================== */
+.teamax-offers-page {
+  --offers-cream: #faf8f4 !important;
+  --offers-ink: #0d3b26 !important;
+  --offers-teal: #0d3b26 !important;
+  --offers-yellow: #d6c7b2 !important;
+  --offers-muted: #56625b !important;
+  font-family: var(--font-body), "Plus Jakarta Sans", sans-serif !important;
+}
+
+.offers-hero-photo {
+  background-image: linear-gradient(90deg, #faf8f4 0%, rgba(250, 248, 244, 0.4) 32%, transparent 62%), url("/images/styluxe/salon-interior.jpg") !important;
+}
+
+.offers-eyebrow span {
+  background: var(--stx-sage) !important;
+}
+
+.offers-hero-copy h1 {
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif !important;
+  font-weight: 500 !important;
+  color: var(--stx-forest) !important;
+}
+
+.offers-hero-copy h1 span {
+  box-shadow: inset 0 -6px 0 rgba(214, 199, 178, 0.65) !important;
+  font-style: italic;
+  color: var(--stx-sage);
+}
+
+.offers-hero-highlight {
+  background: var(--stx-linen) !important;
+  color: var(--stx-forest) !important;
+  border: 1px solid var(--stx-champagne);
+}
+
+.offers-filter-button:hover:not(.is-active) {
+  background: var(--stx-linen) !important;
+  border-color: var(--stx-sage) !important;
+}
+
+.offers-card-badge {
+  background: var(--stx-forest) !important;
+  color: var(--stx-champagne) !important;
+  border-radius: 14px !important;
+  transform: none !important;
+}
+
+.offers-card-content h2 {
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif !important;
+  font-size: 22px !important;
+  font-weight: 600 !important;
+  color: var(--stx-forest) !important;
+}
+
+.offers-franchise-banner {
+  background: linear-gradient(120deg, #435641 0%, #4e624b 60%, #0d3b26 100%) !important;
+  color: #faf8f4 !important;
+}
+
+.offers-franchise-banner::after {
+  color: var(--stx-champagne) !important;
+}
+
+.offers-franchise-kicker {
+  color: var(--stx-champagne) !important;
+}
+
+.offers-franchise-copy h2 {
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif !important;
+  color: #ffffff !important;
+  font-weight: 500 !important;
+}
+
+.offers-franchise-copy > p:last-child {
+  color: rgba(250, 248, 244, 0.86) !important;
+}
+
+.offers-franchise-visual img {
+  mix-blend-mode: normal !important;
+  opacity: 0.9;
+}
+
+.offers-feature-icon {
+  background: rgba(250, 248, 244, 0.16) !important;
+  color: var(--stx-champagne) !important;
+}
+
+.offers-franchise-features strong {
+  color: #ffffff !important;
+}
+
+.offers-franchise-features small {
+  color: rgba(250, 248, 244, 0.78) !important;
+}
+
+/* ==========================================================================
+   FRANCHISE & EXPRESS PAGES — STYLUXE BOTANICAL LUXURY PALETTE
+   ========================================================================== */
+.tm-fc-page {
+  font-family: var(--font-body), "Plus Jakarta Sans", sans-serif !important;
+  background-color: var(--stx-cream) !important;
+  color: var(--stx-ink) !important;
+}
+
+.tm-fc-hero {
+  background: linear-gradient(135deg, #0d3b26 0%, #154931 55%, #0a2d1d 100%) !important;
+}
+
+.tm-fc-tag-script {
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif !important;
+  font-style: italic !important;
+  color: var(--stx-champagne) !important;
+}
+
+.tm-fc-hero-title {
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif !important;
+  font-weight: 500 !important;
+}
+
+.tm-fc-hero-title .highlight-yellow {
+  color: var(--stx-champagne) !important;
+}
+
+.tm-fc-btn-primary,
+.tm-fc-btn-submit {
+  background: var(--stx-champagne) !important;
+  color: var(--stx-forest) !important;
+  border-radius: 8px !important;
+}
+
+.tm-fc-btn-primary:hover,
+.tm-fc-btn-submit:hover {
+  background: #e3d6c4 !important;
+  color: var(--stx-forest-deep) !important;
+}
+
+.tm-fc-btn-secondary {
+  border-color: rgba(214, 199, 178, 0.55) !important;
+  color: #faf8f4 !important;
+  border-radius: 8px !important;
+}
+
+.tm-fc-ribbon {
+  background: var(--stx-linen) !important;
+  border-bottom: 1px solid var(--stx-border);
+}
+
+.tm-fc-ribbon-icon,
+.tm-fc-feature-icon,
+.tm-fc-space-stat-icon,
+.tm-fc-step-circle,
+.tm-fc-check-icon {
+  background: var(--stx-sage-soft) !important;
+  color: var(--stx-forest) !important;
+}
+
+.tm-fc-invest-card-dark {
+  background: linear-gradient(155deg, #0d3b26 0%, #164830 100%) !important;
+}
+
+.tm-fc-invest-card-yellow {
+  background: linear-gradient(145deg, #485a46 0%, #3a4a38 100%) !important;
+  color: #faf8f4 !important;
+}
+
+.tm-fc-invest-card-yellow h3 {
+  color: #ffffff !important;
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif !important;
+}
+
+.tm-fc-invest-card-yellow .tm-fc-calc-icon {
+  background: rgba(250, 248, 244, 0.14) !important;
+  color: var(--stx-champagne) !important;
+}
+
+.tm-fc-invest-card-yellow .tm-fc-btn-dark {
+  background: var(--stx-champagne) !important;
+  color: var(--stx-forest) !important;
+}
+
+.tm-fc-section-title,
+.tm-fc-simple-content h2,
+.tm-fc-space-content h2,
+.tm-fc-support-col h2,
+.tm-fc-form-body h2 {
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif !important;
+  font-weight: 500 !important;
+}
+
+.tm-fc-form-card {
+  background: #0d3b26 !important;
+}
+
+.tm-fc-form-body h2 {
+  color: #ffffff !important;
+}
+
+.tm-fc-slider-arrow {
+  background: var(--stx-forest) !important;
+  color: #ffffff !important;
+}
+
+.tm-fc-dot.active {
+  background: var(--stx-forest) !important;
+}
+
+.tm-fc-timeline-badge {
+  background: var(--stx-linen) !important;
+  color: var(--stx-forest) !important;
+  border: 1px solid var(--stx-champagne) !important;
+}
+
+.tm-fc-space-card-split {
+  background: #0d3b26 !important;
+}
+
+.tm-fc-loc-icon {
+  color: var(--stx-champagne) !important;
+}
+
+/* ==========================================================================
+   ABOUT & TEAM PAGES — STYLUXE POLISH
+   ========================================================================== */
+.tm-team-page {
+  --tm-green: #0d3b26 !important;
+  --tm-yellow: #d6c7b2 !important;
+  --tm-yellow-soft: #ebe2d5 !important;
+  --tm-cream: #faf8f4 !important;
+  --tm-text: #1b2721 !important;
+  font-family: var(--font-body), "Plus Jakarta Sans", sans-serif !important;
+}
+
+.tm-team-page .tm-hero {
+  background: linear-gradient(135deg, #435641 0%, #0d3b26 100%) !important;
+}
+
+.tm-team-page .tm-title,
+.tm-team-page .tm-feature-copy h2,
+.tm-team-page .tm-card h2 {
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif !important;
+}
+
+.tm-team-page .tm-script {
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif !important;
+  font-style: italic !important;
+}
+
+.tm-story-hero__title {
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif !important;
+  color: var(--stx-forest) !important;
+}
+
+.tm-story-hero__title span {
+  font-style: italic;
+  color: var(--stx-sage) !important;
+}
+
+.tm-pill-yellow {
+  background-color: var(--stx-linen) !important;
+  color: var(--stx-forest) !important;
+  border: 1px solid var(--stx-champagne);
+}
+
+/* ==========================================================================
+   LOCATIONS, CENTRES & OPPORTUNITIES — STYLUXE POLISH
+   ========================================================================== */
+.tm-centres {
+  --tm-cream: #faf8f4 !important;
+  --tm-yellow: #d6c7b2 !important;
+  --tm-teal: #0d3b26 !important;
+  --tm-ink: #1b2721 !important;
+  --tm-muted: #56625b !important;
+  --tm-border: #e5dfd3 !important;
+  font-family: var(--font-body), "Plus Jakarta Sans", sans-serif !important;
+}
+
+.tm-centres h1,
+.tm-centres h2,
+.tm-centres h3 {
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif !important;
+}
+
+.tm-hero-slogan {
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif !important;
+  font-style: italic !important;
+}
+
+.detailscentres-page {
+  --detailscentres-cream: #faf8f4 !important;
+  --detailscentres-yellow: #d6c7b2 !important;
+  --detailscentres-teal: #0d3b26 !important;
+  --detailscentres-ink: #1b2721 !important;
+  --detailscentres-muted: #56625b !important;
+  --detailscentres-border: #e5dfd3 !important;
+  --detailscentres-card: #ffffff !important;
+  font-family: var(--font-body), "Plus Jakarta Sans", sans-serif !important;
+}
+
+.detailscentres-page h1,
+.detailscentres-page h2,
+.detailscentres-page h3 {
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif !important;
+}
+
+.detailscentres-btn-yellow {
+  background: var(--stx-champagne) !important;
+  color: var(--stx-forest) !important;
+}
+
+.detailscentres-btn-primary {
+  background: var(--stx-forest) !important;
+  color: #ffffff !important;
+}
+
+.tmf-detail-page {
+  font-family: var(--font-body), "Plus Jakarta Sans", sans-serif !important;
+}
+
+.tmf-hero,
+.tmf-stats-strip {
+  background: #0d3b26 !important;
+}
+
+.tmf-hero-title,
+.tmf-serif-heading,
+.tmf-plan-card h2,
+.tmf-faq-header h2,
+.tmf-cities-header h3 {
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif !important;
+}
+
+.tmf-btn-gold {
+  background: var(--stx-champagne) !important;
+  color: var(--stx-forest) !important;
+  border-radius: 8px !important;
+}
+
+/* Privacy Policy Hero */
+.privacypagehero {
+  background-color: var(--stx-forest) !important;
+  background-image: linear-gradient(120deg, rgba(13, 59, 38, 0.86), rgba(74, 93, 70, 0.82)), url("/images/styluxe/salon-interior.jpg") !important;
+}
+
+.privacypagetitle,
+.privacypagesectiontitle {
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif !important;
+}
+
+/* Blog buttons fix */
+.tm-btn-yellow {
+  background-color: var(--stx-forest) !important;
+  color: #ffffff !important;
+  border-radius: 8px !important;
+}
+
+.tm-btn-yellow:hover {
+  background-color: var(--stx-forest-deep) !important;
+  color: #ffffff !important;
+}
+
+.tm-post-cta-banner .tm-btn-yellow,
+.tm-sidebar-widget .tm-btn-yellow {
+  background-color: var(--stx-champagne) !important;
+  color: var(--stx-forest) !important;
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS FOR STYLUXE CUSTOM SECTIONS
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .stx-hero-grid,
+  .stx-about-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .stx-trust-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .stx-hero {
+    padding: 96px 0 44px;
+  }
+
+  .stx-trust-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .stx-organic-frame {
+    border-radius: 64px 14px 64px 14px;
+  }
+
+  .stx-about-preview {
+    padding: 52px 0;
+  }
+
+  .stx-about-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .stx-about-stats strong {
+    font-size: 24px;
+  }
+
+  .stx-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+
+/* ==========================================================================
+   FINAL UI REFINEMENT LAYER — MINIMAL LUXURY HEROES, TYPOGRAPHY & POLISH
+   ========================================================================== */
+
+/* 1. Unified Minimal Salon Page Hero System */
+.stx-page-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 124px 0 68px;
+  background-color: var(--stx-cream);
+  border-bottom: 1px solid rgba(13, 59, 38, 0.08);
+  isolation: isolate;
+}
+
+.stx-page-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background: url("/images/styluxe-botanical.svg") right -40px bottom -30px / 340px no-repeat;
+  opacity: 0.065;
+}
+
+.stx-page-hero--offers {
+  background-color: var(--stx-linen);
+}
+
+.stx-page-hero--news {
+  background: linear-gradient(180deg, var(--stx-linen) 0%, var(--stx-cream) 100%);
+  padding: 130px 0 74px;
+}
+
+.stx-page-hero--news::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background: url("/images/styluxe-botanical.svg") left -60px top 60px / 280px no-repeat;
+  opacity: 0.05;
+}
+
+.stx-page-hero--reviews {
+  background-color: var(--stx-cream);
+  padding: 128px 0 72px;
+}
+
+.stx-page-hero__inner {
+  width: min(1240px, 100% - 48px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+  align-items: center;
+  gap: 56px;
+}
+
+.stx-page-hero__inner--centered {
+  grid-template-columns: 1fr;
+  max-width: 760px;
+  text-align: center;
+  gap: 0;
+}
+
+.stx-page-hero__crumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--stx-muted);
+  margin-bottom: 18px;
+}
+
+.stx-page-hero__inner--centered .stx-page-hero__crumb {
+  justify-content: center;
+}
+
+.stx-page-hero__crumb a {
+  color: var(--stx-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.stx-page-hero__crumb a:hover {
+  color: var(--stx-forest);
+}
+
+.stx-page-hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 14px;
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--stx-sage);
+}
+
+.stx-page-hero__inner--centered .stx-page-hero__eyebrow {
+  justify-content: center;
+}
+
+.stx-page-hero__title {
+  margin: 0 0 18px;
+  font-family: var(--font-serif) !important;
+  font-size: clamp(2.35rem, 4.1vw, 3.45rem) !important;
+  font-weight: 500 !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.015em !important;
+  color: var(--stx-forest) !important;
+}
+
+.stx-page-hero__title em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--stx-sage);
+}
+
+.stx-page-hero__lead {
+  margin: 0;
+  max-width: 540px;
+  font-family: var(--font-body);
+  font-size: 15.5px;
+  font-weight: 400;
+  line-height: 1.78;
+  color: var(--stx-muted);
+}
+
+.stx-page-hero__inner--centered .stx-page-hero__lead {
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+.stx-page-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 26px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(13, 59, 38, 0.1);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--stx-forest);
+}
+
+.stx-page-hero__dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--stx-champagne-deep);
+}
+
+.stx-page-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.stx-hero-pill-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 22px;
+  border-radius: 8px;
+  background: var(--stx-forest);
+  color: #ffffff !important;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: background-color 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.stx-hero-pill-link:hover {
+  background: var(--stx-forest-deep);
+  transform: translateY(-1.5px);
+  box-shadow: 0 8px 20px rgba(13, 59, 38, 0.14);
+}
+
+.stx-hero-pill-link--muted {
+  background: #ffffff;
+  color: var(--stx-forest) !important;
+  border: 1px solid rgba(13, 59, 38, 0.18);
+}
+
+.stx-hero-pill-link--muted:hover {
+  background: var(--stx-linen);
+  border-color: rgba(13, 59, 38, 0.32);
+}
+
+/* Reviews Minimal Trust Strip */
+.stx-page-hero__stats {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  margin-top: 30px;
+  padding: 16px 32px;
+  background: #ffffff;
+  border: 1px solid rgba(13, 59, 38, 0.09);
+  border-radius: 14px;
+  box-shadow: 0 4px 18px rgba(13, 59, 38, 0.035);
+}
+
+.stx-page-hero__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.stx-page-hero__stat strong {
+  font-family: var(--font-serif);
+  font-size: 23px;
+  font-weight: 600;
+  color: var(--stx-forest);
+  line-height: 1.15;
+}
+
+.stx-page-hero__stat span {
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--stx-muted);
+}
+
+.stx-page-hero__divider {
+  width: 1px;
+  height: 30px;
+  background: rgba(13, 59, 38, 0.12);
+}
+
+/* Framed Media */
+.stx-page-hero__frame {
+  overflow: hidden;
+  border: 1px solid rgba(13, 59, 38, 0.1);
+  background: #ffffff;
+  box-shadow: 0 14px 36px rgba(13, 59, 38, 0.07);
+}
+
+.stx-page-hero__frame--arch {
+  border-radius: 96px 16px 96px 16px;
+}
+
+.stx-page-hero__frame--soft {
+  border-radius: 20px;
+}
+
+.stx-page-hero__frame img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.stx-page-hero__frame:hover img {
+  transform: scale(1.025);
+}
+
+/* 2. Global Typography Discipline — Calm Editorial Weights (No Heavy 800s) */
+.tx-menu-heading,
+.tm-heading-lg,
+.tm-heading-xl,
+.tm-post-title,
+.tm-blog-card-title,
+.offers-card-content h2,
+.offers-franchise-copy h2,
+.privacypagetitle,
+.privacypagesectiontitle,
+.tm-centres h1,
+.tm-centres h2,
+.detailscentres-page h1,
+.detailscentres-page h2,
+.tm-fc-heading,
+.tm-fc-hero-title,
+.tm-story-hero__title,
+.tm-team-page .tm-title {
+  font-family: var(--font-serif) !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.015em !important;
+}
+
+.tx-menu-heading {
+  font-size: clamp(1.75rem, 2.6vw, 2.35rem) !important;
+  color: var(--stx-forest) !important;
+}
+
+.tx-menu-yellow-rule {
+  height: 2px !important;
+  width: 48px !important;
+  background: var(--stx-champagne-deep) !important;
+  border-radius: 99px !important;
+}
+
+/* 3. Services & Reviews Shell Spacing + Minimal Cards */
+.tx-menu-page {
+  background: var(--stx-cream) !important;
+}
+
+.tx-menu-shell {
+  padding-top: 44px !important;
+  padding-bottom: 84px !important;
+}
+
+.tx-menu-search-wrap {
+  margin-top: 0 !important;
+  margin-bottom: 34px !important;
+}
+
+.tx-menu-search {
+  background: #ffffff !important;
+  border: 1px solid rgba(13, 59, 38, 0.14) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 16px rgba(13, 59, 38, 0.04) !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.tx-menu-search:focus-within {
+  border-color: var(--stx-forest) !important;
+  box-shadow: 0 6px 20px rgba(13, 59, 38, 0.08) !important;
+}
+
+.tx-menu-search-button {
+  background: var(--stx-forest) !important;
+  color: #ffffff !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  transition: background-color 0.2s ease !important;
+}
+
+.tx-menu-search-button:hover {
+  background: var(--stx-forest-deep) !important;
+}
+
+.tx-menu-category-panel {
+  background: #ffffff !important;
+  border: 1px solid rgba(13, 59, 38, 0.09) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 4px 18px rgba(13, 59, 38, 0.035) !important;
+}
+
+.tx-menu-category-button {
+  border-radius: 10px !important;
+  font-weight: 500 !important;
+  transition: background-color 0.2s ease, color 0.2s ease !important;
+}
+
+.tx-menu-category-button.is-selected {
+  background: var(--stx-forest) !important;
+  color: #ffffff !important;
+}
+
+.tx-menu-card,
+.tm-review-card,
+.tm-blog-card,
+.offers-card,
+.tm-home-blog-card {
+  background: #ffffff !important;
+  border: 1px solid rgba(13, 59, 38, 0.09) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 4px 18px rgba(13, 59, 38, 0.035) !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease !important;
+}
+
+.tx-menu-card:hover,
+.tm-review-card:hover,
+.tm-blog-card:hover,
+.offers-card:hover,
+.tm-home-blog-card:hover {
+  transform: translateY(-2px) !important;
+  border-color: rgba(13, 59, 38, 0.22) !important;
+  box-shadow: 0 12px 28px rgba(13, 59, 38, 0.08) !important;
+}
+
+/* 4. Offers Page Card & Badge Polish */
+.teamax-offers-page {
+  background: var(--stx-cream) !important;
+}
+
+.offers-list-section {
+  padding-top: 44px !important;
+  padding-bottom: 64px !important;
+}
+
+.offers-category-filters {
+  gap: 10px !important;
+  margin-bottom: 32px !important;
+}
+
+.offers-filter-button {
+  background: #ffffff !important;
+  color: var(--stx-forest) !important;
+  border: 1px solid rgba(13, 59, 38, 0.15) !important;
+  border-radius: 999px !important;
+  font-weight: 500 !important;
+  font-size: 13.5px !important;
+  padding: 9px 20px !important;
+  transition: all 0.2s ease !important;
+}
+
+.offers-filter-button:hover {
+  border-color: var(--stx-forest) !important;
+  background: var(--stx-linen) !important;
+}
+
+.offers-filter-button.is-active {
+  background: var(--stx-forest) !important;
+  color: #ffffff !important;
+  border-color: var(--stx-forest) !important;
+}
+
+.offers-card-category {
+  background: rgba(255, 255, 255, 0.94) !important;
+  color: var(--stx-forest) !important;
+  border: 1px solid rgba(13, 59, 38, 0.1) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  border-radius: 999px !important;
+  padding: 5px 12px !important;
+}
+
+.offers-card-badge {
+  background: var(--stx-forest) !important;
+  color: var(--stx-champagne) !important;
+  border: 1px solid rgba(214, 199, 178, 0.35) !important;
+  border-radius: 10px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  box-shadow: 0 6px 16px rgba(13, 59, 38, 0.18) !important;
+  transform: none !important;
+}
+
+.offers-card-content h2 {
+  font-size: 24px !important;
+  line-height: 1.22 !important;
+  color: var(--stx-forest) !important;
+  margin-bottom: 10px !important;
+}
+
+.offers-card-content p {
+  color: var(--stx-muted) !important;
+  font-size: 14.5px !important;
+  line-height: 1.68 !important;
+}
+
+.offers-franchise-banner {
+  background: var(--stx-linen) !important;
+  border: 1px solid rgba(13, 59, 38, 0.1) !important;
+  border-radius: 20px !important;
+  box-shadow: none !important;
+}
+
+/* 5. News / Journal Toolbar & Post Detail Spacing */
+.tm-blog-toolbar {
+  margin-top: 40px !important;
+  margin-bottom: 36px !important;
+  padding-bottom: 24px !important;
+  border-bottom: 1px solid rgba(13, 59, 38, 0.09) !important;
+}
+
+.tm-blog-tag-btn {
+  border-radius: 999px !important;
+  font-weight: 500 !important;
+  border: 1px solid rgba(13, 59, 38, 0.14) !important;
+  background: #ffffff !important;
+  color: var(--stx-forest) !important;
+  transition: all 0.2s ease !important;
+}
+
+.tm-blog-tag-btn.is-active,
+.tm-blog-tag-btn:hover {
+  background: var(--stx-forest) !important;
+  color: #ffffff !important;
+  border-color: var(--stx-forest) !important;
+}
+
+.tm-blog-card-cat {
+  background: var(--stx-linen) !important;
+  color: var(--stx-forest) !important;
+  border: 1px solid rgba(13, 59, 38, 0.08) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.06em !important;
+}
+
+.tm-blog-card-title {
+  font-size: 24px !important;
+  line-height: 1.24 !important;
+  color: var(--stx-forest) !important;
+}
+
+.tm-post-header {
+  padding-top: 126px !important;
+  padding-bottom: 44px !important;
+  background: var(--stx-linen) !important;
+  border-bottom: 1px solid rgba(13, 59, 38, 0.08) !important;
+}
+
+.tm-post-cta-banner {
+  background: linear-gradient(135deg, #0d3b26 0%, #274433 100%) !important;
+  border-radius: 18px !important;
+  box-shadow: none !important;
+}
+
+/* 6. Global Unified Button Transitions */
+.cafe-action,
+.stx-btn-primary,
+.stx-btn-sage,
+.tm-btn,
+.tm-btn-teal,
+.tm-btn-yellow,
+.tm-btn-outline {
+  border-radius: 8px !important;
+  font-family: var(--font-body) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.03em !important;
+  transition: background-color 0.22s ease, border-color 0.22s ease, color 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease !important;
+}
+
+.cafe-action:hover,
+.stx-btn-primary:hover,
+.stx-btn-sage:hover,
+.tm-btn:hover {
+  transform: translateY(-1.5px) !important;
+}
+
+/* 7. Responsive Polish for New Minimal Heroes */
+@media (max-width: 960px) {
+  .stx-page-hero {
+    padding: 108px 0 52px;
+  }
+
+  .stx-page-hero__inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .stx-page-hero__media {
+    max-width: 560px;
+  }
+
+  .stx-page-hero__frame--arch {
+    border-radius: 64px 14px 64px 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  .stx-page-hero {
+    padding: 96px 0 42px;
+  }
+
+  .stx-page-hero__inner {
+    width: min(100% - 32px, 1240px);
+  }
+
+  .stx-page-hero__title {
+    font-size: clamp(2rem, 8.2vw, 2.6rem) !important;
+  }
+
+  .stx-page-hero__lead {
+    font-size: 14.5px;
+    line-height: 1.7;
+  }
+
+  .stx-page-hero__stats {
+    width: 100%;
+    padding: 14px 16px;
+    gap: 14px;
+  }
+
+  .stx-page-hero__stat strong {
+    font-size: 19px;
+  }
+
+  .stx-page-hero__stat span {
+    font-size: 10px;
+  }
+}

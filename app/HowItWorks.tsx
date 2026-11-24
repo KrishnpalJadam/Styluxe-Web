@@ -1,32 +1,27 @@
 "use client";
 
-import {
-  FileText,
-  MessageCircle,
-  Store,
-  Rocket,
-} from "lucide-react";
+import { FileText, MessageCircle, Scissors, Sparkles } from "lucide-react";
 
 const steps = [
   {
     icon: FileText,
-    title: "Apply",
-    detail: "Fill the franchise form",
+    title: "Enquire",
+    detail: "Share your city & salon franchise goals",
   },
   {
     icon: MessageCircle,
-    title: "Connect",
-    detail: "Discuss with our team",
+    title: "Consult",
+    detail: "Review financials & site feasibility with our team",
   },
   {
-    icon: Store,
-    title: "Confirm",
-    detail: "Finalize location & agreement",
+    icon: Scissors,
+    title: "Design & Train",
+    detail: "Turnkey interior build & certified stylist academy",
   },
   {
-    icon: Rocket,
-    title: "Launch",
-    detail: "Get setup & start your café",
+    icon: Sparkles,
+    title: "Grand Launch",
+    detail: "Open your Styluxe Salon with full marketing support",
   },
 ];
 
@@ -42,32 +37,21 @@ export default function HowItWorks() {
           <h2 id="how-heading">How It Works?</h2>
           <span className="short-line" />
         </div>
-
-
       </div>
 
       <div className="steps-grid">
         {steps.map(({ icon: Icon, title, detail }, index) => (
           <div className="step" key={title}>
-
-            {/* Step Number */}
             <div className="step-count">
               <span>{String(index + 1).padStart(2, "0")}</span>
             </div>
 
-            {/* Lucide Icon */}
             <div className="step-icon-wrap">
-              <Icon
-                size={40}
-                strokeWidth={1.8}
-              />
+              <Icon size={38} strokeWidth={1.6} />
             </div>
 
-            {/* Step Content */}
             <h3>{title}</h3>
-
             <p>{detail}</p>
-
           </div>
         ))}
       </div>

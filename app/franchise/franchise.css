@@ -3,12 +3,12 @@
    ========================================================================== */
 
 :root {
-  --tm-dark-forest: #072a27;
-  --tm-dark-hero: #062320;
-  --tm-dark-card: #09332f;
-  --tm-yellow: #ffd028;
-  --tm-yellow-hover: #ffd028;
-  --tm-yellow-dark: #ffd028;
+  --tm-dark-forest: #0d3b26;
+  --tm-dark-hero: #0a2d1d;
+  --tm-dark-card: #15462f;
+  --tm-yellow: #d6c7b2;
+  --tm-yellow-hover: #d6c7b2;
+  --tm-yellow-dark: #d6c7b2;
   --tm-yellow-light: #fff5c5;
   --tm-cream-bg: #faf6ee;
   --tm-cream-card: #f5eedf;
@@ -90,7 +90,7 @@
    2. HERO SECTION
    ========================================================================== */
 .tm-fc-hero {
-  background: radial-gradient(ellipse at 75% 35%, #0f3934 0%, #062320 65%, #041a17 100%);
+  background: radial-gradient(ellipse at 75% 35%, #0f3934 0%, #0a2d1d 65%, #041a17 100%);
   color: #ffffff;
   padding: 56px 0 64px;
   position: relative;
@@ -333,7 +333,7 @@
   height: 48px;
   border-radius: 50%;
   background: var(--tm-yellow);
-  color: #102d29;
+  color: #0d3b26;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -425,7 +425,7 @@
   height: 42px;
   border-radius: 50%;
   background: var(--tm-yellow);
-  color: #102d29;
+  color: #0d3b26;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -828,7 +828,7 @@
   height: 34px;
   border-radius: 50%;
   background: var(--tm-yellow);
-  color: #102d29;
+  color: #0d3b26;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -855,7 +855,7 @@
   overflow: hidden;
   box-shadow: var(--tm-shadow-lg);
   border: 1px solid rgba(0, 0, 0, 0.1);
-  background: #072a27;
+  background: #0d3b26;
 }
 
 .tm-fc-space-locations {
@@ -927,7 +927,7 @@
   height: 42px;
   border-radius: 50%;
   background: var(--tm-yellow);
-  color: #102d29;
+  color: #0d3b26;
   border: none;
   display: flex;
   align-items: center;
@@ -1097,7 +1097,7 @@
   height: 48px;
   border-radius: 50%;
   background: var(--tm-yellow);
-  color: #102d29;
+  color: #0d3b26;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1187,7 +1187,7 @@
 }
 
 .tm-fc-network-card {
-  background: #263c3d;
+  background: #0d3b26;
   border-radius: var(--tm-radius-xl);
   padding: 0;
   color: #ffffff;
@@ -1224,7 +1224,7 @@
   height: 36px;
   border-radius: 50%;
   background: var(--tm-yellow);
-  color: #102d29;
+  color: #0d3b26;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1357,7 +1357,7 @@
   display: inline-flex;
   align-items: center;
   background: var(--tm-yellow);
-  color: #102d29;
+  color: #0d3b26;
   font-weight: 800;
   font-size: 13px;
   padding: 8px 18px;

@@ -1,10 +1,20 @@
-// Client & Server API utility for TeaMax Cafe website
+// Client & Server API utility for Styluxe Salons website
+// Preserves all existing backend endpoints and contracts safely.
+// When NEXT_PUBLIC_API_URL is configured, live GET endpoints fetch from that API.
 
 export const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_URL || 'https://185.158.66.148.host.secureserver.net/teamax-api/api/v1';
 export const FALLBACK_API_BASE_URL = 'https://185.158.66.148.host.secureserver.net/teamax-api/api/v1';
 
+const IS_LIVE_API_CONFIGURED = Boolean(process.env.NEXT_PUBLIC_API_URL);
+
 async function fetchFromApi<T>(endpoint: string, options: RequestInit = {}): Promise<T | null> {
+  // Frontend conversion safety: only pull remote GET content once Styluxe's API URL is configured
+  const method = (options.method || 'GET').toUpperCase();
+  if (method === 'GET' && !IS_LIVE_API_CONFIGURED) {
+    return null;
+  }
+
   const headers = {
     'Content-Type': 'application/json',
     ...(options.headers || {}),
@@ -228,72 +238,72 @@ export type DynamicFranchiseOpportunity = {
 
 const DEFAULT_FRANCHISE_OPPORTUNITIES: DynamicFranchiseOpportunity[] = [
   {
-    id: 'teamax-kompally',
-    franchiseName: 'TeaMax Cafe – Kompally',
-    slug: 'teamax-kompally',
+    id: 'styluxe-kompally',
+    franchiseName: 'Styluxe Salon – Kompally',
+    slug: 'styluxe-kompally',
     country: 'India',
     state: 'Telangana',
     city: 'Hyderabad',
     status: 'active',
-    minBudget: '₹3.69 Lakhs*',
-    spaceRequired: '100 – 200 sq.ft',
-    timelineDays: '25 – 30 Days',
+    minBudget: '₹12.5 Lakhs*',
+    spaceRequired: '600 – 1,000 sq.ft',
+    timelineDays: '35 – 45 Days',
     royalty: 'Zero Royalty (100% Profits to You)',
     margins: '55% – 65% Gross Margins',
-    shortDescription: 'Bring the TeaMax café experience to Kompally, Hyderabad.',
-    description: '<p>Become a part of the <strong>TeaMax</strong> franchise network and build a memorable café experience.</p>',
-    primaryImage: 'https://responsive-cafe-showcase.lovable.app/assets/cafe-1-2S3WQYFE.jpg',
+    shortDescription: 'Bring the Styluxe luxury hair, beauty & grooming experience to Kompally, Hyderabad.',
+    description: '<p>Become a part of the <strong>Styluxe Salons</strong> franchise network and build a premier destination for modern hair, beauty and grooming care.</p>',
+    primaryImage: '/images/styluxe/franchise-studio.jpg',
   },
   {
-    id: 'teamax-gachibowli',
-    franchiseName: 'TeaMax Cafe – Gachibowli',
-    slug: 'teamax-gachibowli',
+    id: 'styluxe-gachibowli',
+    franchiseName: 'Styluxe Salon – Gachibowli',
+    slug: 'styluxe-gachibowli',
     country: 'India',
     state: 'Telangana',
     city: 'Hyderabad',
     status: 'active',
-    minBudget: '₹3.69 Lakhs*',
-    spaceRequired: '100 – 200 sq.ft',
-    timelineDays: '25 – 30 Days',
+    minBudget: '₹12.5 Lakhs*',
+    spaceRequired: '600 – 1,000 sq.ft',
+    timelineDays: '35 – 45 Days',
     royalty: 'Zero Royalty (100% Profits to You)',
     margins: '55% – 65% Gross Margins',
-    shortDescription: 'Explore a TeaMax franchise opportunity in Gachibowli.',
-    description: '<p>Partner with TeaMax and create a welcoming destination for tea lovers.</p>',
-    primaryImage: 'https://responsive-cafe-showcase.lovable.app/assets/cafe-1-2S3WQYFE.jpg',
+    shortDescription: 'Explore a Styluxe luxury salon franchise opportunity in Gachibowli.',
+    description: '<p>Partner with Styluxe Salons and create an upscale destination for hair artistry, skincare rituals, and grooming.</p>',
+    primaryImage: '/images/styluxe/salon-interior.jpg',
   },
   {
-    id: 'teamax-indore',
-    franchiseName: 'TeaMax Cafe – Indore',
-    slug: 'teamax-indore',
+    id: 'styluxe-indore',
+    franchiseName: 'Styluxe Salon – Indore',
+    slug: 'styluxe-indore',
     country: 'India',
     state: 'Madhya Pradesh',
     city: 'Indore',
     status: 'active',
-    minBudget: '₹3.69 Lakhs*',
-    spaceRequired: '100 – 200 sq.ft',
-    timelineDays: '25 – 30 Days',
+    minBudget: '₹12.5 Lakhs*',
+    spaceRequired: '600 – 1,000 sq.ft',
+    timelineDays: '35 – 45 Days',
     royalty: 'Zero Royalty (100% Profits to You)',
     margins: '55% – 65% Gross Margins',
-    shortDescription: 'Build your TeaMax franchise in the vibrant city of Indore.',
-    description: '<p>Join the TeaMax franchise family and bring quality tea, coffee and food to your city.</p>',
-    primaryImage: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1000&auto=format&fit=crop&q=80',
+    shortDescription: 'Launch your Styluxe Salon franchise in the fast-growing retail hubs of Indore.',
+    description: '<p>Join the Styluxe Salons family and bring luxury hair, beauty, and grooming care at honest prices to your city.</p>',
+    primaryImage: '/images/styluxe/salon-equipment.jpg',
   },
   {
-    id: 'teamax-bhopal',
-    franchiseName: 'TeaMax Cafe – Bhopal',
-    slug: 'teamax-bhopal',
+    id: 'styluxe-bhopal',
+    franchiseName: 'Styluxe Salon – Bhopal',
+    slug: 'styluxe-bhopal',
     country: 'India',
     state: 'Madhya Pradesh',
     city: 'Bhopal',
     status: 'active',
-    minBudget: '₹3.69 Lakhs*',
-    spaceRequired: '100 – 200 sq.ft',
-    timelineDays: '25 – 30 Days',
+    minBudget: '₹12.5 Lakhs*',
+    spaceRequired: '600 – 1,000 sq.ft',
+    timelineDays: '35 – 45 Days',
     royalty: 'Zero Royalty (100% Profits to You)',
     margins: '55% – 65% Gross Margins',
-    shortDescription: 'Discover the TeaMax franchise opportunity in Bhopal.',
-    description: '<p>Create a warm café destination for tea and coffee lovers with TeaMax.</p>',
-    primaryImage: 'https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=1000&auto=format&fit=crop&q=80',
+    shortDescription: 'Discover the Styluxe Salon franchise opportunity in Bhopal.',
+    description: '<p>Create a serene, modern salon sanctuary with Styluxe’s turnkey setup, stylist training, and pan-India marketing support.</p>',
+    primaryImage: '/images/styluxe/hero-salon.jpg',
   },
 ];
 

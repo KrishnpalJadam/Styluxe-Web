@@ -144,9 +144,9 @@ export default function FranchiseIndiaMap() {
                         interactive={false}
                         bubblingMouseEvents={false}
                         pathOptions={{
-                            color: "#102d29",
+                            color: "#0d3b26",
                             weight: 1.5,
-                            fillColor: "#ffd028",
+                            fillColor: "#d6c7b2",
                             fillOpacity: 1,
                         }}
                     />

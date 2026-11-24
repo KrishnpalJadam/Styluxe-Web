@@ -1,27 +1,26 @@
 import type { MetadataRoute } from "next";
-import { BLOG_POSTS } from "./post/blog-data";
+import { BLOG_POSTS } from "./news/blog-data";
 import { getBlogs, getCentres, getFranchiseOpportunities } from "./lib/api";
 
 export const dynamic = "force-static";
 
-// Fixed reference date for core static pages (avoiding assigning dynamic execution date unnecessarily)
-const STATIC_LAST_MODIFIED = new Date("2026-11-20T00:00:00.000Z");
+const STATIC_LAST_MODIFIED = new Date("2026-11-25T00:00:00.000Z");
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const base = process.env.NEXT_PUBLIC_SITE_URL || "https://www.teamaxcafe.in";
+  const base = process.env.NEXT_PUBLIC_SITE_URL || "https://www.styluxe.in";
 
-  // 1. Primary Public Static Indexable Pages (strictly genuine, indexable public pages)
+  // 1. Primary Public Canonical Salon Routes
   const staticRoutes: [string, number, MetadataRoute.Sitemap[number]["changeFrequency"]][] = [
     ["/", 1.0, "weekly"],
-    ["/cafe-franchise-india/", 0.95, "weekly"],
-    ["/best-tea-franchise-india/", 0.9, "weekly"],
+    ["/services/", 0.95, "weekly"],
+    ["/salon-franchise-india/", 0.95, "weekly"],
+    ["/best-salon-franchise-india/", 0.9, "weekly"],
     ["/franchise/", 0.9, "weekly"],
-    ["/menu/", 0.9, "weekly"],
-    ["/locations/", 0.85, "weekly"],
+    ["/salon-locations/", 0.9, "weekly"],
     ["/about-us/", 0.85, "monthly"],
-    ["/reviews/", 0.85, "weekly"],
     ["/offers/", 0.85, "weekly"],
-    ["/post/", 0.85, "weekly"],
+    ["/reviews/", 0.85, "weekly"],
+    ["/news/", 0.85, "weekly"],
     ["/our-team/", 0.75, "monthly"],
     ["/privacy-policy/", 0.5, "yearly"],
   ];
@@ -33,14 +32,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority,
   }));
 
-  // 2. Genuinely Published Blog Posts from API + Seed Data
+  // 2. Published News & Beauty Journal Articles
   const blogMap = new Map<string, { lastModified: Date }>();
 
   try {
     const apiBlogs = await getBlogs();
     if (Array.isArray(apiBlogs)) {
       for (const b of apiBlogs) {
-        // Exclude drafts, inactive records, and empty slugs
         if (
           b &&
           typeof b.slug === "string" &&
@@ -55,10 +53,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       }
     }
   } catch (err) {
-    console.warn("[sitemap] Failed to fetch blogs from API:", err);
+    console.warn("[sitemap] Failed to fetch news articles from API:", err);
   }
 
-  // Include static seed blog posts if not already populated from DB
   for (const post of BLOG_POSTS) {
     if (post.slug && !blogMap.has(post.slug)) {
       blogMap.set(post.slug, {
@@ -67,14 +64,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   }
 
-  const blogPages = Array.from(blogMap.entries()).map(([slug, meta]) => ({
-    url: `${base}/post/${encodeURIComponent(slug)}/`,
+  const newsPages = Array.from(blogMap.entries()).map(([slug, meta]) => ({
+    url: `${base}/news/${encodeURIComponent(slug)}/`,
     lastModified: meta.lastModified,
     changeFrequency: "monthly" as const,
     priority: 0.75,
   }));
 
-  // 3. Dynamically Include Valid Active Franchise Opportunity Pages
+  // 3. Active Salon Franchise Territory Pages
   const franchisePages: MetadataRoute.Sitemap = [];
   try {
     const opportunities = await getFranchiseOpportunities("active");
@@ -103,8 +100,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.warn("[sitemap] Failed to fetch franchise opportunities:", err);
   }
 
-  // 4. Dynamically Include Active Centre Pages (actual URL structure: /locations/stores/?slug=...)
-  const centrePages: MetadataRoute.Sitemap = [];
+  // 4. Active Salon Studio Pages (/salon-locations/studio/?slug=...)
+  const studioPages: MetadataRoute.Sitemap = [];
   try {
     const centres = await getCentres("active");
     if (Array.isArray(centres)) {
@@ -119,8 +116,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         ) {
           seenSlugs.add(c.slug.trim());
           const rawDate = c.updatedAt || c.createdAt;
-          centrePages.push({
-            url: `${base}/locations/stores/?slug=${encodeURIComponent(c.slug.trim())}`,
+          studioPages.push({
+            url: `${base}/salon-locations/studio/?slug=${encodeURIComponent(c.slug.trim())}`,
             lastModified: rawDate ? new Date(rawDate) : STATIC_LAST_MODIFIED,
             changeFrequency: "weekly" as const,
             priority: 0.8,
@@ -129,8 +126,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       }
     }
   } catch (err) {
-    console.warn("[sitemap] Failed to fetch centres:", err);
+    console.warn("[sitemap] Failed to fetch salon studios:", err);
   }
 
-  return [...staticPages, ...blogPages, ...franchisePages, ...centrePages];
+  return [...staticPages, ...newsPages, ...franchisePages, ...studioPages];
 }

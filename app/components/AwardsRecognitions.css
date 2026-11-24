@@ -3,10 +3,10 @@
 ========================================= */
 
 .tmx-awards-section {
-  --aw-bg: #263c3d;
-  --aw-card: #fff8ee;
-  --aw-teal: #263c3d;
-  --aw-yellow: #ffed82;
+  --aw-bg: #0d3b26;
+  --aw-card: #faf8f4;
+  --aw-teal: #0d3b26;
+  --aw-yellow: #d6c7b2;
   --aw-muted: #526260;
 
   position: relative;
@@ -94,7 +94,7 @@
 
 .tmx-awards-section .tmx-awards-heading-row h2 {
   margin: 0;
-  color: #fff8ee;
+  color: #faf8f4;
 }
 
 .tmx-awards-section .tmx-awards-heading-row .short-line {
@@ -110,7 +110,7 @@
   flex: 0 1 42%;
   max-width: 520px;
   margin: 0 0 2px;
-  color: #fff8ee;
+  color: #faf8f4;
   opacity: 0.92;
   text-align: left;
   line-height: 1.6;
@@ -613,7 +613,7 @@
   padding: 0;
   border: none;
   background: transparent;
-  color: #263c3d;
+  color: #0d3b26;
   font-size: 12px;
   font-weight: 700;
   cursor: pointer;
@@ -696,7 +696,7 @@
   padding: 0;
   border: none;
   background: transparent;
-  color: #263c3d;
+  color: #0d3b26;
   font-size: 12px;
   font-weight: 700;
   cursor: pointer;

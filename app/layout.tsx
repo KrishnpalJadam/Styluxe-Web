@@ -1,56 +1,36 @@
 import type { Metadata } from "next";
-import { DM_Sans, Outfit, Kalam } from "next/font/google";
 import "./reference.css";
 import "./story-and-menu.css";
 import "./teamax-theme.css";
+import "./styluxe-theme.css";
 
-const outfit = Outfit({
-  subsets: ["latin"],
-  variable: "--font-display",
-  display: "swap",
-});
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.styluxe.in";
 
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  variable: "--font-body",
-  display: "swap",
-});
-
-const kalam = Kalam({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-script",
-  display: "swap",
-});
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.teamaxcafe.in";
-// const siteUrl = "https://www.teamaxcafe.in";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "TeaMax Cafe | Tea, Coffee & Cafe Franchise in India",
+    default: "Styluxe Salons | Luxury Hair, Beauty & Grooming Salon Franchise in India",
     template: "%s",
   },
   description:
-    "Discover TeaMax Cafe for tea, coffee, shakes and tasty bites. Explore our menu, find a cafe or learn about our zero-royalty franchise opportunity.",
+    "Discover Styluxe Salons — luxury hair, beauty, skin and grooming experiences designed around expert care, modern style, and confidence that lasts beyond your appointment. Explore services, locations, or our zero-royalty salon franchise.",
   keywords: [
-    "TeaMax",
-    "TeaMax cafe",
-    "tea cafe",
-    "coffee cafe",
-    "Indian cafe franchise",
-    "fresh juices",
-    "milkshakes",
-    "ice cream cafe",
-    "cafe near me",
-    "best tea cafe India",
-    "kadak chai",
-    "3 in 1 cafe model",
+    "Styluxe",
+    "Styluxe Salons",
+    "luxury salon India",
+    "unisex salon near me",
+    "hair beauty grooming salon",
+    "salon franchise India",
+    "zero royalty salon franchise",
+    "hair spa and keratin",
+    "bridal makeup studio",
+    "men's grooming salon",
+    "skin and facial rituals",
   ],
-  applicationName: "TeaMax Café",
-  authors: [{ name: "TeaMax Café" }],
-  creator: "TeaMax Café",
-  publisher: "TeaMax Café",
+  applicationName: "Styluxe Salons",
+  authors: [{ name: "Styluxe Salons" }],
+  creator: "Styluxe Salons",
+  publisher: "Styluxe Salons",
   robots: {
     index: true,
     follow: true,
@@ -62,31 +42,45 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-  // alternates: { canonical: "/" },
   openGraph: {
     type: "website",
-    siteName: "TeaMax Café",
-    title: "TeaMax Café | A Taste Worth Sharing",
+    siteName: "Styluxe Salons",
+    title: "Styluxe Salons | Confidence Begins With Care",
     description:
-      "A modern Indian café experience with tea, coffee, fresh juices, shakes, ice creams and everyday favourites.",
+      "Luxury hair, beauty, skin and grooming experiences at accessible pricing — plus turnkey salon franchise opportunities across India.",
     url: siteUrl,
     locale: "en_IN",
-    images: [{ url: "/images/cafe-interior.jpg", width: 1080, height: 864, alt: "TeaMax café interior" }],
+    images: [
+      {
+        url: "/images/styluxe/salon-interior.jpg",
+        width: 1200,
+        height: 900,
+        alt: "Styluxe Salons luxury interior",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "TeaMax Café",
-    description: "Tea, coffee, fresh juices, shakes and café favourites.",
-    images: ["/images/cafe-interior.jpg"],
+    title: "Styluxe Salons | Confidence Begins With Care",
+    description: "Luxury hair, beauty, skin & grooming salon experiences and franchise opportunities.",
+    images: ["/images/styluxe/salon-interior.jpg"],
   },
-  icons: { icon: "/images/fav.jpg" },
+  icons: { icon: "/images/styluxe-emblem.svg" },
 };
 
 import { ScrollAnimations } from "./scroll-animations";
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`scroll-smooth ${outfit.variable} ${dmSans.variable} ${kalam.variable}`}>
+    <html lang="en" className="scroll-smooth">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body className="antialiased">
         <ScrollAnimations />
         {children}
@@ -94,4 +88,3 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     </html>
   );
 }
-
