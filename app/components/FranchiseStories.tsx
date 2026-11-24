@@ -134,7 +134,7 @@ export default function FranchiseStories() {
 
   return (
     <section
-      className="tmx-franchise-stories container-xl"
+      className="tmx-franchise-stories"
       aria-labelledby="tmx-franchise-stories-title"
     >
       <div className="tmx-franchise-stories-inner">
@@ -207,10 +207,9 @@ export default function FranchiseStories() {
 
                       <h3>{story.name}</h3>
 
-                      <div className="tmx-franchise-story-location">
-                        <span className="tmx-franchise-location-icon">●</span>
-                        <span>{story.location}</span>
-                      </div>
+                      <p className="tmx-franchise-story-location">
+                        {story.location}
+                      </p>
 
                       <div
                         className="tmx-franchise-story-stars"
@@ -274,13 +273,6 @@ export default function FranchiseStories() {
             <span className="tmx-franchise-stories-arrow">→</span>
           </Link>
         </div>
-      </div>
-
-      <div className="tmx-franchise-stories-leaf tmx-franchise-stories-leaf-top">
-        ◇
-      </div>
-      <div className="tmx-franchise-stories-leaf tmx-franchise-stories-leaf-bottom">
-        ◇
       </div>
     </section>
   );

@@ -1846,14 +1846,15 @@
 .tm-fc-network-card {
     background: #0d3b26;
     border-radius: var(--tm-radius-xl);
-    padding: 28px;
+    padding: 0;
     color: #ffffff;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 22px;
-    align-items: center;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
     box-shadow: var(--tm-shadow-lg);
     border: 1px solid rgba(255, 255, 255, 0.08);
+    min-height: 520px;
+    width: 100%;
 }
 
 .tm-fc-network-stats-col h3 {

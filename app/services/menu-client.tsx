@@ -430,27 +430,22 @@ export function MenuClient({ categories, items }: MenuClientProps) {
                       </div>
 
                       <div className="tx-menu-product-details">
-                        <div>
-                          <div className="pricename">
-                            <h3 className="tx-menu-product-name">{item.name}</h3>
-                          </div>
-
+                        <div className="stx-service-card-body">
+                          <h3 className="tx-menu-product-name">{item.name}</h3>
                           <p className="tx-menu-product-description">
                             {item.description}
                           </p>
                         </div>
 
                         {typeof item.price === "number" && (
-                          <p
-                            style={{
-                              marginTop: "12px",
-                              fontSize: "14px",
-                              fontWeight: 700,
-                              color: "#0D3B26",
-                            }}
-                          >
-                            Starting from ₹{item.price.toLocaleString("en-IN")}
-                          </p>
+                          <div className="stx-service-card-footer">
+                            <span className="stx-service-price">
+                              Starting from <strong>₹{item.price.toLocaleString("en-IN")}</strong>
+                            </span>
+                            <Link href="/salon-locations" className="stx-service-book-link">
+                              Book →
+                            </Link>
+                          </div>
                         )}
                       </div>
                     </article>

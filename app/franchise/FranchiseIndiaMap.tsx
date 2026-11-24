@@ -1,11 +1,29 @@
 
 "use client";
 
+import { useEffect } from "react";
 import {
     MapContainer,
     TileLayer,
     CircleMarker,
+    useMap,
 } from "react-leaflet";
+
+function MapResizeFix() {
+    const map = useMap();
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            map.invalidateSize();
+        }, 120);
+        const onResize = () => map.invalidateSize();
+        window.addEventListener("resize", onResize);
+        return () => {
+            clearTimeout(timer);
+            window.removeEventListener("resize", onResize);
+        };
+    }, [map]);
+    return null;
+}
 
 import "leaflet/dist/leaflet.css";
 import "./FranchiseIndiaMap.css";
@@ -130,6 +148,7 @@ export default function FranchiseIndiaMap() {
                 scrollWheelZoom={false}
                 className="tm-fc-leaflet-map"
             >
+                <MapResizeFix />
                 <TileLayer
                     url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
                     attribution="Tiles &copy; Esri — Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community"

@@ -14,71 +14,71 @@ import { WhatsAppButton } from "./WhatsAppButton";
    STYLUXE BRAND MARK
 ========================================= */
 
-export function StyluxeBrandLogo({ light = false }: { light?: boolean }) {
-  const stroke = light ? "#D6C7B2" : "#0D3B26";
-  return (
-    <span className={`stx-brand-logo ${light ? "stx-brand-logo--light" : ""}`}>
-      <svg
-        width="34"
-        height="34"
-        viewBox="0 0 64 64"
-        fill="none"
-        aria-hidden="true"
-      >
-        <circle
-          cx="32"
-          cy="32"
-          r="29"
-          stroke={stroke}
-          strokeWidth="1.6"
-          strokeOpacity="0.4"
-        />
-        <path
-          d="M32 52C32 41 32 25 32 14"
-          stroke={stroke}
-          strokeWidth="1.7"
-          strokeLinecap="round"
-        />
-        <path
-          d="M32 47C21 44 14 35 16 23C22 25 29 31 32 42"
-          stroke={stroke}
-          strokeWidth="1.7"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M32 47C43 44 50 35 48 23C42 25 35 31 32 42"
-          stroke={stroke}
-          strokeWidth="1.7"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M32 34C26 27 25 18 32 11C39 18 38 27 32 34Z"
-          stroke={stroke}
-          strokeWidth="1.7"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M21 31C24 34 27 38 30 43"
-          stroke={stroke}
-          strokeWidth="1.2"
-          strokeLinecap="round"
-          strokeOpacity="0.65"
-        />
-        <path
-          d="M43 31C40 34 37 38 34 43"
-          stroke={stroke}
-          strokeWidth="1.2"
-          strokeLinecap="round"
-          strokeOpacity="0.65"
-        />
-      </svg>
-      <span className="stx-brand-wordmark">STYLUXE</span>
-    </span>
-  );
-}
+// export function StyluxeBrandLogo({ light = false }: { light?: boolean }) {
+//   const stroke = light ? "#D6C7B2" : "#0D3B26";
+//   return (
+//     <span className={`stx-brand-logo ${light ? "stx-brand-logo--light" : ""}`}>
+//       <svg
+//         width="34"
+//         height="34"
+//         viewBox="0 0 64 64"
+//         fill="none"
+//         aria-hidden="true"
+//       >
+//         <circle
+//           cx="32"
+//           cy="32"
+//           r="29"
+//           stroke={stroke}
+//           strokeWidth="1.6"
+//           strokeOpacity="0.4"
+//         />
+//         <path
+//           d="M32 52C32 41 32 25 32 14"
+//           stroke={stroke}
+//           strokeWidth="1.7"
+//           strokeLinecap="round"
+//         />
+//         <path
+//           d="M32 47C21 44 14 35 16 23C22 25 29 31 32 42"
+//           stroke={stroke}
+//           strokeWidth="1.7"
+//           strokeLinecap="round"
+//           strokeLinejoin="round"
+//         />
+//         <path
+//           d="M32 47C43 44 50 35 48 23C42 25 35 31 32 42"
+//           stroke={stroke}
+//           strokeWidth="1.7"
+//           strokeLinecap="round"
+//           strokeLinejoin="round"
+//         />
+//         <path
+//           d="M32 34C26 27 25 18 32 11C39 18 38 27 32 34Z"
+//           stroke={stroke}
+//           strokeWidth="1.7"
+//           strokeLinecap="round"
+//           strokeLinejoin="round"
+//         />
+//         <path
+//           d="M21 31C24 34 27 38 30 43"
+//           stroke={stroke}
+//           strokeWidth="1.2"
+//           strokeLinecap="round"
+//           strokeOpacity="0.65"
+//         />
+//         <path
+//           d="M43 31C40 34 37 38 34 43"
+//           stroke={stroke}
+//           strokeWidth="1.2"
+//           strokeLinecap="round"
+//           strokeOpacity="0.65"
+//         />
+//       </svg>
+//       <span className="stx-brand-wordmark">STYLUXE</span>
+//     </span>
+//   );
+// }
 
 /* =========================================
    HEADER
@@ -129,7 +129,8 @@ export function Header({ active }: { active?: string }) {
     <header className="site-header" aria-label="Styluxe Salons site header">
       <div className="site-header-inner">
         <Link href="/" className="brand" aria-label="Styluxe Salons home">
-          <StyluxeBrandLogo />
+          {/* <StyluxeBrandLogo /> */}
+          <img width={200} src="https://static.wixstatic.com/media/ead547_59dec9345a944843ae579e6da68f6406~mv2.png/v1/fill/w_350,h_70,al_c,lg_1,q_85,enc_avif,quality_auto/Styluxe%20Salon%20Logo.png" alt="" />
         </Link>
 
         <nav className="site-nav" aria-label="Main navigation">
@@ -191,7 +192,8 @@ export function Footer() {
             className="tm-footer-brand-logo"
             aria-label="Styluxe Salons home"
           >
-            <StyluxeBrandLogo light />
+            {/* <StyluxeBrandLogo light /> */}
+            <img width={200} src="https://static.wixstatic.com/media/ead547_27321602f62c4dbab56e2538b3a283e8~mv2.png/v1/fill/w_342,h_68,al_c,lg_1,q_85,enc_avif,quality_auto/Styluxe%20Salons%20White.png" alt="" />
           </Link>
 
           <p className="tm-footer-description">

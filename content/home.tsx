@@ -106,7 +106,8 @@ export default function Home() {
 
           <div className="stx-hero-media">
             <Image
-              src="/images/styluxe/hero-salon.jpg"
+              // src="/images/styluxe/hero-salon.jpg"
+              src="https://static.wixstatic.com/media/ead547_ec0ac7b83997496a9a9e9fd33febafad~mv2.png/v1/crop/x_470,y_93,w_1061,h_846/fill/w_881,h_703,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/Styluxe%20Salons.png"
               width={1408}
               height={768}
               priority
@@ -145,7 +146,8 @@ export default function Home() {
         <div className="container-xl stx-about-grid">
           <div className="stx-organic-frame">
             <Image
-              src="/images/styluxe/salon-interior.jpg"
+              // src="/images/styluxe/salon-interior.jpg"
+              src="https://static.wixstatic.com/media/ead547_9e5dcc4c91234b8b8761ea7f76ca7cb9~mv2.png/v1/crop/x_157,y_0,w_1050,h_1024/fill/w_755,h_736,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/Styluxe%20Salon%20Mockup.png"
               alt="Styluxe Salons calm botanical reception and styling lounge"
               width={1024}
               height={940}

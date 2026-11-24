@@ -416,22 +416,29 @@ h6 {
   background: #ffffff;
   border: 1px solid rgba(13, 59, 38, 0.14);
   color: var(--stx-forest);
-  display: grid;
-  place-items: center;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-top: 0 !important;
   flex-shrink: 0;
   box-shadow: 0 4px 12px rgba(13, 59, 38, 0.05);
+}
+
+.stx-trust-icon svg {
+  display: block;
+  margin: 0;
 }
 
 .stx-trust-item strong {
   display: block;
   font-family: var(--font-body), "Plus Jakarta Sans", sans-serif;
-  font-size: 16px;
+  font-size: 15.5px;
   font-weight: 600;
   color: var(--stx-forest);
   line-height: 1.25;
 }
 
-.stx-trust-item span {
+.stx-trust-item>div span {
   display: block;
   font-size: 12.5px;
   line-height: 1.45;
@@ -535,11 +542,11 @@ h6 {
   color: var(--stx-forest) !important;
 }
 
-.marker {
+/* .marker {
   background: linear-gradient(transparent 78%, rgba(214, 199, 178, 0.55) 78%, rgba(214, 199, 178, 0.55) 94%, transparent 94%) !important;
   font-style: italic;
   color: var(--stx-sage) !important;
-}
+} */
 
 .short-line {
   height: 2.5px !important;
@@ -652,6 +659,8 @@ h6 {
 .home-faq summary {
   color: var(--stx-forest) !important;
   font-weight: 600 !important;
+  padding: 10px;
+  /* margin: 5px; */
 }
 
 /* ==========================================================================
@@ -800,6 +809,24 @@ h6 {
   background: #0d3b26 !important;
 }
 
+.tmx-awards-section .tmx-awards-heading-row h2 {
+  color: #faf8f4 !important;
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif !important;
+  font-weight: 500 !important;
+  font-size: clamp(2rem, 3.2vw, 2.85rem) !important;
+  line-height: 1.12 !important;
+}
+
+.tmx-awards-section .tmx-awards-heading-row h2 span,
+.tmx-awards-section .tmx-awards-heading-row h2 em {
+  color: #d6c7b2 !important;
+  font-style: italic;
+}
+
+.tmx-awards-section .tmx-awards-heading-row>p {
+  color: rgba(250, 248, 244, 0.88) !important;
+}
+
 .tmx-award-card {
   border-color: rgba(214, 199, 178, 0.35) !important;
   background: #ffffff !important;
@@ -828,7 +855,7 @@ h6 {
   --tmx-wcu-teal: #485a46 !important;
   --tmx-wcu-yellow: #d6c7b2 !important;
   --tmx-wcu-white: #faf8f4 !important;
-  background: linear-gradient(135deg, #3e503d 0%, #4b5e48 60%, #374736 100%) !important;
+  background: #0d3b26 !important;
 }
 
 .tmx-why-choose-heading {
@@ -885,24 +912,37 @@ h6 {
    FRANCHISE STORIES / TESTIMONIALS — STYLUXE EDITORIAL STYLE
    ========================================================================== */
 .tmx-franchise-stories {
-  --tmx-fs-cream: #faf8f4 !important;
+  --tmx-fs-cream: #f4f1ea !important;
   --tmx-fs-yellow: #d6c7b2 !important;
   --tmx-fs-yellow-deep: #4a5d46 !important;
   --tmx-fs-teal: #0d3b26 !important;
   --tmx-fs-text: #1b2721 !important;
-  --tmx-fs-border: rgba(13, 59, 38, 0.12) !important;
-  background: #ffffff !important;
+  --tmx-fs-border: rgba(13, 59, 38, 0.1) !important;
+  background: #f4f1ea !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 78px 0 84px !important;
+  border-top: 1px solid rgba(13, 59, 38, 0.06);
+  border-bottom: 1px solid rgba(13, 59, 38, 0.06);
+}
+
+.tmx-franchise-stories-inner {
+  width: min(1240px, calc(100% - 48px)) !important;
+  grid-template-columns: 360px minmax(0, 1fr) !important;
+  gap: 44px !important;
 }
 
 .tmx-franchise-stories-intro h2 {
   font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif !important;
   font-weight: 500 !important;
+  font-size: clamp(2.15rem, 3.4vw, 3rem) !important;
+  line-height: 1.08 !important;
 }
 
 .tmx-franchise-stories-intro h2 em {
   font-style: italic !important;
   color: var(--stx-sage) !important;
-  background: linear-gradient(transparent 78%, rgba(214, 199, 178, 0.5) 78%, rgba(214, 199, 178, 0.5) 94%, transparent 94%) !important;
+  background: none !important;
 }
 
 .tmx-franchise-stories-button {
@@ -914,22 +954,78 @@ h6 {
   background: var(--stx-forest-deep) !important;
 }
 
+.tmx-franchise-stories-cards {
+  align-items: stretch !important;
+  padding-top: 0 !important;
+}
+
 .tmx-franchise-story-card {
-  background: #faf8f4 !important;
-  border: 1px solid var(--stx-border) !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(13, 59, 38, 0.09) !important;
+  border-radius: 16px !important;
+  min-height: 100% !important;
+  height: 100% !important;
+  padding: 26px 22px 26px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  box-shadow: 0 6px 22px rgba(13, 59, 38, 0.04) !important;
 }
 
 .tmx-franchise-story-avatar {
-  border-color: var(--stx-champagne) !important;
-  box-shadow: 0 0 0 4px rgba(214, 199, 178, 0.25) !important;
+  width: 104px !important;
+  height: 104px !important;
+  margin: 0 auto 14px !important;
+  border: 3px solid var(--stx-champagne) !important;
+  box-shadow: 0 0 0 4px rgba(214, 199, 178, 0.2) !important;
+}
+
+.tmx-franchise-story-card h3 {
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif !important;
+  font-size: 21px !important;
+  font-weight: 600 !important;
+  margin: 0 0 4px !important;
+  text-align: center !important;
+  color: var(--stx-forest) !important;
+}
+
+.tmx-franchise-story-location {
+  display: block !important;
+  width: 100% !important;
+  min-height: 36px !important;
+  margin: 0 0 10px !important;
+  text-align: center !important;
+  color: var(--stx-muted) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  line-height: 1.45 !important;
 }
 
 .tmx-franchise-story-stars {
   color: #b89454 !important;
+  font-size: 17px !important;
+  letter-spacing: 2px !important;
+  margin: 0 !important;
 }
 
 .tmx-franchise-story-divider {
-  background: rgba(13, 59, 38, 0.12) !important;
+  width: 48px !important;
+  height: 1px !important;
+  margin: 16px auto !important;
+  background: rgba(13, 59, 38, 0.14) !important;
+}
+
+.tmx-franchise-story-card>p:not(.tmx-franchise-story-location) {
+  text-align: center !important;
+  color: var(--stx-muted) !important;
+  font-size: 13.5px !important;
+  line-height: 1.68 !important;
+  font-weight: 400 !important;
+}
+
+.tmx-franchise-stories-leaf {
+  display: none !important;
 }
 
 .tmx-stories-slider-arrow {
@@ -1129,7 +1225,7 @@ h6 {
   font-weight: 500 !important;
 }
 
-.offers-franchise-copy > p:last-child {
+.offers-franchise-copy>p:last-child {
   color: rgba(250, 248, 244, 0.86) !important;
 }
 
@@ -1305,12 +1401,14 @@ h6 {
 
 .tm-story-hero__title {
   font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif !important;
-  color: var(--stx-forest) !important;
+  color: #faf8f4 !important;
+  font-weight: 500 !important;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.25);
 }
 
 .tm-story-hero__title span {
   font-style: italic;
-  color: var(--stx-sage) !important;
+  color: #d6c7b2 !important;
 }
 
 .tm-pill-yellow {
@@ -1426,6 +1524,7 @@ h6 {
    RESPONSIVE BREAKPOINTS FOR STYLUXE CUSTOM SECTIONS
    ========================================================================== */
 @media (max-width: 1024px) {
+
   .stx-hero-grid,
   .stx-about-grid {
     grid-template-columns: 1fr;
@@ -1475,11 +1574,11 @@ h6 {
    FINAL UI REFINEMENT LAYER — MINIMAL LUXURY HEROES, TYPOGRAPHY & POLISH
    ========================================================================== */
 
-/* 1. Unified Minimal Salon Page Hero System */
+/* 1. Unified Minimal Salon Page Hero System (Compact & Balanced Below Sticky Header) */
 .stx-page-hero {
   position: relative;
   overflow: hidden;
-  padding: 124px 0 68px;
+  padding: 44px 0 42px;
   background-color: var(--stx-cream);
   border-bottom: 1px solid rgba(13, 59, 38, 0.08);
   isolation: isolate;
@@ -1491,8 +1590,8 @@ h6 {
   inset: 0;
   pointer-events: none;
   z-index: -1;
-  background: url("/images/styluxe-botanical.svg") right -40px bottom -30px / 340px no-repeat;
-  opacity: 0.065;
+  background: url("/images/styluxe-botanical.svg") right -40px bottom -30px / 300px no-repeat;
+  opacity: 0.06;
 }
 
 .stx-page-hero--offers {
@@ -1501,22 +1600,22 @@ h6 {
 
 .stx-page-hero--news {
   background: linear-gradient(180deg, var(--stx-linen) 0%, var(--stx-cream) 100%);
-  padding: 130px 0 74px;
+  padding: 146px 0 50px;
 }
 
-.stx-page-hero--news::before {
+/* .stx-page-hero--news::before {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: -1;
-  background: url("/images/styluxe-botanical.svg") left -60px top 60px / 280px no-repeat;
-  opacity: 0.05;
-}
+  background: url("/images/styluxe-botanical.svg") left -60px top 20px / 240px no-repeat;
+  opacity: 0.045;
+} */
 
 .stx-page-hero--reviews {
   background-color: var(--stx-cream);
-  padding: 128px 0 72px;
+  padding: 46px 0 42px;
 }
 
 .stx-page-hero__inner {
@@ -1931,10 +2030,44 @@ h6 {
 }
 
 .offers-franchise-banner {
-  background: var(--stx-linen) !important;
-  border: 1px solid rgba(13, 59, 38, 0.1) !important;
+  background: linear-gradient(125deg, #0d3b26 0%, #1d4430 58%, #3c503d 100%) !important;
+  color: #faf8f4 !important;
+  border: 1px solid rgba(214, 199, 178, 0.25) !important;
   border-radius: 20px !important;
-  box-shadow: none !important;
+  box-shadow: 0 18px 42px rgba(13, 59, 38, 0.14) !important;
+}
+
+.offers-franchise-banner .offers-franchise-kicker {
+  color: #d6c7b2 !important;
+  letter-spacing: 0.16em !important;
+}
+
+.offers-franchise-banner .offers-franchise-copy h2 {
+  color: #ffffff !important;
+}
+
+.offers-franchise-banner .offers-franchise-copy>p:last-child {
+  color: rgba(250, 248, 244, 0.86) !important;
+}
+
+.offers-franchise-banner .offers-franchise-features strong {
+  color: #ffffff !important;
+}
+
+.offers-franchise-banner .offers-franchise-features small {
+  color: rgba(250, 248, 244, 0.78) !important;
+}
+
+.offers-franchise-banner .offers-feature-icon {
+  background: rgba(250, 248, 244, 0.14) !important;
+  color: #d6c7b2 !important;
+  border: 1px solid rgba(214, 199, 178, 0.3) !important;
+}
+
+.offers-franchise-banner .offers-franchise-visual img {
+  mix-blend-mode: normal !important;
+  opacity: 0.92 !important;
+  mask-image: linear-gradient(to right, transparent 0%, #000 28%, #000 100%) !important;
 }
 
 /* 5. News / Journal Toolbar & Post Detail Spacing */
@@ -2060,5 +2193,713 @@ h6 {
 
   .stx-page-hero__stat span {
     font-size: 10px;
+  }
+}
+
+
+/* ==========================================================================
+   SCREENSHOT BUG FIXES — FAQ PADDING, SERVICE CARDS, FULL MAP & ABOUT REDESIGN
+   ========================================================================== */
+
+/* A. Homepage & About FAQ Accordion — Generous Horizontal Padding & Clean Spacing */
+.faq {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 14px !important;
+}
+
+.faq details {
+  background: #ffffff !important;
+  border: 1px solid rgba(13, 59, 38, 0.11) !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  box-shadow: 0 3px 12px rgba(13, 59, 38, 0.03) !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.faq details:hover,
+.faq details[open] {
+  border-color: rgba(13, 59, 38, 0.24) !important;
+  box-shadow: 0 8px 22px rgba(13, 59, 38, 0.06) !important;
+}
+
+.faq details summary {
+  padding: 20px 26px !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 18px !important;
+  font-family: var(--font-body) !important;
+  font-size: 15.5px !important;
+  font-weight: 600 !important;
+  line-height: 1.45 !important;
+  color: var(--stx-forest) !important;
+  cursor: pointer !important;
+  list-style: none !important;
+}
+
+.faq details summary::-webkit-details-marker {
+  display: none !important;
+}
+
+.faq details p {
+  padding: 0 26px 22px !important;
+  margin: 0 !important;
+  font-size: 14.5px !important;
+  line-height: 1.75 !important;
+  color: var(--stx-muted) !important;
+}
+
+/* B. Services Page Cards — Full-Width Description & Unclipped Price Row */
+.tx-menu-product-card {
+  display: flex !important;
+  flex-direction: column !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(13, 59, 38, 0.09) !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  box-shadow: 0 4px 18px rgba(13, 59, 38, 0.04) !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease !important;
+}
+
+.tx-menu-product-card:hover {
+  transform: translateY(-2px) !important;
+  border-color: rgba(13, 59, 38, 0.22) !important;
+  box-shadow: 0 12px 28px rgba(13, 59, 38, 0.08) !important;
+}
+
+.tx-menu-product-details {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  flex: 1 1 auto !important;
+  grid-template-columns: none !important;
+  align-items: stretch !important;
+  gap: 14px !important;
+  padding: 18px 20px 20px !important;
+  min-height: 0 !important;
+}
+
+.stx-service-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tx-menu-product-name {
+  font-family: var(--font-serif) !important;
+  font-size: 22px !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  color: var(--stx-forest) !important;
+  margin: 0 !important;
+}
+
+.tx-menu-product-description {
+  font-size: 13.5px !important;
+  line-height: 1.62 !important;
+  color: var(--stx-muted) !important;
+  margin: 0 !important;
+}
+
+.stx-service-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(13, 59, 38, 0.09);
+  margin-top: auto;
+}
+
+.stx-service-price {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--stx-muted);
+  white-space: nowrap;
+}
+
+.stx-service-price strong {
+  color: var(--stx-forest);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.stx-service-book-link {
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--stx-forest);
+  text-decoration: none;
+  white-space: nowrap;
+  padding: 5px 12px;
+  border-radius: 6px;
+  background: var(--stx-linen);
+  border: 1px solid rgba(13, 59, 38, 0.12);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.stx-service-book-link:hover {
+  background: var(--stx-forest);
+  color: #ffffff;
+}
+
+/* C. Compact Consistent Inner Spacing Below Heroes (Services, Reviews, News, Offers) */
+.tx-menu-shell {
+  padding-top: 30px !important;
+  padding-bottom: 72px !important;
+}
+
+.tx-menu-search-wrap {
+  margin-bottom: 28px !important;
+}
+
+.offers-list-section {
+  padding-top: 30px !important;
+  padding-bottom: 56px !important;
+}
+
+.tm-blog-toolbar {
+  margin-top: 28px !important;
+  margin-bottom: 30px !important;
+}
+
+.tm-post-header {
+  padding-top: 48px !important;
+  padding-bottom: 40px !important;
+}
+
+@media (max-width: 960px) {
+
+  .stx-page-hero,
+  .stx-page-hero--news,
+  .stx-page-hero--reviews {
+    padding: 34px 0 32px !important;
+  }
+}
+
+@media (max-width: 640px) {
+
+  .stx-page-hero,
+  .stx-page-hero--news,
+  .stx-page-hero--reviews {
+    padding: 26px 0 26px !important;
+  }
+
+  .faq details summary {
+    padding: 16px 18px !important;
+    font-size: 14.5px !important;
+  }
+
+  .faq details p {
+    padding: 0 18px 18px !important;
+    font-size: 13.5px !important;
+  }
+}
+
+/* D. Styluxe Express & Franchise Interactive Map — 100% Full Width Edge-to-Edge */
+.tm-fc-network-card {
+  display: flex !important;
+  flex-direction: column !important;
+  grid-template-columns: none !important;
+  padding: 0 !important;
+  width: 100% !important;
+  min-height: 520px !important;
+  overflow: hidden !important;
+}
+
+.tm-fc-real-map,
+.tm-fc-leaflet-map {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  flex: 1 1 auto !important;
+}
+
+/* E. Complete Redesigned About Us Page Sections */
+.stx-about-page {
+  background: var(--stx-cream);
+}
+
+.stx-ab-container {
+  width: min(1220px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.stx-ab-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px;
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--stx-sage);
+}
+
+.stx-ab-eyebrow--light {
+  color: var(--stx-champagne);
+}
+
+.stx-ab-heading {
+  margin: 0 0 16px;
+  font-family: var(--font-serif) !important;
+  font-size: clamp(2rem, 3.4vw, 2.9rem) !important;
+  font-weight: 500 !important;
+  line-height: 1.12 !important;
+  color: var(--stx-forest) !important;
+}
+
+.stx-ab-heading em {
+  font-style: italic;
+  color: var(--stx-sage);
+}
+
+.stx-ab-heading--light {
+  color: #faf8f4 !important;
+}
+
+.stx-ab-heading--light em {
+  color: var(--stx-champagne) !important;
+}
+
+.stx-ab-section-head {
+  max-width: 660px;
+  margin: 0 auto 44px;
+  text-align: center;
+}
+
+.stx-ab-sublead {
+  margin: 0;
+  font-size: 15.5px;
+  line-height: 1.72;
+  color: var(--stx-muted);
+}
+
+/* About Section 02: Editorial Story Split */
+.stx-ab-story {
+  background: #ffffff;
+  padding: 78px 0;
+  border-bottom: 1px solid rgba(13, 59, 38, 0.07);
+}
+
+.stx-ab-story-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  gap: 56px;
+  align-items: center;
+}
+
+.stx-ab-arch-frame {
+  border-radius: 110px 18px 110px 18px;
+  overflow: hidden;
+  border: 1px solid rgba(13, 59, 38, 0.1);
+  box-shadow: 0 16px 40px rgba(13, 59, 38, 0.08);
+}
+
+.stx-ab-arch-frame img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3.4;
+  object-fit: cover;
+}
+
+.stx-ab-text {
+  margin: 0 0 16px;
+  font-size: 15.5px;
+  line-height: 1.78;
+  color: var(--stx-muted);
+}
+
+.stx-ab-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(13, 59, 38, 0.1);
+}
+
+.stx-ab-metric strong {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--stx-forest);
+  line-height: 1.15;
+}
+
+.stx-ab-metric span {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--stx-muted);
+  margin-top: 4px;
+}
+
+/* About Section 03: Six Guiding Principles */
+.stx-ab-principles {
+  background: var(--stx-linen);
+  padding: 78px 0;
+  border-bottom: 1px solid rgba(13, 59, 38, 0.07);
+}
+
+.stx-ab-principles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.stx-ab-principle-card {
+  background: #ffffff;
+  border: 1px solid rgba(13, 59, 38, 0.09);
+  border-radius: 16px;
+  padding: 28px 26px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.stx-ab-principle-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(13, 59, 38, 0.22);
+  box-shadow: 0 12px 28px rgba(13, 59, 38, 0.07);
+}
+
+.stx-ab-principle-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.stx-ab-principle-num {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  font-weight: 500;
+  color: var(--stx-champagne-deep);
+  line-height: 1;
+}
+
+.stx-ab-principle-tag {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 11px;
+  border-radius: 999px;
+  background: var(--stx-linen);
+  color: var(--stx-forest);
+  border: 1px solid rgba(13, 59, 38, 0.08);
+}
+
+.stx-ab-principle-card h3 {
+  margin: 0 0 10px;
+  font-family: var(--font-serif) !important;
+  font-size: 23px !important;
+  font-weight: 600 !important;
+  color: var(--stx-forest) !important;
+}
+
+.stx-ab-principle-card p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--stx-muted);
+}
+
+/* About Section 04: Leadership & Vision */
+.stx-ab-leadership {
+  background: var(--stx-cream);
+  padding: 78px 0;
+}
+
+.stx-ab-leaders-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.stx-ab-leader-card {
+  display: grid;
+  grid-template-columns: 185px minmax(0, 1fr);
+  gap: 24px;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid rgba(13, 59, 38, 0.09);
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 4px 18px rgba(13, 59, 38, 0.035);
+}
+
+.stx-ab-leader-photo {
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--stx-linen);
+  aspect-ratio: 4 / 4.4;
+}
+
+.stx-ab-leader-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+.stx-ab-leader-role {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--stx-sage);
+  margin-bottom: 6px;
+}
+
+.stx-ab-leader-info h3 {
+  margin: 0 0 10px;
+  font-family: var(--font-serif) !important;
+  font-size: 26px !important;
+  font-weight: 600 !important;
+  color: var(--stx-forest) !important;
+}
+
+.stx-ab-leader-info p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--stx-muted);
+}
+
+.stx-ab-pillars-bar {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 28px;
+}
+
+.stx-ab-pillar-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 20px 22px;
+  background: #ffffff;
+  border: 1px solid rgba(13, 59, 38, 0.09);
+  border-radius: 14px;
+  color: var(--stx-forest);
+}
+
+.stx-ab-pillar-item svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--stx-sage);
+}
+
+.stx-ab-pillar-item strong {
+  display: block;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--stx-forest);
+  margin-bottom: 3px;
+}
+
+.stx-ab-pillar-item span {
+  display: block;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--stx-muted);
+}
+
+/* About Section 05: Standards Dark Band */
+.stx-ab-standards {
+  background: linear-gradient(135deg, #0d3b26 0%, #16442f 60%, #2a4937 100%);
+  padding: 72px 0;
+  text-align: center;
+}
+
+.stx-ab-standards-inner {
+  max-width: 960px;
+}
+
+.stx-ab-standards-lead {
+  max-width: 620px;
+  margin: 0 auto 30px;
+  font-size: 15.5px;
+  line-height: 1.72;
+  color: rgba(250, 248, 244, 0.85);
+}
+
+.stx-ab-cert-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.stx-ab-cert-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(250, 248, 244, 0.08);
+  border: 1px solid rgba(214, 199, 178, 0.32);
+  color: #faf8f4;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.stx-ab-cert-pill svg {
+  color: var(--stx-champagne);
+  flex-shrink: 0;
+}
+
+/* About Section 06: FAQ */
+.stx-ab-faq {
+  background: var(--stx-linen);
+  padding: 76px 0;
+}
+
+.stx-ab-faq-wrap {
+  max-width: 840px;
+}
+
+/* About Section 07: Luxury Dual CTA Card */
+.stx-ab-cta-section {
+  background: var(--stx-cream);
+  padding: 68px 0 82px;
+}
+
+.stx-ab-cta-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  background: linear-gradient(125deg, #0d3b26 0%, #1c4430 62%, #3a4e3b 100%);
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(214, 199, 178, 0.22);
+}
+
+.stx-ab-cta-copy {
+  padding: 48px 46px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.stx-ab-cta-copy h2 {
+  margin: 0 0 14px;
+  font-family: var(--font-serif) !important;
+  font-size: clamp(1.9rem, 3vw, 2.65rem) !important;
+  font-weight: 500 !important;
+  line-height: 1.12 !important;
+  color: #faf8f4 !important;
+}
+
+.stx-ab-cta-copy h2 em {
+  color: var(--stx-champagne);
+  font-style: italic;
+}
+
+.stx-ab-cta-copy p {
+  margin: 0 0 26px;
+  font-size: 15px;
+  line-height: 1.72;
+  color: rgba(250, 248, 244, 0.85);
+}
+
+.stx-ab-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.stx-ab-cta-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 22px;
+  border-radius: 8px;
+  border: 1px solid rgba(250, 248, 244, 0.35);
+  color: #faf8f4 !important;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.stx-ab-cta-outline:hover {
+  background: rgba(250, 248, 244, 0.12);
+  border-color: var(--stx-champagne);
+}
+
+.stx-ab-cta-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  object-fit: cover;
+}
+
+@media (max-width: 992px) {
+
+  .stx-ab-story-grid,
+  .stx-ab-leaders-grid,
+  .stx-ab-cta-card {
+    grid-template-columns: 1fr;
+  }
+
+  .stx-ab-principles-grid,
+  .stx-ab-pillars-bar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stx-ab-cta-copy {
+    padding: 36px 28px;
+  }
+
+  .tmx-franchise-stories-inner {
+    grid-template-columns: 1fr !important;
+    gap: 30px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .stx-ab-container {
+    width: calc(100% - 32px);
+  }
+
+  .stx-ab-story,
+  .stx-ab-principles,
+  .stx-ab-leadership,
+  .stx-ab-standards,
+  .stx-ab-faq {
+    padding: 52px 0;
+  }
+
+  .stx-ab-principles-grid,
+  .stx-ab-pillars-bar,
+  .stx-ab-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .stx-ab-leader-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .stx-ab-leader-photo {
+    max-width: 220px;
+    margin: 0 auto;
+  }
+
+  .stx-ab-arch-frame {
+    border-radius: 64px 14px 64px 14px;
   }
 }

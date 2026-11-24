@@ -288,9 +288,9 @@ a {
   letter-spacing: -.045em;
 }
 
-.marker {
+/* .marker {
   background: linear-gradient(transparent 81%, var(--tm-yellow) 81%, var(--tm-yellow) 93%, transparent 93%);
-}
+} */
 
 .hero-description {
   font-size: 16px;
@@ -1099,6 +1099,7 @@ a {
   color: #68716f;
   font-size: 12px;
   line-height: 1.7;
+  padding: 10px;
 }
 
 .contact-section {
