@@ -185,36 +185,7 @@ export default function OurFranchiseOpportunitiesContent({
       <div className="tm-container tm-main-content">
         {/* Filters */}
         <form className="tm-filter-panel" onSubmit={handleSearch}>
-          <div className="tm-filter-field">
-            <label htmlFor="tm-country">Country</label>
-            <div className="tm-select-wrap">
-              <MapPin size={19} />
-              <select
-                id="tm-country"
-                value={country}
-                onChange={(event) => {
-                  const nextCountry = event.target.value;
-                  const nextState =
-                    opportunities.find((item) => item.country === nextCountry)
-                      ?.state || "";
-                  const nextCity =
-                    opportunities.find(
-                      (item) =>
-                        item.country === nextCountry && item.state === nextState
-                    )?.city || "";
-                  setCountry(nextCountry);
-                  setState(nextState);
-                  setCity(nextCity);
-                }}
-              >
-                {availableCountries.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
+
 
           <div className="tm-filter-field">
             <label htmlFor="tm-state">State</label>

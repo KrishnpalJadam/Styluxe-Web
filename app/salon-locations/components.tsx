@@ -10,6 +10,7 @@ import {
   Scissors,
   Sparkles,
   ShieldCheck,
+  PhoneCall,
 } from "lucide-react";
 import "./components.css";
 import Link from "next/link";
@@ -229,7 +230,7 @@ export default function OurCentresContent() {
       <div className="tm-container tm-main-content">
         {/* Location filters */}
         <form className="tm-filter-panel" onSubmit={handleSearch}>
-          <div className="tm-filter-field">
+          {/* <div className="tm-filter-field">
             <label htmlFor="tm-country">Country</label>
             <div className="tm-select-wrap">
               <Globe size={19} />
@@ -245,7 +246,7 @@ export default function OurCentresContent() {
                 ))}
               </select>
             </div>
-          </div>
+          </div> */}
 
           <div className="tm-filter-field">
             <label htmlFor="tm-state">State</label>
@@ -410,18 +411,12 @@ export default function OurCentresContent() {
                     <div className="tm-cafe-actions">
                       <a
                         className="tm-button tm-directions-button"
-                        href={
-                          (salon as any).mapUrl ||
-                          (salon as any).googleMapUrl ||
-                          `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                            `${salon.name}, ${salon.address}`
-                          )}`
-                        }
+                        href="/"
                         target="_blank"
                         rel="noreferrer"
                       >
-                        <MapPin size={17} />
-                        Directions
+                        <PhoneCall size={17} />
+                        Call Salon
                       </a>
 
                       <Link
