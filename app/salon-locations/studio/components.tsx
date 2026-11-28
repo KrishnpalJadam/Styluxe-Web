@@ -34,6 +34,7 @@ import {
   getReviews,
   getMoments,
 } from "../../lib/api";
+import BookAppointmentModal from "../../components/BookAppointmentModal";
 
 const ORDERED_DAYS = [
   { key: "monday", label: "Monday" },
@@ -412,6 +413,7 @@ export function StoreHero() {
     () => getStoreMapUrls(centre, centreName, address),
     [centre, centreName, address]
   );
+  const [bookingOpen, setBookingOpen] = useState(false);
 
   return (
     <>
@@ -467,8 +469,17 @@ export function StoreHero() {
           </div>
 
           <div className="detailscentres-actions">
-            <a
+            <button
+              type="button"
               className="detailscentres-btn detailscentres-btn-yellow"
+              onClick={() => setBookingOpen(true)}
+            >
+              <CalendarCheck />
+              Book Appointment
+            </button>
+
+            <a
+              className="detailscentres-btn detailscentres-btn-outline"
               target="_blank"
               rel="noreferrer"
               href={mapDirectionsUrl}
@@ -540,6 +551,13 @@ export function StoreHero() {
           </div>
         </div>
       </section>
+
+      <BookAppointmentModal
+        open={bookingOpen}
+        onClose={() => setBookingOpen(false)}
+        defaultBranchId={centre?.id}
+        defaultBranchName={centreName}
+      />
     </>
   );
 }

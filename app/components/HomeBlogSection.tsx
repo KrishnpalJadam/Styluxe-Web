@@ -68,22 +68,7 @@ export default function HomeBlogSection() {
             };
           });
 
-          const existingSlugs = new Set(mappedApiBlogs.map((b) => b.slug));
-          const fallbackStatic = getAllBlogPosts()
-            .filter((p) => !existingSlugs.has(p.slug))
-            .map((p) => ({
-              id: p.id,
-              slug: p.slug,
-              title: p.title,
-              category: p.category,
-              readTime: p.readTime,
-              excerpt: p.excerpt.replace(/<[^>]+>/g, "").trim(),
-              date: p.date,
-              coverImage: p.coverImage,
-            }));
-
-          const combined = [...mappedApiBlogs, ...fallbackStatic].slice(0, 3);
-          setPosts(combined);
+          setPosts(mappedApiBlogs.slice(0, 3));
         }
       } catch (err) {
         console.warn("[HomeBlogSection] Failed to load latest blogs:", err);

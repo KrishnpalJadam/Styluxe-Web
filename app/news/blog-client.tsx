@@ -13,7 +13,7 @@ export function BlogClient({ initialPosts }: { initialPosts: BlogPost[] }) {
 
   // Pagination
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 12;
+  const itemsPerPage = 6;
 
   useEffect(() => {
     let mounted = true;
@@ -66,26 +66,21 @@ export function BlogClient({ initialPosts }: { initialPosts: BlogPost[] }) {
             };
           });
 
-        const existingSlugs = new Set(mapped.map((p) => p.slug));
+        if (mapped.length > 0) {
+          const sorted = mapped.sort((a, b) => {
+            const featA = a.isFeatured ? 1 : 0;
+            const featB = b.isFeatured ? 1 : 0;
 
-        const combined = [
-          ...mapped,
-          ...initialPosts.filter((p) => !existingSlugs.has(p.slug)),
-        ];
+            if (featA !== featB) return featB - featA;
 
-        const sorted = combined.sort((a, b) => {
-          const featA = a.isFeatured ? 1 : 0;
-          const featB = b.isFeatured ? 1 : 0;
+            return (
+              new Date(b.isoDate || 0).getTime() -
+              new Date(a.isoDate || 0).getTime()
+            );
+          });
 
-          if (featA !== featB) return featB - featA;
-
-          return (
-            new Date(b.isoDate || 0).getTime() -
-            new Date(a.isoDate || 0).getTime()
-          );
-        });
-
-        setPosts(sorted);
+          setPosts(sorted);
+        }
       }
     });
 

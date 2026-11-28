@@ -7,7 +7,7 @@ import { ShareButtons } from "./share-buttons";
 import { RelatedBlogs } from "./related-blogs";
 import { getBlogs, getBlogBySlug } from "../../lib/api";
 
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.styluxe.in";
 
@@ -43,9 +43,6 @@ export async function generateStaticParams() {
 }
 
 async function resolveBlogPost(slug: string): Promise<BlogPost | null> {
-  const staticPost = getBlogPostBySlug(slug);
-  if (staticPost) return staticPost;
-
   try {
     const apiBlog = await getBlogBySlug(slug);
     if (apiBlog && (apiBlog.status === "published" || !apiBlog.status)) {
@@ -56,12 +53,14 @@ async function resolveBlogPost(slug: string): Promise<BlogPost | null> {
           year: "numeric",
         })
         : "Recent";
+      const sc = apiBlog.structuredContent || {};
+      const hasStructuredSections = Array.isArray(sc.sections) && sc.sections.length > 0;
 
       return {
         id: apiBlog.id,
         slug: apiBlog.slug,
         title: apiBlog.title,
-        subtitle: (apiBlog.excerpt || "").replace(/<[^>]+>/g, "").trim(),
+        subtitle: (apiBlog.subtitle || apiBlog.excerpt || "").replace(/<[^>]+>/g, "").trim(),
         excerpt: (apiBlog.excerpt || "").replace(/<[^>]+>/g, "").trim(),
         category: (apiBlog.category as any) || "Hair Care",
         readTime: apiBlog.readingTime || "5 min read",
@@ -73,7 +72,7 @@ async function resolveBlogPost(slug: string): Promise<BlogPost | null> {
           avatar: apiBlog.authorAvatar || "/images/styluxe/salon-interior.jpg",
         },
         tags: apiBlog.seoKeywords
-          ? apiBlog.seoKeywords.split(",").map((s: string) => s.trim())
+          ? apiBlog.seoKeywords.split(",").map((s: string) => s.trim()).filter(Boolean)
           : [apiBlog.category || "Beauty"],
         coverImage: apiBlog.coverImage || "/images/styluxe/salon-interior.jpg",
         metaDescription: (apiBlog.metaDescription || apiBlog.excerpt || "").replace(/<[^>]+>/g, "").trim(),
@@ -81,15 +80,18 @@ async function resolveBlogPost(slug: string): Promise<BlogPost | null> {
           ? apiBlog.seoKeywords.split(",").map((s: string) => s.trim()).filter(Boolean)
           : ["salon franchise", "Styluxe journal"],
         content: {
-          intro: (apiBlog.excerpt || "").replace(/<[^>]+>/g, "").trim(),
-          keyTakeaway: "",
-          rawHtml: apiBlog.content || "",
-          sections: [],
-          conclusion: "",
+          intro: (sc.intro || apiBlog.excerpt || "").replace(/<[^>]+>/g, "").trim(),
+          keyTakeaway: sc.keyTakeaway || "",
+          rawHtml: hasStructuredSections ? "" : (sc.rawHtml || (typeof apiBlog.content === "string" ? apiBlog.content : "")),
+          sections: hasStructuredSections ? sc.sections : [],
+          conclusion: sc.conclusion || "",
         },
       };
     }
   } catch (_) { }
+
+  const staticPost = getBlogPostBySlug(slug);
+  if (staticPost) return staticPost;
 
   return null;
 }

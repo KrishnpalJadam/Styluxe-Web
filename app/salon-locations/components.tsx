@@ -15,6 +15,7 @@ import {
 import "./components.css";
 import Link from "next/link";
 import { getCentres } from "../lib/api";
+import BookAppointmentModal from "../components/BookAppointmentModal";
 
 const STUDIO_IMAGE = "/images/styluxe/salon-interior.jpg";
 
@@ -92,6 +93,7 @@ export default function OurCentresContent() {
   const [locality, setLocality] = useState("All locations");
   const [sortBy, setSortBy] = useState("nearest");
   const [dbSalons, setDbSalons] = useState<any[]>([]);
+  const [bookingSalon, setBookingSalon] = useState<SalonStudio | null>(null);
   const [appliedFilters, setAppliedFilters] = useState({
     country: "India",
     state: "Telangana",
@@ -409,15 +411,14 @@ export default function OurCentresContent() {
                     </div>
 
                     <div className="tm-cafe-actions">
-                      <a
+                      <button
+                        type="button"
                         className="tm-button tm-directions-button"
-                        href="/"
-                        target="_blank"
-                        rel="noreferrer"
+                        onClick={() => setBookingSalon(salon)}
                       >
                         <PhoneCall size={17} />
-                        Call Salon
-                      </a>
+                        Book Appointment
+                      </button>
 
                       <Link
                         className="tm-button tm-view-button"
@@ -470,6 +471,13 @@ export default function OurCentresContent() {
           </a>
         </section>
       </div>
+
+      <BookAppointmentModal
+        open={Boolean(bookingSalon)}
+        onClose={() => setBookingSalon(null)}
+        defaultBranchId={bookingSalon?.id}
+        defaultBranchName={bookingSalon?.name}
+      />
     </main>
   );
 }

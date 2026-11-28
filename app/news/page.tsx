@@ -5,7 +5,7 @@ import { getAllBlogPosts, BlogPost } from "./blog-data";
 import { BlogClient } from "./blog-client";
 import { getBlogs } from "../lib/api";
 
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.styluxe.in";
 
@@ -96,14 +96,14 @@ export default async function NewsIndexPage() {
         };
       });
 
-      const existingSlugs = new Set(mappedApiBlogs.map((b) => b.slug));
-      const combined = [...mappedApiBlogs, ...posts.filter((p) => !existingSlugs.has(p.slug))];
-      posts = combined.sort((a, b) => {
-        const featA = a.isFeatured ? 1 : 0;
-        const featB = b.isFeatured ? 1 : 0;
-        if (featA !== featB) return featB - featA;
-        return new Date(b.isoDate || 0).getTime() - new Date(a.isoDate || 0).getTime();
-      });
+      if (mappedApiBlogs.length > 0) {
+        posts = mappedApiBlogs.sort((a, b) => {
+          const featA = a.isFeatured ? 1 : 0;
+          const featB = b.isFeatured ? 1 : 0;
+          if (featA !== featB) return featB - featA;
+          return new Date(b.isoDate || 0).getTime() - new Date(a.isoDate || 0).getTime();
+        });
+      }
     }
   } catch (_) { }
 
